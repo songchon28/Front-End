@@ -1,0 +1,201 @@
+<! DOCTYPE html>  
+<html>  
+<head>  
+  <meta charset = "UTF-8">  
+  <meta name = "viewport" content = "width=device-width, initial-scale=1.0">  
+  <meta http-equiv = "X-UA-Compatible" content = "ie=edge">  
+  <title>หน้าชำระเงิน</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="css/templatemo-style.css">  
+<style>  
+.qr-code {  
+    width: 500px; 
+    margin: 10px;  
+    } 
+.tm-qrcode {
+    margin-top: 200px;
+    font-size: 1.8rem;
+} 
+body {  
+    background-color: #b2b2b2;  
+    justify-content: center;      
+    color: black;    
+    text-align: center;
+}
+.container {
+    width: 500px;
+    height: 850px;
+}
+</style> 
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-book-reader ml-3"></i>
+                Open-Learning
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+        
+        </div>
+    </nav>
+    <div class="tm-qrcode container bg-white mb-5 rounded-lg">
+        <br>
+        <div>กรุณาทำการสแกน QRCODE
+            <br> 
+            เพื่อชำระเงินภายใน <span id="time"></span>
+            นาที
+            <button onclick="paySubmit()" class ="btn btn-primary tm-btn-big mt-3 mb-3">ยืนยันการชำระเงิน</button>
+        </div>
+        <div class="row justify-content-center">
+            <img class="qr-code img-thumbnail img-responsive" src="https://api.omise.co/charges/chrg_test_5whzuxxbto6aci1k8r6/documents/docu_test_5whzuxzw2n6kwsb62uj/downloads/DF75C3E700EF20A4"/> 
+            
+        </div>  
+    </div>
+    
+
+    <script src = "https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="https://cdn.omise.co/omise.js"></script>
+    <script>
+        let charge_id = ""
+        const user_email = localStorage.getItem("userEmail")
+        async function getOmise() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('course_id');
+            const response = await fetch("http://127.0.0.1:8000/ShowCourseVideo/" + id, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'accept': 'application/json',
+                },
+             })
+            const data = await response.json()
+            const price = data.data.course_price*100
+            Omise.setPublicKey("pkey_test_5tcxiq9fkxj25tcm2ah");
+            Omise.createSource('promptpay', {
+            "amount": price,
+            "currency": "THB"
+            }, async function(statusCode, response) {
+            const res = await fetch("http://127.0.0.1:8000/qrpay/", {
+                
+                
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                    body: JSON.stringify({
+                    course_id : id,
+                    user_email : user_email,
+                    amount : price,
+                    source_id : response.id
+                })
+            })
+                const json = await res.json()
+                console.log(json)
+                charge_id = json.data.charge_id
+                console.log(charge_id)
+            });
+
+        }
+        getOmise()
+        
+        async function paySubmit() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('course_id');
+            const response = await fetch("http://127.0.0.1:8000/ShowCourseVideo/" + id, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'accept': 'application/json',
+                },
+             })
+            const data = await response.json()
+            const price = data.data.course_price*100
+            const res = await fetch("http://127.0.0.1:8000/checkpay/", {
+            
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                    body: JSON.stringify({
+                    charge_id : charge_id,
+                    course_id : id,
+                    user_email : user_email,
+                    amount : price
+                
+                })
+
+            })
+            // setTimeout(function () {
+            // window.location.href= "video-detail.html?course_id="+json.data['course_id'];
+            // 
+
+            // }, 6000);
+            const json = await res.json()
+            console.log(json)
+            if(json['status'] === 'Successful') {
+  
+                window.history.back()
+            }
+            else {
+                alert("กรุณาชำระเงิน")
+            }
+        };
+        function startTimer(duration, display) {
+            var start = Date.now(),
+                diff,
+                minutes,
+                seconds;
+            function timer() {
+                // get the number of seconds that have elapsed since 
+                // startTimer() was called
+                diff = duration - (((Date.now() - start) / 1000) | 0);
+
+                // does the same job as parseInt truncates the float
+                minutes = (diff / 60) | 0;
+                seconds = (diff % 60) | 0;
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds; 
+
+                if (diff <= 0) {
+                    // add one second so that the count down starts at the full duration
+                    // example 05:00 not 04:59
+                    start = Date.now() + 1000;
+                }
+            };
+            // we don't want to wait a full second before the timer starts
+            timer();
+            setInterval(timer, 1000);
+        }
+
+        window.onload = function () {
+            var fiveMinutes = 60 * 5,
+                display = document.querySelector('#time');
+            startTimer(fiveMinutes, display);
+        };
+
+        setTimeout(function () {
+            window.history.back()
+        // "video-detail.html?course_id="+json.data['course_id']
+
+        }, 60000);
+
+        //     $(function () {
+        //     $('#generate').click(function () {
+        //         let finalURL =  
+        // 'https://chart.googleapis.com/chart?cht=qr&chl=' +
+        //         htmlEncode($('#content').val()) +
+        //         '&chs=160x160&chld=L|0'   
+        //         $('.qr-code').attr('src', finalURL);
+        //     });
+        // });
+</script>
+</body>
+</html>  

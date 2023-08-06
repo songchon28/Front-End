@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Account Settings UI Design</title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="fontawesome/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="css/admin.css">
+</head>
+<body>
+    <!-- Page Loader -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+
+    </div>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="">
+				<i class="fas fa-book-reader ml-3"></i>
+                Open<span style="color:black">-</span>L<span style="color:black">earning</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+            
+                <li class="nav-item">
+                    <img src="css/img/img_avatar.png" class="avatar" onclick="toggleMenu()" style="cursor: pointer;">
+					<label class="mt-sm-2" onclick="toggleMenu()" style="cursor: pointer;">Administrator</label>
+					<i class="fas fa-caret-down ml-2" onclick="toggleMenu()" style="cursor: pointer;"></i>
+					<div class="sub-menu-wrap" id="subMenu">
+						<div class="sub-menu">
+							<div class="user-info">
+								<img src="css/img/img_avatar.png">
+								<h5>Administrator</h5>
+								
+							</div>
+							<hr>
+							<!-- <a class="sub-menu-link" href="user_profile.html">
+								<i class="fas fa-user icon"></i> 
+								<p>บัญชีผู้ใช้</p>
+								
+							</a>
+							<a class="sub-menu-link" href="user_course.html">
+								<i class="fas fa-book icon"></i> 
+								<p>คอร์สเรียน</p>
+								
+							</a>
+							<a class="sub-menu-link" href="user_payment.html">
+								<i class="fas fa-wallet icon"></i> 
+								<p>ประวัติชำระเงิน</p>
+								
+							</a> -->
+							<a class="sub-menu-link" onclick="logoutUser()">
+								<i class="fas fa-sign-out-alt icon"></i> 
+								<p>ออกจากระบบ</p>
+								
+							</a>
+						</div>
+					</div>
+                </li>
+            </ul>
+            </div>
+        </div>
+    </nav>
+<body>
+	<section class="row py-0 my-0">
+		<div class="container col-sm-10">
+			<h1 class="mb-5"></h1>
+			<div class="bg-white shadow container-admin d-block d-sm-flex tm-admin">
+				<div class="profile-tab-nav border-right">
+					<div class="p-4">
+						<div class="img-circle text-center mb-3">
+							<img src="css/img/img_avatar.png" alt="Image">
+						</div>
+						<h4 class="text-center mb-3">Administrator</h4>
+                        <!-- <div class="text-center">
+                            <button class="btn btn-primary" onclick="logoutUser()">
+                                ออกจากระบบ
+                            </button>
+                        </div> -->
+					</div>
+					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+						<a class="nav-link" href="admin_user.html" role="tab" aria-controls="account" aria-selected="true">
+							<i class="fas fa-user text-center mr-2"></i> 
+							ข้อมูลของผู้ใช้
+						</a>
+						<a class="nav-link active" href="admin_buy.html" role="tab" aria-controls="buy" aria-selected="false">
+							<i class="fas fa-receipt text-center mr-2"></i> 
+							จำนวนคอร์สที่ขายได้
+						</a>
+						<a class="nav-link" href="admin_course.html" role="tab" aria-controls="application" aria-selected="false">
+							<i class="fas fa-book text-center mr-2"></i> 
+							จัดการคอร์สเรียน
+						</a>
+						<a class="nav-link" href="admin_test.html" role="tab" aria-controls="test" aria-selected="false">
+							<i class="fas fa-pen-alt mr-2"></i>
+							จัดการแบบทดสอบ
+						</a>
+			
+					</div>
+				</div>
+		
+				<div class="p-4 p-md-5 h-100 w-100 d-flex flex-column">
+					<div class="row">
+						<div class="col-sm-6">
+							<h3>จำนวนคอร์สที่ขายได้</h3>
+						
+						</div>
+					
+						
+					</div>
+					<div class="tab-content p-4 p-md-5 h-100 w-100" id="v-pills-tabContent">
+						<div class="tab-pane fade show active h-100 w-100 " role="tabpanel" aria-labelledby="account-tab">
+							<div class="h-100 w-100">
+								<div class=" text-right mb-2">
+									ตั้งแต่
+									<input id="date_from" type="date"></input>
+									ถึง
+									<input id="date_to" type="date"></input>
+									<button id="search_button" onclick="search_date()">ค้นหา</button>
+								</div>
+                                <table class="table table-fixed w-100 h-100 overflow-auto d-block">
+                                    <thead class="table table-dark table-striped sticky-top d-table w-100 mb-0" style="z-index: 1;">
+                                      <tr>
+                                        <th class="col-4" scope="col">วัน/เดือน/ปี</th>
+										<th class="col-2" scope="col">ราคา</th>
+										<th class="col-3" scope="col">จำนวนคอร์สที่ขายได้</th>
+										<th class="col-3" scope="col">รายละเอียด</th>
+                                      </tr>
+                                    </thead>
+
+									<tbody id="course_table" class="w-100 d-table"></tbody>
+                                    <!-- <tbody>
+                                      <tr>      
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>Mark</td>
+                                        <td>Otto</td> 
+                                      </tr>
+                                    </tbody> -->
+                                </table>    
+                                <!-- <div id="user" class="col-md-12"> -->
+                            </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<div class="modal-title" id="exampleModalScrollableTitle"><h5 id="fullname"></h5></div>
+						
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body" id="user_course">
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
+<script>
+
+	var bills = []
+
+	const date_from = document.getElementById("date_from")
+	const date_to = document.getElementById("date_to")
+	
+	date_from.addEventListener("change", (e) => {
+		date_to.min = date_from.value
+	})
+
+	date_to.addEventListener("change", (e) => {
+		date_from.max = date_to.value
+	})
+
+	function search_date() {
+		const billlist = document.getElementById('course_table');
+
+		while (billlist.hasChildNodes()) {
+			billlist.removeChild(billlist.firstChild)
+		}
+
+		for (let day in bills) {
+			const date = new Date(day)
+			if (date.getTime() < date_from.valueAsNumber || date.getTime() > date_to.valueAsNumber) {
+				continue
+			}
+
+			const dateFormat = date.toLocaleString('th-TH', {
+				dateStyle: "full"
+				})
+            const box = document.createElement('tr');
+            box.innerHTML = `
+								<td class="col-4">${dateFormat}</td>
+								<td class="col-2">${bills[day].bill_total} บาท </td>
+								<td class="col-3">${bills[day].course_total} คอร์ส </td>
+								<td class="col-3"><a id=${day} class="course-link btn btn-primary">รายละเอียด</a></td>
+							`
+
+							// `<div class="row bg-light text-dark mb-3">	
+                            //     <label class="col-sm-10 form-label fw-bolder text-dark mt-2">
+							// 		Bill Date: ${dateFormat}
+							// 		<br>
+							// 		<div id = 'course_id'>
+					
+							// 		</div>
+							// 		<br>
+							// 		ราคารวม: ${course_count[day].bill_total} บาท 
+                            //     </label>
+                            // </div>`
+
+			box.querySelector("a").addEventListener("click", (e) => {
+				const courselist = document.querySelector('#user_course')
+				const day = e.target.id
+
+				while (courselist.hasChildNodes()) {
+  					courselist.removeChild(courselist.firstChild);
+				}
+
+				for(let id in bills[day].course){
+					const div = document.createElement('div');
+					const fullname = document.getElementById('fullname');
+					fullname.innerText = dateFormat + ' คอร์สที่ขายได้มีดังนี้'
+					div.innerText = 'Course ID:' + id + ' ชื่อคอร์ส ' + bills[day].course[id].course_name + " จำนวน " + bills[day].course[id].count + " คอร์ส "
+					courselist.appendChild(div)
+				}
+				$("#exampleModalScrollable").modal()
+			})
+
+            box.classList.add('box')
+            billlist.appendChild(box)
+		}
+	}
+
+	// var coursemodal = document.getElementById("courseModal");
+    
+    // var coursebtn = document.getElementById("courseBtn");
+   
+    // var closecourse = document.getElementsByClassName("closeT")[0];
+    
+    // coursebtn.onclick = function() {
+    // coursemodal.style.display = "block";
+    // }
+    
+    // closecourse.onclick = function() {
+    //     coursemodal.style.display = "none";
+    // }
+    
+    // window.onclick = function(event) {
+	// 	if (event.target == coursemodal) {
+	// 		coursemodal.style.display = "none";
+	// 	}
+    // }	
+
+	const subMenu = document.getElementById("subMenu");
+	async function toggleMenu () {
+		subMenu.classList.toggle("open-menu");
+	}
+
+	async function logoutUser() {
+		localStorage.removeItem("adminEmail");
+		window.location.assign("/sign.html");
+	}
+    // async function getAdmin() {
+	// 	const adminProfile = localStorage.getItem("adminEmail");
+	// 	const admindata = JSON.stringify({user_email: adminProfile});
+	// 	const response = await fetch("http://127.0.0.1:8000/userData/",{
+		
+	// 	method: 'POST',
+	// 	headers: {
+	// 	'Content-Type': 'application/json',
+	// 	'accept': 'application/json',
+		
+	// },
+	// body: admindata
+	// })
+
+	// const user = await response.json()
+	// console.log(user)
+
+	// const fullname = document.getElementById('fullname');
+	// fullname.innerText = user.data.fname + " " + user.data.lname
+    // const email_profile = document.getElementById('profile');
+	// email_profile.innerText = user.data.email
+	
+	// }
+	// getAdmin()
+
+	async function getAllBill() {
+        const response = await fetch("http://127.0.0.1:8000/AllBillData/", {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'accept': 'application/json',
+            },
+        })
+        const json = await response.json()
+        const billlist = document.getElementById('course_table');
+        var data = json.data;
+		var course_count = json.course_count;
+		bills = course_count
+
+        var datalenght = Object.keys(course_count).length;
+        for (let day in course_count) {
+			const date = new Date(day)
+			const dateFormat = date.toLocaleString('th-TH', {
+				dateStyle: "full"
+				})
+            const box = document.createElement('tr');
+            box.innerHTML = `
+									<td class="col-4">${dateFormat}</td>
+									<td class="col-2">${course_count[day].bill_total} บาท </td>
+									<td class="col-3">${course_count[day].course_total} คอร์ส </td>
+									<td class="col-3"><a id=${day} class="course-link btn btn-primary">รายละเอียด</a></td>
+							`
+
+							// `<div class="row bg-light text-dark mb-3">	
+                            //     <label class="col-sm-10 form-label fw-bolder text-dark mt-2">
+							// 		Bill Date: ${dateFormat}
+							// 		<br>
+							// 		<div id = 'course_id'>
+					
+							// 		</div>
+							// 		<br>
+							// 		ราคารวม: ${course_count[day].bill_total} บาท 
+                            //     </label>
+                            // </div>`
+
+			box.querySelector("a").addEventListener("click", (e) => {
+				const courselist = document.querySelector('#user_course')
+				const day = e.target.id
+
+				while (courselist.hasChildNodes()) {
+  					courselist.removeChild(courselist.firstChild);
+				}
+
+				for(let id in course_count[day].course){
+					const div = document.createElement('div');
+					const fullname = document.getElementById('fullname');
+					fullname.innerText = dateFormat + ' คอร์สที่ขายได้มีดังนี้'
+					div.innerText = 'Course ID:' + id + ' ชื่อคอร์ส ' + course_count[day].course[id].course_name + " จำนวน " + course_count[day].course[id].count + " คอร์ส "
+					courselist.appendChild(div)
+				}
+				$("#exampleModalScrollable").modal()
+			})
+
+            box.classList.add('box')
+            billlist.appendChild(box)
+            // <input class="col-sm-3 checkon_off" type="checkbox" checked data-toggle="toggle" data-style="android" data-onstyle="info"> //
+        }
+    }
+	getAllBill()
+
+
+</script>
+
+</body>
+</html>

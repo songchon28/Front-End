@@ -1,0 +1,25 @@
+{
+  "users": [
+    {
+      "first_name": "qwer",
+      "last_name": "qwer",
+      "email": "qwer@gmail.com",
+      "password": "qwer",
+      "id": 1
+    },
+    {
+      "first_name": "zxcv",
+      "last_name": "zxcv",
+      "email": "zxcv123@gmail.com",
+      "password": "123456",
+      "id": 2
+    },
+    {
+      "first_name": "อชิตพล",
+      "last_name": "คิม",
+      "email": "songchon28@gmail.com",
+      "password": "123456",
+      "id": 3
+    }
+  ]
+}

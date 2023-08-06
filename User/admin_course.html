@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Account Settings UI Design</title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="fontawesome/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="css/admin.css">
+</head>
+<body>
+    <!-- Page Loader -->
+    <!-- <div id="loader-wrapper">
+        <div id="loader"></div>
+
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+
+    </div> -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="">
+				<i class="fas fa-book-reader ml-3"></i>
+                Open<span style="color:black">-</span>L<span style="color:black">earning</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                
+                <li class="nav-item">
+                    <img src="css/img/img_avatar.png" class="avatar" onclick="toggleMenu()" style="cursor: pointer;">
+                    <label class="mt-sm-2" onclick="toggleMenu()" style="cursor: pointer;">Administrator</label>
+                    <i class="fas fa-caret-down ml-2" onclick="toggleMenu()" style="cursor: pointer;"></i>
+					<div class="sub-menu-wrap" id="subMenu">
+						<div class="sub-menu">
+							<div class="user-info">
+								<img src="css/img/img_avatar.png">
+								<h5>Administrator</h5>
+								
+							</div>
+							<hr>
+							<!-- <a class="sub-menu-link" href="user_profile.html">
+								<i class="fas fa-user icon"></i> 
+								<p>บัญชีผู้ใช้</p>
+								
+							</a>
+							<a class="sub-menu-link" href="user_course.html">
+								<i class="fas fa-book icon"></i> 
+								<p>คอร์สเรียน</p>
+								
+							</a>
+							<a class="sub-menu-link" href="user_payment.html">
+								<i class="fas fa-wallet icon"></i> 
+								<p>ประวัติชำระเงิน</p>
+								
+							</a> -->
+							<a class="sub-menu-link" onclick="logoutUser()">
+								<i class="fas fa-sign-out-alt icon"></i> 
+								<p>ออกจากระบบ</p>
+								
+							</a>
+						</div>
+					</div>
+                </li>
+            </ul>
+            </div>
+        </div>
+    </nav>
+</body>
+<body>
+	<section class="row py-0 my-0">
+		<div class="container col-sm-10">
+			<h1 class="mb-5"></h1>
+			<div class="bg-white shadow container-admin d-block d-sm-flex tm-admin">
+				<div class="profile-tab-nav border-right">
+					<div class="p-4">
+						<div class="img-circle text-center mb-3">
+							<img src="css/img/img_avatar.png" alt="Image">
+						</div>
+                        <h4 class="text-center mb-3" id="fullname">Administrator</h4>
+                        <!-- <div class="text-center">
+                            <button class="btn btn-primary" onclick="editUser()">
+                                ออกจากระบบ
+                            </button>
+                        </div> -->
+						
+					</div>
+					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+						<a class="nav-link" href="admin_user.html" role="tab" aria-controls="account" aria-selected="true">
+							<i class="fas fa-user text-center mr-2"></i> 
+							ข้อมูลของผู้ใช้
+						</a>
+						<a class="nav-link" href="admin_buy.html" role="tab" aria-controls="buy" aria-selected="false">
+							<i class="fas fa-receipt text-center mr-2"></i> 
+							จำนวนคอร์สที่ขายได้
+						</a>
+						<a class="nav-link active" href="admin_course.html" role="tab" aria-controls="application" aria-selected="false">
+							<i class="fas fa-book text-center mr-2"></i> 
+							จัดการคอร์สเรียน
+						</a>
+						<a class="nav-link" href="admin_test.html" role="tab" aria-controls="test" aria-selected="false">
+							<i class="fas fa-pen-alt mr-2"></i>
+							จัดการแบบทดสอบ
+						</a>
+					</div>
+				</div>
+                <div class="p-4 p-md-5 h-100 w-100 d-flex flex-column">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h3>จัดการคอร์สเรียน</h3>
+                        </div>
+                        <div class="search-box col-sm-3 mt-2">
+                            <i class="fas fa-search ml-1">&#xE8B6;</i>
+                            <input id="search_bar" type="text" class="form-control" placeholder="ค้นหา&hellip;" onclick="search()">
+                        </div>
+
+                        <div class="col-sm-3">
+                            <button id="editBtn" class="btn btn-edit">
+                                <i class="fas fa-edit"></i>
+                                แก้ไข
+                            </button>
+                            <button id="courseBtn" class="btn btn-add">
+                                <i class="fas fa-plus"></i>
+                                เพิ่ม
+                            </button>
+                        </div>
+                    </div>
+                    <div class="tab-content p-4 p-md-5 w-100 h-100" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active w-100 h-100" id="application" role="tabpanel" aria-labelledby="application-tab">
+                            <!-- <div class="row">
+                                <div id="course_data"  class="col-md-12">
+                                    
+                                </div>
+                            </div> -->
+                            <div class="w-100 h-100">
+                                <table class="table table-fixed w-100 h-100 d-block overflow-auto">
+                                    <thead class="table table-dark table-striped sticky-top d-table mb-0" style="z-index: 1;">
+                                      <tr>
+                                        <th class="col-1" scope="col">คอร์ส ID</th>
+                                        <th class="col-2" scope="col">ชื่อคอร์ส</th>
+                                        <th class="col-5" scope="col">คำอธิบาย</th>
+                                        <th class="col-2" scope="col">ราคา</th>
+                                        <th class="col-2" scope="col">สถานะคอร์ส</th>
+                                        
+                                      </tr>
+                                    </thead>
+                                    <tbody id="course_table" class="w-100 d-table"></tbody>
+                                    <!-- <tbody>
+                                      <tr>  
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                      </tr>
+                                    </tbody> -->
+                                </table>
+                                <!-- <div id="user" class="col-md-12"> -->    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <form id="form">
+
+                    <div id="courseModal" class="modal">
+                        <!-- Course Modal content -->
+                        <div class="modal-content">
+                            <span class="closeT text-right">&times;</span>
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-md-10">
+                                    <div id="course_name" class="form-group">
+                                        <h1 class="mb-4">เพิ่มคอร์สเรียน</h1>  
+                                        ชื่อคอร์ส<span style="color:#7e7e7e"> (จำนวนตัวอักษรไม่เกิน 40 ตัวอักษร)</span>
+                                        <input id="c_name" name="c_name" type="text" class="form-control" value="">
+                                        <a class="text-danger" id="name_error"></a>
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    <div id="course_price" class="form-group">
+                                        ราคาคอร์ส<span style="color:#7e7e7e"> (บาท)</span>
+                                        <input id="c_price" name="c_price" type="text" class="form-control" value="">
+                                        <a class="text-danger" id="price_error"></a>
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    <div id="course_descript" class="form-group">
+                                        รายละเอียดคอร์ส<span style="color:#7e7e7e"> (จำนวนตัวอักษรไม่เกิน 400 ตัวอักษร)</span>
+                                        <input id="c_description" name="c_description" type="text" class="form-control" value="">
+                                        <a class="text-danger" id="descript_error"></a>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-5 mb-5">
+                                    <div class="col">
+                                        <div class="form-group" >
+                                            <label>ไฟล์รูปภาพ</label>
+                                        </div>
+                                        <input type="file" id="imagefile" hidden="hidden" accept="image/*"/>
+                                        <button type="button" id="pic-button">เลือกไฟล์</button>
+                                        <span id="pic-text">ไม่ได้เลือกไฟล์รูปภาพ</span>
+                                        <a id="info1" class="imgfile-error text-danger d-flex mt-2"></a>
+                                    </div>
+                                    
+                                    
+                                </div>
+                                <div class="col-md-5 mb-5">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label>ไฟล์วิดีโอ</label>
+                                        </div>
+                                        <input type="file" id="videofile" hidden="hidden" accept="video/*"/>
+                                        <button type="button" id="video-button">เลือกไฟล์</button>
+                                        <span id="video-text">ไม่ได้เลือกไฟล์วิดีโอ</span>
+                                        <a id="info2" class="videofile-error text-danger d-flex mt-2"></a>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-10 text-right mb-5">
+                                    <button class="btn btn-cancel">
+                                        <i class="fas fa-times"></i>
+                                        ยกเลิก
+                                    </button>
+                                    <button class="btn btn-add" type="submit" onclick="addCourse()">
+                                        <i class="fas fa-plus"></i>
+                                        เพิ่ม
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                
+                <div id="editModal" class="modal">
+                    <!-- Edit Course Modal content -->
+                    <div class="modal-content">
+                        <span class="closeE text-right">&times;</span>
+                        <div class="row d-flex justify-content-center">
+                        
+                            <div class="col-md-10">
+                                <div  class="form-group">
+                                    <h1 class="mb-4">แก้ไขคอร์สเรียน</h1>  
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label>เลือกคอร์สเรียน</label>
+                                    <select id = "courseid_dropdown">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                <div id="course_price" class="form-group">
+                                    ชื่อคอร์ส<span style="color:#7e7e7e"></span>
+                                    <input id="c_name_edit" name="c_name" type="text" class="form-control">
+                                    <a class="text-danger" id="editname_error"></a>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-10">
+                                <div id="course_price" class="form-group">
+                                    ราคาคอร์ส<span style="color:#7e7e7e"></span>
+                                    <input id="c_price_edit" name="c_price" type="text" class="form-control">
+                                    <a class="text-danger" id="editprice_error"></a>
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                <div id="course_descript" class="form-group">
+                                    รายละเอียดคอร์ส<span style="color:#7e7e7e"></span>
+                                    <input id="c_description_edit" name="c_description" type="text" class="form-control">
+                                    <a class="text-danger" id="editdescript_error"></a>
+                                </div>
+                            </div>
+                            
+                            <!--                             
+                            <div class="col-sm-10 text-dark justify-content-center mb-3">	
+                                <button class="btn btn-success">
+                                    <i class="fas fa-plus"></i>
+                                    อัปโหลด
+                                </button>
+                            </div> -->
+                            <div class="col-sm-10 text-right mb-5">
+                                <button class="btn btn-cancel">
+                                    <i class="fas fa-times"></i>
+                                    ยกเลิก
+                                </button>
+                                <button class="btn btn-cancel-edit" type="button" onclick="editCourse(event)">
+                                    <i class="fas fa-edit"></i>
+									แก้ไข
+								
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>
+		</div>
+	</section>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
+<script>
+    
+    document.getElementById('search_bar').addEventListener('keypress',event=>{
+        if(event.key == 'Enter'){
+            event.preventDefault()
+            search()
+        }
+    })
+
+    const picFileBtn = document.getElementById("imagefile");
+    const picBtn = document.getElementById("pic-button");
+    const picTxt = document.getElementById("pic-text");
+    picBtn.addEventListener("click", function() {
+        picFileBtn.click();
+    });
+
+    picFileBtn.addEventListener("change", function() {
+        if (picFileBtn.value) {
+            picTxt.innerHTML = picFileBtn.value.match(
+            /[\/\\]([\w\d\s\.\-\(\)]+)$/
+            )[1];
+        } else {
+            picTxt.innerHTML = "No file chosen, yet.";
+        }
+    });
+
+    const videoFileBtn = document.getElementById("videofile");
+    const videoBtn = document.getElementById("video-button");
+    const videoTxt = document.getElementById("video-text");
+    videoBtn.addEventListener("click", function() {
+        videoFileBtn.click();
+    });
+
+    videoFileBtn.addEventListener("change", function() {
+        if (videoFileBtn.value) {
+            videoTxt.innerHTML = videoFileBtn.value.match(
+            /[\/\\]([\w\d\s\.\-\(\)]+)$/
+            )[1];
+        } else {
+            videoTxt.innerHTML = "No file chosen, yet.";
+        }
+    });
+
+    var course_data = {}
+
+	var coursemodal = document.getElementById("courseModal");
+    var coursebtn = document.getElementById("courseBtn");
+    var closecourse = document.getElementsByClassName("closeT")[0];
+    coursebtn.onclick = function() {
+    coursemodal.style.display = "block";
+    }
+    closecourse.onclick = function() {
+        coursemodal.style.display = "none";
+    }
+    window.onclick = function(event) {
+    if (event.target == coursemodal) {
+        coursemodal.style.display = "none";
+    }
+    }
+
+    var editmodal = document.getElementById("editModal");
+    var editbtn = document.getElementById("editBtn");
+    var closeedit = document.getElementsByClassName("closeE")[0];
+    editbtn.onclick = function() {
+        editmodal.style.display = "block";
+    }
+    closeedit.onclick = function() {
+        editmodal.style.display = "none";
+    }
+    window.onclick = function(event) {
+        if (event.target == editmodal) {
+            editmodal.style.display = "none";
+        }
+    }
+
+    const subMenu = document.getElementById("subMenu");
+	async function toggleMenu () {
+		subMenu.classList.toggle("open-menu");
+	}
+
+    async function logoutUser() {
+		localStorage.removeItem("adminEmail");
+		window.location.assign("/sign.html");
+	}
+    // async function getAdmin() {
+    //     const adminProfile = localStorage.getItem("adminEmail");
+    //     const admindata = JSON.stringify({user_email: adminProfile});
+    //     const response = await fetch("http://127.0.0.1:8000/userData/",{
+        
+    //     method: 'POST',
+    //     headers: {
+    //     'Content-Type': 'application/json',
+    //     'accept': 'application/json',
+        
+    // },
+    // body: admindata
+    // })
+
+    // const user = await response.json()
+    // console.log(user)
+
+    // const fullname = document.getElementById('fullname');
+    // fullname.innerText = user.data.fname + " " + user.data.lname
+    // const email_profile = document.getElementById('profile');
+	// email_profile.innerText = user.data.email
+    
+    // }
+    // getAdmin()
+
+    //GET COURSE
+
+    
+    let courseData = []
+
+
+    async function getCourse() {
+        const response = await fetch("http://127.0.0.1:8000/AllCourseData/", {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'accept': 'application/json',
+            },
+        })
+        const json = await response.json()
+        const courselist = document.getElementById('course_table');
+        course_data = json.data;
+        courseData = json.data;
+        
+        var datalenght = Object.keys(course_data).length;
+        const courseid_dropdown = document.getElementById('courseid_dropdown')
+        const course_name = document.getElementById('c_name_edit')
+        const course_price = document.getElementById('c_price_edit')
+        const course_descript = document.getElementById('c_description_edit')
+        course_name.value = courseData[0].course_name
+        course_price.value = courseData[0].course_price
+        course_descript.value = courseData[0].course_descript
+
+        for (var i = 0; i < datalenght; i++) {
+            const option = document.createElement('option')
+            option.innerText = json.data[i]['course_id'] + " " + json.data[i]['course_name']
+            option.value = json.data[i]['course_id'] 
+            courseid_dropdown.appendChild(option)
+            const box = document.createElement('tr');
+            box.innerHTML = `
+                                    <td class="col-1">${json.data[i]['course_id']}</td>
+                                    <td class="col-2">${json.data[i]['course_name']}</td>
+                                    <td class="col-5">${json.data[i]['course_descript']}</td>
+                                    <td class="col-2">${json.data[i]['course_price']} บาท</td>
+                                    <td class="col-2">
+                                        <label class="switch align-self-center">
+                                            <input id="${json.data[i]['course_id']}" type="checkbox">
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </td> 
+                            `
+                            // `<div class="row bg-light text-dark mb-3">	
+                            //     <label class="col-sm-9 form-label fw-bolder text-dark mt-2">ID: ${json.data[c]['course_id']} ชื่อ: ${json.data[c]['course_name']} 
+                            //         ราคา: ${json.data[c]['course_price']} บาท
+                            //         <br>
+                            //         คำอธิบาย: ${json.data[c]['course_descript']}
+                            //     </label>
+                            //     <label class="switch align-self-center">
+                            //         <input id="${json.data[c]['course_id']}" type="checkbox">
+                            //         <span class="slider round"></span>
+                            //     </label>
+                            // </div>`
+            const toggle = box.getElementsByTagName("input")[0];
+            if (json.data[i].course_open == 1) {
+                toggle.setAttribute("checked", true)
+            }
+
+            toggle.addEventListener("change", function() {
+                if (this.checked) {        
+                    courseCheck(toggle.id, 1)
+                }
+                else {       
+                    courseCheck(toggle.id, 0)
+                }                
+            })
+            box.classList.add('box')
+            courselist.appendChild(box)
+            // <input class="col-sm-3 checkon_off" type="checkbox" checked data-toggle="toggle" data-style="android" data-onstyle="info"> //
+        }
+    }
+
+
+
+    async function search(){
+        const coursesearch = document.getElementById('course_table');
+        while (coursesearch.hasChildNodes()) {
+            coursesearch.removeChild(coursesearch.firstChild);
+        }
+        const search_bar = document.getElementById('search_bar')
+        const course_search = []
+        if(search_bar.value == ''){
+            var datalenght = Object.keys(course_data).length;
+        for (var i = 0; i < datalenght; i++) {
+            const box = document.createElement('tr');
+            box.innerHTML = `
+                                <td class="col-1">${course_data[i]['course_id']}</td>
+                                <td class="col-2">${course_data[i]['course_name']}</td>
+                                <td class="col-5">${course_data[i]['course_descript']}</td>
+                                <td class="col-2">${course_data[i]['course_price']} บาท</td>
+                                <td class="col-2">
+                                    <label class="switch align-self-center">
+                                        <input id="${course_data[i]['course_id']}" type="checkbox">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </td> 
+                            `
+                            
+        const toggle = box.getElementsByTagName("input")[0];
+        if (course_data[i].course_open == 1) {
+            toggle.setAttribute("checked", true)
+        }
+
+        toggle.addEventListener("change", function() {
+            if (this.checked) {        
+                courseCheck(toggle.id, 1)
+            }
+            else {       
+                courseCheck(toggle.id, 0)
+            }                
+        })
+        box.classList.add('box')
+        coursesearch.appendChild(box)
+        
+        }
+            return
+        }
+
+        for(let i in course_data){
+            if (course_data[i].course_name.includes(search_bar.value)) {
+                course_search.push(course_data[i])
+            }
+            console.log(search_bar.value)
+            console.log(course_data[i].course_name)
+        }
+            var datalenght = Object.keys(course_search).length;
+        for (var i = 0; i < datalenght; i++) {
+            const box = document.createElement('tr');
+            box.innerHTML = `
+                                <td class="col-1">${course_search[i]['course_id']}</td>
+                                <td class="col-2">${course_search[i]['course_name']}</td>
+                                <td class="col-5">${course_search[i]['course_descript']}</td>
+                                <td class="col-2">${course_search[i]['course_price']} บาท</td>
+                                <td class="col-2">
+                                    <label class="switch align-self-center">
+                                        <input id="${course_search[i]['course_id']}" type="checkbox">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </td> 
+                            `
+                            
+        const toggle = box.getElementsByTagName("input")[0];
+        if (course_search[i].course_open == 1) {
+            toggle.setAttribute("checked", true)
+        }
+
+        toggle.addEventListener("change", function() {
+            if (this.checked) {        
+                courseCheck(toggle.id, 1)
+            }
+            else {       
+                courseCheck(toggle.id, 0)
+            }                
+        })
+        box.classList.add('box')
+        coursesearch.appendChild(box)
+        }
+    }
+
+    //COURSE CHECKED/UNCHECKED
+    async function courseCheck(course_id, course_open) {
+        const response = await fetch("http://127.0.0.1:8000/Updatecourse/", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'accept': 'application/json',
+            },
+            body: JSON.stringify({
+                course_id: course_id,
+                course_open: course_open
+            })
+        })
+    // const json = await response.json()
+    // console.log(json)
+    }
+ 
+    getCourse()
+
+        const imginput = document.querySelector('#imagefile');
+        imginput.addEventListener('change', () => {
+            validateImgSize();
+        })
+       
+        function validateImgSize() {
+            const imgfile = document.querySelector('#imagefile').files[0];
+            const limit = 3;
+            const size = Math.round(imgfile.size/1024**2);
+            if (size < limit) {
+                // document.getElementById("info1").innerText=`File size OK: ${size} MB`;
+                return true;
+            } else {
+                document.getElementById("info1").innerText=`มีขนาดไฟล์รูปภาพมากกว่า 3MB (${(size).toFixed(2)} MB)`;
+                return false;
+            }
+        }
+
+        const videoinput = document.querySelector('#videofile');
+        videoinput.addEventListener('change', () => {
+            validateVideoSize();
+        })
+       
+        function validateVideoSize() {
+            const videofile = document.querySelector('#videofile').files[0];
+            if (!videofile) {
+                document.getElementById("info2").innerText="*ไม่มีไฟล์วิดีโอ";
+                return false;
+            }
+            const limit = 300;
+            const size = Math.round(videofile.size/1024**2);
+            if (size < limit) {
+                // document.getElementById("info2").innerText=`File size OK: ${size} MB`;
+                return true;
+            } else {
+                document.getElementById("info2").innerText=`มีขนาดไฟล์วิดีโอมากกว่า 300MB (${(size).toFixed(2)} MB)`;
+                return false;
+            }
+        }
+
+    //Upload Video
+    async function addCourse() {
+        event.preventDefault()
+        const course_name = document.getElementById('c_name').value;
+        const course_price = document.getElementById('c_price').value;
+        const course_descript = document.getElementById('c_description').value;
+        const course_image = document.querySelector('#imagefile');
+        const course_video = document.querySelector('#videofile');
+  
+        // const validimg = validateImgSize()
+        const validvideo = validateVideoSize()
+
+        if (course_name.trim()) {
+            document.getElementById("name_error").innerHTML="";
+        }
+        if (course_price.trim()) {
+            document.getElementById("price_error").innerHTML="";
+        }
+        if (course_descript.trim()) {
+            document.getElementById("descript_error").innerHTML="";
+        }
+        if ( !course_name.trim()|| !course_price.trim()|| !course_descript.trim()|| !validvideo) {
+            if (course_name.trim() === "") {
+                document.getElementById("name_error").innerHTML="*กรุณากรอกชื่อคอร์ส";
+            }
+            if (course_name.trim() === "") {
+                document.getElementById("price_error").innerHTML="*กรุณากรอกราคาคอร์ส";
+            }
+            if (course_name.trim() === "") {
+                document.getElementById("descript_error").innerHTML="*กรุณากรอกราบละเอียดคอร์ส";
+            }
+            return
+        }
+
+        
+
+
+        
+        var formData = new FormData();
+        formData.append("filevideoname", course_video.files[0]?.name);
+        formData.append("filevideo", course_video.files[0]);
+        formData.append("fileimagename", course_image.files[0]?.name ? course_image.files[0]?.name : "default.jpg");
+        formData.append("fileimage", course_image.files[0]);
+        formData.append("c_name", course_name);
+        formData.append("c_price", course_price);
+        formData.append("c_descript", course_descript);
+        formData.append("c_open", 1);
+        // console.log(course_video.files)
+        // console.log(course_image.files)
+        const response = await fetch("http://127.0.0.1:8000/course/", {
+        method: 'POST',
+        // headers: {
+        //     'accept': 'application/json'
+        // },
+        body: formData
+        })
+
+        // if(json['status'] === 'Successful') {
+  
+        // window.location.assign(".admin_course.html")
+        // // localStorage.setItem("userEmail", json.email);
+        // }
+        // else {
+        //     alert("")
+        // }
+    }
+
+    async function editCourse() {
+        event.preventDefault()
+        
+        const course_name = document.getElementById('c_name_edit').value;
+        const course_price = document.getElementById('c_price_edit').value;
+        const course_descript = document.getElementById('c_description_edit').value;
+        const course_id = document.getElementById('courseid_dropdown').value;
+
+        if (course_name.trim()) {
+            document.getElementById("editname_error").innerHTML="";
+        }
+        if (course_price.trim()) {
+            document.getElementById("editprice_error").innerHTML="";
+        }
+        if (course_descript.trim()) {
+            document.getElementById("editdescript_error").innerHTML="";
+        }
+        if ( !course_name.trim()|| !course_price.trim()|| !course_descript.trim()) {
+            if (course_name.trim() === "") {
+                document.getElementById("editname_error").innerHTML="*กรุณากรอกชื่อคอร์ส";
+            }
+            if (course_name.trim() === "") {
+                document.getElementById("editprice_error").innerHTML="*กรุณากรอกราคาคอร์ส";
+            }
+            if (course_name.trim() === "") {
+                document.getElementById("editdescript_error").innerHTML="*กรุณากรอกราบละเอียดคอร์ส";
+            }
+            return
+        }
+
+        const new_data = {
+                            "course_name": course_name,
+					        "course_price": course_price,
+					        "course_descript": course_descript,
+                            "course_id" : course_id
+                        }
+
+        const jsonData = JSON.stringify(new_data);
+        console.log(jsonData)
+        const response = await fetch("http://127.0.0.1:8000/EditCoursedata/",{
+
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json',
+        'accept': 'application/json',
+
+        },
+        body: jsonData
+        })
+
+        const json = await response.json()
+        console.log(json)
+
+    }
+
+    document.getElementById('courseid_dropdown').addEventListener("change", (event) => {
+        const course_name = document.getElementById('c_name_edit')
+        const course_price = document.getElementById('c_price_edit')
+        const course_descript = document.getElementById('c_description_edit')
+        const course_id = document.getElementById('courseid_dropdown').value;
+        for (let i in courseData) {
+            if (course_id == courseData[i].course_id) {
+                course_name.value = courseData[i].course_name
+                course_price.value = courseData[i].course_price
+                course_descript.value = courseData[i].course_descript
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

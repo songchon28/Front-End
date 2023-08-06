@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Account Settings UI Design</title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="fontawesome/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="css/admin.css">
+</head>
+
+<body>
+	
+	<!-- Page Loader -->
+	<!-- <div id="loader-wrapper">
+		<div id="loader"></div>
+
+		<div class="loader-section section-left"></div>
+		<div class="loader-section section-right"></div>
+
+	</div> -->
+<nav class="navbar navbar-expand-lg">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="">
+			<i class="fas fa-book-reader ml-3"></i>
+			Open<span style="color:black">-</span>L<span style="color:black">earning</span>
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<i class="fas fa-bars"></i>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+				
+				<li class="nav-item">
+					<img src="css/img/img_avatar.png" class="avatar" onclick="toggleMenu()" style="cursor: pointer;">
+					<label class="mt-sm-2" onclick="toggleMenu()" style="cursor: pointer;">Administrator</label>
+					<i class="fas fa-caret-down ml-2" onclick="toggleMenu()" style="cursor: pointer;"></i>
+					<div class="sub-menu-wrap" id="subMenu">
+						<div class="sub-menu">
+							<div class="user-info" >
+								<img href="" src="css/img/img_avatar.png">
+								<h5 href="">Administrator</h5>
+								
+							</div>
+							<hr>
+							<!-- <a class="sub-menu-link" href="user_profile.html">
+								<i class="fas fa-user icon"></i> 
+								<p>บัญชีผู้ใช้</p>
+								
+							</a>
+							<a class="sub-menu-link" href="user_course.html">
+								<i class="fas fa-book icon"></i> 
+								<p>คอร์สเรียน</p>
+								
+							</a>
+							<a class="sub-menu-link" href="user_payment.html">
+								<i class="fas fa-wallet icon"></i> 
+								<p>ประวัติชำระเงิน</p>
+								
+							</a> -->
+							<a class="sub-menu-link" onclick="logoutUser()">
+								<i class="fas fa-sign-out-alt icon"></i> 
+								<p>ออกจากระบบ</p>
+								
+							</a>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<body>
+	<section class="row py-0 my-0">
+		<div class="container col-sm-10">
+			<h1 class="mb-5"></h1>
+			<div class="bg-white shadow container-admin d-block d-sm-flex tm-admin">
+				<div class="profile-tab-nav border-right">
+					<div class="p-4">
+						<div class="img-circle text-center mb-3">
+							<img src="css/img/img_avatar.png" alt="Image">
+						</div>
+						<h4 class="text-center mb-3">Administrator</h4>
+						<!-- <div class="text-center">
+							<button class="btn btn-primary" onclick="editUser()">
+								ออกจากระบบ
+							</button>
+						</div> -->
+					</div>
+					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
+						aria-orientation="vertical">
+						<a class="nav-link active" href="admin_user.html" role="tab" aria-controls="account"
+							aria-selected="true">
+							<i class="fas fa-user text-center mr-2"></i>
+							ข้อมูลของผู้ใช้
+						</a>
+						<a class="nav-link" href="admin_buy.html" role="tab" aria-controls="buy"
+							aria-selected="false">
+							<i class="fas fa-receipt text-center mr-2"></i>
+							จำนวนคอร์สที่ขายได้
+						</a>
+						<a class="nav-link" href="admin_course.html" role="tab" aria-controls="application"
+							aria-selected="false">
+							<i class="fas fa-book text-center mr-2"></i>
+							จัดการคอร์สเรียน
+						</a>
+						<a class="nav-link" href="admin_test.html" role="tab" aria-controls="test"
+							aria-selected="false">
+							<i class="fas fa-pen-alt mr-2"></i>
+							จัดการแบบทดสอบ
+						</a>
+					</div>
+				</div>
+				<div class="p-4 p-md-5 h-100 w-100 d-flex flex-column">
+					<div class="row">
+						<div class="col-sm-8">
+							<h3>ข้อมูลของผู้ใช้</h3>
+						</div>
+						<div class="search-box col-sm-4 mt-2 mr-0">
+							<i class="fas fa-search ml-1">&#xE8B6;</i>
+							<input id="search_bar" type="text" class="form-control search-input" style="width: 340px" placeholder="ค้นหา&hellip;" onclick="search()">
+						</div>
+
+						<div class=" p-4 p-md-5 h-100 w-100" id="v-pills-tabContent">
+							<div class=" fade show active w-100 h-100" id="account" role="tabpanel" aria-labelledby="account-tab">
+								<div class="h-100 w-100">
+									<table class="table table-fixed h-100 w-100 d-block overflow-auto">
+										<thead class="table table-dark table-striped sticky-top d-table mb-0" style="z-index: 1;">
+										<tr>
+											<th class="col-2" scope="col">ชื่อ</th>
+											<th class="col-2" scope="col">นามสกุล</th>
+											<th class="col-2" scope="col">อีเมล</th>
+											<th class="col-3" scope="col">วันสมัคร</th>
+											<th class="col-2" scope="col">คอร์สที่ชำระ</th>
+										</tr>
+
+										</thead>
+					
+										<tbody id="user_table" class="w-100 d-table"></tbody>
+										
+										
+										
+										<!-- <tbody>
+										<tr>
+											
+											<td>Mark</td>
+											<td>Otto</td>
+											<td>@mdo</td>
+											<td>Mark</td>
+											<td>Otto</td>
+											
+										</tr>
+									</tbody> -->
+									</table>
+									
+									
+									<!-- <div id="user" class="col-md-12"> -->
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Button trigger modal -->
+
+	
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<div class="modal-title" id="exampleModalScrollableTitle"><h5 id="fullname"></h5></div>
+						<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body" id="user_course">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+<script>
+	document.getElementById('search_bar').addEventListener('keypress',event=>{
+		if(event.key == 'Enter'){
+			event.preventDefault()
+			search()
+		
+		}
+	})
+
+	// document.getElementById('search_bar').addEventListener("input",event=>{
+	// 	search()
+	// })
+
+
+	var user_data = {}
+
+
+	const subMenu = document.getElementById("subMenu");
+		async function toggleMenu () {
+		subMenu.classList.toggle("open-menu");
+	}
+
+	async function logoutUser() {
+		localStorage.removeItem("adminEmail");
+		window.location.assign("/sign.html");
+	}	
+
+	// async function getAdmin() {
+	// 	const adminProfile = localStorage.getItem("adminEmail");
+	// 	const admindata = JSON.stringify({user_email: adminProfile});
+	// 	const response = await fetch("http://127.0.0.1:8000/userData/",{
+		
+	// 	method: 'POST',
+	// 	headers: {
+	// 	'Content-Type': 'application/json',
+	// 	'accept': 'application/json',
+		
+	// },
+	// body: admindata
+	// })
+
+	// const user = await response.json()
+	// console.log(user)
+
+	// const fullname = document.getElementById('fullname');
+	// fullname.innerText = user.data.fname + " " + user.data.lname
+	// const email_profile = document.getElementById('profile');
+	// email_profile.innerText = user.data.email
+
+	// }
+	// getAdmin()
+
+	const email = document.querySelector('#account');
+	const jsondata = JSON.stringify({ email });
+
+	async function getUser() {
+		const response = await fetch("http://127.0.0.1:8000/GetAllUserData/", {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				'accept': 'application/json',
+
+			},
+		
+		})
+		const json = await response.json()
+		
+		var data = json.data;
+		var datalenght = Object.keys(data).length;
+		user_data = data
+		
+
+		
+		
+		const fullname = document.getElementById('fullname');
+		fullname.innerText = "ข้อมูลของ " + json.data.fname + " " + json.data.lname
+
+
+		for (var i = 0; i < datalenght; i++) {
+			console.log(json.data[i]);
+			const date = new Date(json.data[i]['date']) 
+			const dateFormat = date.toLocaleString('th-TH', {
+				dateStyle: "full" //timeStyle: "medium"
+			})
+			const userlist = document.getElementById('user_table');
+			const box = document.createElement('tr');
+			box.innerHTML = `
+									<td class="col-2">${json.data[i]['fname']}</td>
+									<td class="col-2">${json.data[i]['lname']}</td>
+									<td class="col-2">${json.data[i]['email']}</td>
+									<td class="col-3">${dateFormat}</td>
+									<td class="col-2"><a id="${i}" class="course-link btn btn-primary">รายละเอียด</a></td>
+							`
+			
+		box.querySelector("a").addEventListener("click", (e) => {
+			const courselist = document.querySelector('#user_course')
+			const id = e.target.id
+
+			while (courselist.hasChildNodes()) {
+				courselist.removeChild(courselist.firstChild);
+			}
+
+			for(let i in data[id].course) {
+				const div = document.createElement('div');
+				const fullname = document.getElementById('fullname');
+				fullname.innerText = "ข้อมูลคอร์สของ " + data[id].fname + " " + data[id].lname
+				div.innerText = 'Course ID: ' + data[id].course[i].course_id + ' ชื่อคอร์ส: ' + data[id].course[i].course_name
+			
+				courselist.appendChild(div)
+				
+			}
+
+			$("#exampleModalScrollable").modal()
+
+		})
+
+			
+			
+	
+
+		box.classList.add('box')
+		userlist.appendChild(box)
+		}
+	}
+
+	async function search(){
+        const coursesearch = document.getElementById('user_table');
+        while (coursesearch.hasChildNodes()) {
+            coursesearch.removeChild(coursesearch.firstChild);
+        }
+        const search_bar = document.getElementById('search_bar')
+
+        const course_search = []
+        if(search_bar.value == ''){
+            var datalenght = Object.keys(user_data).length;
+			
+			for (var i = 0; i < datalenght; i++) {
+	
+			const date = new Date(user_data[i]['date']) 
+			const dateFormat = date.toLocaleString('th-TH', {
+				dateStyle: "full" //timeStyle: "medium"
+			})
+			const userlist = document.getElementById('user_table');
+			const box = document.createElement('tr');
+			box.innerHTML = `
+							<td class="col-2">${user_data[i]['fname']}</td>
+							<td class="col-2">${user_data[i]['lname']}</td>
+							<td class="col-2">${user_data[i]['email']}</td>
+							<td class="col-3">${dateFormat}</td>
+							<td class="col-2"><a id="${i}" class="course-link btn btn-primary">กดเข้าคอร์ส</a></td>
+							`
+                            
+			box.querySelector("a").addEventListener("click", (e) => {
+				const courselist = document.querySelector('#user_course')
+				const id = e.target.id
+
+				while (courselist.hasChildNodes()) {
+					courselist.removeChild(courselist.firstChild);
+				}
+
+				for(let i in user_data[id].course) {
+					const div = document.createElement('div');
+					const fullname = document.getElementById('fullname');
+					fullname.innerText = "ข้อมูลคอร์สของ " + user_data[id].fname + " " + user_data[id].lname
+					div.innerText = 'Course ID: ' + user_data[id].course[i].course_id + ' ชื่อคอร์ส: ' + user_data[id].course[i].course_name
+				
+					courselist.appendChild(div)
+					
+				}
+			
+				$("#exampleModalScrollable").modal()
+			})
+			box.classList.add('box')
+			userlist.appendChild(box)
+        
+        }
+            return
+        }
+
+        for(let i in user_data){
+            if (user_data[i].fname.includes(search_bar.value)) {
+                course_search.push(user_data[i])
+            }
+            // console.log(search_bar.value)
+            // console.log(user_data[i].fname)
+        }
+            var datalenght = Object.keys(course_search).length;
+        
+			for (var i = 0; i < datalenght; i++) {
+			
+			const date = new Date(course_search[i]['date']) 
+			const dateFormat = date.toLocaleString('th-TH', {
+				dateStyle: "full" //timeStyle: "medium"
+			})
+			const userlist = document.getElementById('user_table');
+			const box = document.createElement('tr');
+			box.innerHTML = `
+								<td class="col-2">${course_search[i]['fname']}</td>
+								<td class="col-2">${course_search[i]['lname']}</td>
+								<td class="col-2">${course_search[i]['email']}</td>
+								<td class="col-3">${dateFormat}</td>
+								<td class="col-2"><a id="${i}" class="course-link btn btn-primary">กดเข้าคอร์ส</a></td>
+							`
+                            
+		box.querySelector("a").addEventListener("click", (e) => {
+			const courselist = document.querySelector('#user_course')
+			const id = e.target.id
+
+			while (courselist.hasChildNodes()) {
+				courselist.removeChild(courselist.firstChild);
+			}
+
+			for(let i in course_search[id].course) {
+				const div = document.createElement('div');
+				const fullname = document.getElementById('fullname');
+				fullname.innerText = "ข้อมูลคอร์สของ " + course_search[id].fname + " " + course_search[id].lname
+				div.innerText = 'Course ID: ' + course_search[id].course[i].course_id + ' ชื่อคอร์ส: ' + course_search[id].course[i].course_name
+			
+				courselist.appendChild(div)
+				
+			}
+
+			$("#exampleModalScrollable").modal()
+
+		})
+		box.classList.add('box')
+		userlist.appendChild(box)
+        }
+    }
+
+	getUser()
+
+
+</script>
+</body>
+</html>

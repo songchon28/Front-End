@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Account Settings UI Design</title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="fontawesome/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="css/account.css">
+	
+</head>
+<body>
+    <!-- Page Loader -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+
+    </div>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-book-reader ml-3"></i>
+                Open<span style="color:black">-</span>L<span style="color:black">earning</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link nav-link-1" href="index.html">คอร์สเรียนทั้งหมด</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-2" href="about.html">เกี่ยวกับ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-3"  href="contact.html">ติดต่อ</a>
+                </li>
+                <li class="nav-item">
+                    <img src="css/img/img_avatar.png" class="avatar" onclick="toggleMenu()" style="cursor: pointer;">
+                    <label class="mt-sm-2" id="profile1" onclick="toggleMenu()" style="cursor: pointer;"></label>
+                    <i class="fas fa-caret-down ml-2" onclick="toggleMenu()" style="cursor: pointer;"></i>
+                        <div class="sub-menu-wrap" id="subMenu">
+                            <div class="sub-menu">
+                                <div class="user-info">
+                                    <img src="css/img/img_avatar.png">
+                                    <label id="profile2"></label>
+                                    
+                                </div>
+                                <hr>
+                                <a class="sub-menu-link" href="user_profile.html">
+                                    <i class="fas fa-user icon"></i> 
+                                    <p>บัญชีผู้ใช้</p>
+                                    
+                                </a>
+                                <a class="sub-menu-link" href="user_course.html">
+                                    <i class="fas fa-book icon"></i> 
+                                    <p>คอร์สเรียน</p>
+                                    
+                                </a>
+                                <a class="sub-menu-link" href="user_payment.html">
+                                    <i class="fas fa-wallet icon"></i> 
+                                    <p>ประวัติชำระเงิน</p>
+                                    
+                                </a>
+                                <a class="sub-menu-link" onclick="logoutUser()">
+                                    <i class="fas fa-sign-out-alt icon"></i> 
+                                    <p>ออกจากระบบ</p>
+                                    
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+			
+				<!-- <button class="btn btn-primary" onclick="logoutUser()">
+					ออกจากระบบ
+				</button> -->
+            </ul>
+            </div>
+        </div>
+    </nav>
+<body>
+	<section class="row py-0 my-0">
+		<div class="container col-sm-10">
+			<h1 class="mb-5"></h1>
+			<div class="bg-white container-user shadow d-block d-sm-flex">
+				<div class="profile-tab-nav border-right">
+					<div class="p-4">
+						<div class="img-circle text-center mb-3">
+							<img src="css/img/img_avatar.png" alt="Image" >
+						</div>
+						<h4 class="text-center mb-3" id="fullname"></h4>
+						
+					</div>
+					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+						<a class="nav-link active" id="account-tab"  href="user_profile.html" role="tab" aria-controls="account" aria-selected="true">
+							<i class="fas fa-user text-center mr-2"></i> 
+							บัญชีผู้ใช้
+						</a>
+						<a class="nav-link" id="course-tab"  href="user_course.html" role="tab" aria-controls="course" aria-selected="false">
+							<i class="fas fa-book text-center mr-2"></i> 
+							คอร์สเรียน
+						</a>
+						<a class="nav-link" id="payment-tab"  href="user_payment.html" role="tab" aria-controls="payment" aria-selected="false">
+							<i class="fas fa-wallet text-center mr-2"></i> 
+							ประวัติการชำระเงิน
+						</a>			
+					</div>
+				</div>
+				<div class="p-4 p-md-5 h-100 w-100 d-flex flex-column">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <h3>การติดตั้งบัญชีผู้ใช้</h3>
+                        </div>
+                    </div>  
+					<div class="tab-content p-4 p-md-5 h-100 overflow-auto" id="v-pills-tabContent">
+						<div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab" data-dropdown>	
+							<div class="col-sm-12 name">
+								<div class="form-group">
+									<label>ชื่อ</label>
+									<input id="firstname" name="first_name" type="text" class="form-control">
+								</div>
+							
+								<div class="form-group">
+									<label>นามสกุล</label>
+									<input id="lastname" name="last_name" type="text" class="form-control">
+								</div>
+							
+								<div class="form-group">
+									<a>อีเมล: <label id="email" name="email" type="text"></label></a>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-12 text-right">
+									<button class="btn btn-primary" onclick="editUser()">
+										<i class="fas fa-edit"></i>
+										แก้ไข
+									</button>
+								</div>
+							</div>							
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+ 
+<script>
+
+	const subMenu = document.getElementById("subMenu");
+	async function toggleMenu () {
+		subMenu.classList.toggle("open-menu");
+	}
+
+
+	async function logoutUser() {
+		localStorage.removeItem("userEmail");
+		window.location.assign("/sign.html");
+	}
+
+	const userProfile = localStorage.getItem("userEmail");
+	const jsondata = JSON.stringify({user_email: userProfile});
+
+	async function getUser () {
+		const response = await fetch("http://127.0.0.1:8000/userData/",{
+		
+		method: 'POST',
+   		headers: {
+        'Content-Type': 'application/json',
+        'accept': 'application/json',
+        
+    },
+	body: jsondata
+	})
+
+	const user = await response.json()
+	console.log(user)
+	
+	const fullname = document.getElementById('fullname');
+	const firstname = document.getElementById('firstname');
+	const lastname = document.getElementById('lastname');
+	
+	const email_profile1 = document.getElementById('profile1');
+	const email_profile2 = document.getElementById('profile2');
+	const email = document.getElementById('email');
+	email.innerText = user.data.email
+	
+	firstname.value = user.data.fname
+	lastname.value = user.data.lname
+	
+	fullname.innerText = user.data.fname + " " + user.data.lname
+    email_profile1.innerText = user.data.email
+	email_profile2.innerText = user.data.email
+
+
+
+}
+getUser()
+
+	async function editUser() {
+
+		
+		const firstname = document.getElementById('firstname');
+		const lastname = document.getElementById('lastname');
+		
+		const new_data = {
+					"email": userProfile,
+					"firstname": firstname.value,
+					"surname": lastname.value
+					
+					}
+
+		const jsonData = JSON.stringify(new_data);
+		console.log(jsonData)
+		const response = await fetch("http://127.0.0.1:8000/Updatedata/",{
+		
+		method: 'POST',
+		headers: {
+		'Content-Type': 'application/json',
+		'accept': 'application/json',
+		
+	},
+	body: jsonData
+	})
+
+	const user = await response.json()
+	console.log(user)
+	window.location.reload();
+	}
+
+</script>
+</body>
+</html>

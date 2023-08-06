@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Account Settings UI Design</title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="fontawesome/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="css/admin.css">
+</head>
+<body>
+    <!-- Page Loader -->
+    <!-- <div id="loader-wrapper">
+        <div id="loader"></div>
+
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+
+    </div> -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="">
+				<i class="fas fa-book-reader ml-3"></i>
+                Open<span style="color:black">-</span>L<span style="color:black">earning</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                
+                <li class="nav-item">
+                    <img src="css/img/img_avatar.png" class="avatar" onclick="toggleMenu()" style="cursor: pointer;">
+					<label class="mt-sm-2" onclick="toggleMenu()" style="cursor: pointer;">Administrator</label>
+					<i class="fas fa-caret-down ml-2" onclick="toggleMenu()" style="cursor: pointer;"></i>
+					<div class="sub-menu-wrap" id="subMenu">
+						<div class="sub-menu">
+							<div class="user-info">
+								<img src="css/img/img_avatar.png">
+								<h5>Administrator</h5>
+
+							</div>
+							<hr>
+							<!-- <a class="sub-menu-link" href="user_profile.html">
+								<i class="fas fa-user icon"></i> 
+								<p>บัญชีผู้ใช้</p>
+								
+							</a>
+							<a class="sub-menu-link" href="user_course.html">
+								<i class="fas fa-book icon"></i> 
+								<p>คอร์สเรียน</p>
+								
+							</a>
+							<a class="sub-menu-link" href="user_payment.html">
+								<i class="fas fa-wallet icon"></i> 
+								<p>ประวัติชำระเงิน</p>
+								
+							</a> -->
+							<a class="sub-menu-link" onclick="logoutUser()">
+								<i class="fas fa-sign-out-alt icon"></i> 
+								<p>ออกจากระบบ</p>
+								
+							</a>
+						</div>
+					</div>
+				</li>
+            </ul>
+            
+        </div>
+    </nav>
+<body>
+	<section class="row py-0 my-0">
+		<div class="container col-sm-10">
+			<h1 class="mb-5"></h1>
+			<div class="bg-white shadow container-admin d-block d-sm-flex tm-admin">
+				<div class="profile-tab-nav border-right">
+					<div class="p-4">
+						<div class="img-circle text-center mb-3">
+							<img src="css/img/img_avatar.png" alt="Image">
+						</div>
+						<h4 class="text-center mb-3" id="fullname">Administrator</h4>
+						<!-- <div class="text-center">
+							<button class="btn btn-primary" onclick="editUser()">
+								ออกจากระบบ
+							</button>
+						</div> -->
+					</div>
+					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+						<a class="nav-link" href="admin_user.html" role="tab" aria-controls="account" aria-selected="true">
+							<i class="fas fa-user text-center mr-2"></i> 
+							ข้อมูลของผู้ใช้
+						</a>
+						<a class="nav-link" href="admin_buy.html" role="tab" aria-controls="buy" aria-selected="false">
+							<i class="fas fa-receipt text-center mr-2"></i> 
+							จำนวนคอร์สที่ขายได้
+						</a>
+						<a class="nav-link" href="admin_course.html" role="tab" aria-controls="application" aria-selected="false">
+							<i class="fas fa-book text-center mr-2"></i> 
+							จัดการคอร์สเรียน
+						</a>
+						<a class="nav-link active" href="admin_test.html" role="tab" aria-controls="test" aria-selected="false">
+							<i class="fas fa-pen-alt mr-2"></i>
+							จัดการแบบทดสอบ
+						</a>
+			
+					</div>
+				</div>
+				<!-- The Test Modal -->
+				<div id="testModal" class="modal">
+					<!-- Modal content -->
+					<div class="modal-dialog-scrollable">
+						<div class="modal-content">
+						
+						   <!-- Modal Header -->
+							<div class="modal-header">
+								<h1 class="modal-title text-left ml-5">เพิ่มแบบทดสอบ</h1>
+								<span class="closeT text-right">&times;</span>
+							</div>
+							<div class="modal-body row d-flex justify-content-center">
+								<div class="col-md-10">
+									<div class="form-group">
+										<label>เลือกคอร์สเรียน</label>
+										<select id = "add_test">
+										</select>
+									</div>
+								</div>
+								<div class="col-md-10">
+									<div class="form-group">
+										ชื่อแบบทดสอบ<span style="color:#7e7e7e"> (จำนวนตัวอักษรไม่เกิน 40 ตัวอักษร)</span>
+										<input id="testname" type="text" class="form-control" placeholder="กรอกชื่อแบบทดสอบ" maxlength="40">
+										<a id="test_error" class="text-danger"></a>
+									</div>
+								</div>
+								<!-- TEST NO.1 -->
+								<fieldset id="multipletest">
+									<div class="row d-flex justify-content-center">
+										<div class="col-md-10">
+											<div class="form-group mb-5">
+												คำถาม<span style="color:#7e7e7e"> (จำนวนตัวอักษรไม่เกิน 200 ตัวอักษร)</span>
+												<input id="ques" type="text" class="form-control" placeholder="กรอกคำถามข้อที่ 1" maxlength="200">
+												<a id="ques_error" class="text-danger"></a>
+											</div>
+										</div>
+										
+										<div class="col-md-10">
+											<div class="form-check mb-3">
+												<label class="form-check-label" for="radio1">
+													
+													<input type="radio" class="form-check-input mt-3" id="radio1" name="optradio" value="1">
+													<input id="ans1" type="text" class="form-control" placeholder="กรอกคำตอบ" maxlength="40">
+													<a id="ans1_error" class="text-danger"></a>
+												</label>
+											</div>
+										</div>
+										<div class="col-md-10">
+											<div class="form-check mb-3">
+												<label class="form-check-label" for="radio2">
+													<input type="radio" class="form-check-input mt-3" id="radio2" name="optradio" value="2">
+													<input id="ans2" type="text" class="form-control" placeholder="กรอกคำตอบ" maxlength="40">
+													<a id="ans2_error" class="text-danger"></a>
+												</label>
+											</div>
+										</div>
+										<div class="col-md-10">
+											<div class="form-check mb-3">
+												<label class="form-check-label" for="radio3">
+													<input type="radio" class="form-check-input mt-3" id="radio3" name="optradio" value="3">
+													<input id="ans3" type="text" class="form-control" placeholder="กรอกคำตอบ" maxlength="40">
+													<a id="ans3_error" class="text-danger"></a>
+												</label>
+											</div>
+										</div>
+										<div class="col-md-10">
+											<div class="form-check mb-3">
+												<label class="form-check-label" for="radio4">
+													<input type="radio" class="form-check-input mt-3" id="radio4" name="optradio" value="4">
+													<input id="ans4" type="text" class="form-control" placeholder="กรอกคำตอบ" maxlength="40">
+													<a id="ans4_error" class="text-danger"></a>
+												</label>
+											</div>
+										</div>
+									</div>
+									<a id="radio_error" class="text-danger"></a>
+								</fieldset>
+							</div>
+							<div class="modal-footer col-sm-11 text-right mb-3">
+								<button id="closeTest" class="btn btn-cancel">
+									<i class="fas fa-times"></i>
+									ยกเลิก
+								</button>
+								<button id="Addtest" class="btn btn-add" onclick=Addtest()>
+									<i class="fas fa-plus"></i>
+									เพิ่ม
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- The Edit Test Modal -->
+				<div id="editModal" class="modal">
+					<!-- Modal content -->
+					<div class="modal-dialog-scrollable">
+						<div class="modal-content">
+						
+						   <!-- Modal Header -->
+							<div class="modal-header">
+								<h1 class="modal-title text-left ml-5">แก้ไขแบบทดสอบ</h1>
+								<span class="closeE text-right">&times;</span>
+							</div>
+							<div class="row modal-body row d-flex justify-content-center">
+								<div class="col-md-10">
+									<div class="form-group">
+										<label>เลือกคอร์สเรียน</label>
+										<select id = "edit_test_id">
+										</select>
+									</div>
+									<div class="form-group">
+										<label>เลือกข้อคำถาม</label>
+										<select id = "edit_question_id">
+										</select>
+									</div>
+								</div>
+								<div class="col-md-10">
+									<div class="form-group">
+										ชื่อแบบทดสอบ<span style="color:#7e7e7e"></span>
+										<input id="edit_question_name" type="text" class="form-control" placeholder="กรอกชื่อแบบทดสอบ" maxlength="40" disabled>
+									</div>
+								</div>
+								<!-- TEST NO.1 -->
+								<fieldset id="editmultipletest">
+									<div class="row d-flex justify-content-center">
+										<div class="col-md-10">
+											<div class="form-group">
+												คำถาม<span style="color:#7e7e7e"></span>
+												<input id="edit_question_title" type="text" class="form-control" placeholder="กรอกคำถามข้อที่ 1" maxlength="400">
+											</div>
+										</div>
+										<div class="col-md-10">
+											<div class="form-check mb-2">
+												<label class="form-check-label" for="radio1">
+													<input type="radio" class="form-check-input mt-3" id="edit_radio1" name="optradio" value="1">
+													<input id="edit_choice_1" type="text" class="form-control" placeholder="กรอกคำตอบ" maxlength="40">
+													<a id="ans1_error" class="text-danger"></a>
+												</label>
+											</div>
+										</div>
+										<div class="col-md-10">
+											<div class="form-check mb-2">
+												<label class="form-check-label" for="radio2">
+													<input type="radio" class="form-check-input mt-3" id="edit_radio2" name="optradio" value="2">
+													<input id="edit_choice_2" type="text" class="form-control" placeholder="กรอกคำตอบ" maxlength="40">
+													<a id="ans2_error" class="text-danger"></a>
+						
+												</label>
+											</div>
+										</div>
+										<div class="col-md-10">
+											<div class="form-check mb-2">
+												<label class="form-check-label" for="radio3">
+													<input type="radio" class="form-check-input mt-3" id="edit_radio3" name="optradio" value="3">
+													<input id="edit_choice_3" type="text" class="form-control" placeholder="กรอกคำตอบ" maxlength="40">
+													<a id="ans3_error" class="text-danger"></a>
+												</label>
+											</div>
+										</div>
+										<div class="col-md-10">
+											<div class="form-check mb-4">
+												<label class="form-check-label" for="radio4">
+													<input type="radio" class="form-check-input mt-3" id="edit_radio4" name="optradio" value="4">
+													<input id="edit_choice_4" type="text" class="form-control" placeholder="กรอกคำตอบ" maxlength="40">
+													<br>
+													<a id="ans4_error" class="text-danger"></a>
+												</label>
+											</div>
+										</div>
+									</div>
+									<a id="radio_error" class="text-danger"></a>
+								</fieldset>
+							</div>
+							<div class="modal-footer col-sm-11 text-right mb-3">
+								<button id="closeEdit" class="btn btn-cancel">
+									<i class="fas fa-times"></i>
+									ยกเลิก
+								</button>
+								<button id="Edittest" class="btn btn-cancel-edit" onclick="Edittest()">
+									<i class="fas fa-edit"></i>
+									แก้ไข
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class=" p-4 p-md-5 h-100 w-100 d-flex flex-column">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h3>จัดการแบบทดสอบ</h3>
+                        </div>
+						<div class="search-box col-sm-3 mt-2">
+                            <i class="fas fa-search ml-1">&#xE8B6;</i>
+                            <input id="search_bar" type="text" class="form-control" placeholder="ค้นหา&hellip;" onclick="search()">
+                        </div>
+                        <div class="col-sm-3">
+                            <button id="editTest" class="btn btn-edit">
+								<i class="fas fa-edit"></i>
+								แก้ไข
+							</button>
+                            <button id="addTest" class="btn btn-add">
+								<i class="fas fa-plus"></i>
+								เพิ่ม
+							</button>
+                        </div>
+                    </div>
+					<div class="p-4 p-md-5 w-100 h-100" id="v-pills-tabContent">
+						<div class="fade show active w-100 h-100"  role="tabpanel" aria-labelledby="application-tab">
+							<!-- <div class="row">								
+								<div id="test_data" testclass="col-sm-2">
+
+								</div>
+							</div>	 -->
+							<div class="h-100 w-100">
+								<table class="table table-fixed h-100 w-100 d-block overflow-auto">
+									<thead class="table table-dark table-striped sticky-top d-table w-100 mb-0" style="z-index: 0;">
+                                      <tr>
+                                        <th class="col-1" scope="col">คอร์ส ID</th>
+                                        <th class="col-2" scope="col">ชื่อคอร์ส</th>
+                                        <th class="col-3" scope="col">ชื่อแบบทดสอบ</th>
+										<th class="col-2" scope="col">จำนวนแบบทดสอบ</th>
+                                    
+                                      </tr>
+                                    </thead>
+
+									<tbody id="test_table" class="w-100 d-table"></tbody>
+                                    <!-- <tbody>
+                                      <tr>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>Mark</td>
+                                        <td>Otto</td> 
+                                      </tr>
+                                    </tbody> -->
+                                </table>    
+                                <!-- <div id="user" class="col-md-12"> -->
+                            </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
+<script>
+
+	document.getElementById('search_bar').addEventListener('keypress',event=>{
+		if(event.key == 'Enter'){
+			event.preventDefault()
+			search()
+		
+		}
+	})
+
+
+	var test_data = {}
+
+	var testmodal = document.getElementById("testModal");
+    // Get the button that opens the modal
+    var testbtn = document.getElementById("addTest");
+    // Get the <span> element that closes the modal
+    var closeT = document.getElementsByClassName("closeT")[0];
+	var closetest = document.getElementById("closeTest")
+    // When the user clicks the button, open the modal 
+    testbtn.onclick = function() {
+		testmodal.style.display = "block";
+    }
+    // When the user clicks on <span> (x), close the modal
+	closeT.onclick = function() {
+		testmodal.style.display = "none";
+    }
+	closetest.onclick = function() {
+		testmodal.style.display = "none";
+    }
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+    if (event.target == testmodal) {
+        testmodal.style.display = "none";
+    }
+	}
+
+	var editmodal = document.getElementById("editModal");
+    // Get the button that opens the modal
+    var editbtn = document.getElementById("editTest");
+    // Get the <span> element that closes the modal
+    var closeE = document.getElementsByClassName("closeE")[0];
+	var closeedit = document.getElementById("closeEdit")
+    // When the user clicks the button, open the modal 
+    editbtn.onclick = function() {
+		editmodal.style.display = "block";
+    }
+    // When the user clicks on <span> (x), close the modal
+    closeE.onclick = function() {
+		editmodal.style.display = "none";
+    }
+	closeedit.onclick = function() {
+		editmodal.style.display = "none";
+    }
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+    if (event.target == editmodal) {
+        editmodal.style.display = "none";
+    }
+	}
+
+	const subMenu = document.getElementById("subMenu");
+	async function toggleMenu () {
+		subMenu.classList.toggle("open-menu");
+	}
+
+	async function logoutUser() {
+		localStorage.removeItem("adminEmail");
+		window.location.assign("/sign.html");
+	}
+
+	// async function getAdmin() {
+	// 	const adminProfile = localStorage.getItem("adminEmail");
+	// 	const admindata = JSON.stringify({user_email: adminProfile});
+	// 	const response = await fetch("http://127.0.0.1:8000/userData/",{
+		
+	// 	method: 'POST',
+	// 	headers: {
+	// 	'Content-Type': 'application/json',
+	// 	'accept': 'application/json',
+		
+	// },
+	// body: admindata
+	// })
+
+	// const user = await response.json()
+	// console.log(user)
+
+	// const fullname = document.getElementById('fullname');
+	// fullname.innerText = user.data.fname + " " + user.data.lname
+	// const email_profile = document.getElementById('profile');
+	// email_profile.innerText = user.data.email
+
+	// }
+	// getAdmin()
+
+	var course = {}
+	var order = {}
+	var count = {}
+	let questions = {}
+	let editQuestions = []
+
+	document.getElementById("add_test").addEventListener("change", event => {
+		
+		let testname = ""
+		console.log(questions)
+		questions.forEach(question => {
+			if (question.course_id == event.target.value) {
+				testname = question.question_name
+			} 
+		});
+		const testnamebox = document.getElementById("testname")	
+		testnamebox.value = testname
+		testnamebox.disabled = testname!=""
+		console.log(testname)
+	})
+
+	async function getQuestion() {
+        const response = await fetch("http://127.0.0.1:8000/AllQuestionData/", {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'accept': 'application/json',
+            },
+        })
+        const json = await response.json()
+        const testlist = document.getElementById('test_table');
+        var data = json.data;
+		test_data = data
+		order = json.order
+		count = json.count
+
+
+        var datalenght = Object.keys(json.count).length;
+        for (let i in json.order) {
+			let testname = ""
+			const id = json.order[i]
+			questions.forEach(question => {
+				if (question.course_id == id) {
+					testname = question.question_name
+				} 
+			});
+
+			
+			let course_name = ""
+			for (let i in course) {
+				if (course[i].course_id == id ) {
+					course_name = course[i].course_name;
+				}
+			
+			} 
+            //console.log(json.data[t]);
+            const box = document.createElement('tr');
+            box.innerHTML = `   
+                                <td class="col-1">${id}</td>
+                                <td class="col-2">${course_name}</td>
+                                <td class="col-3">${testname}</td>
+                                <td class="col-2">${json.count[id]} ข้อ</td>
+                            `
+			
+							// `<div class="row bg-light text-dark mb-3">	
+                            //     <label class="col-sm-12 form-label fw-bolder text-dark mt-2">
+							// 	จำนวน: ${json.count[id]} 
+							// 	ชื่อแบบทดสอบ: ${testname} 
+							// 	<br>
+							// 	คอร์ส ID: ${id}
+							// 	ชื่อคอร์ส: ${course_name} 
+                            //     </label>
+                            
+                            // </div>`
+            box.classList.add('box')
+            testlist.appendChild(box)
+        }
+
+    }
+
+	
+	async function getCourseId() {
+        const response = await fetch("http://127.0.0.1:8000/AllCourseData/", {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'accept': 'application/json',
+            },
+			
+        })
+		const json = await response.json()
+        course = json.data;
+		const add_test = document.getElementById("add_test")
+		
+		course.map(course=>{
+			const option = document.createElement("option")
+			option.innerText="ID "+course.course_id+" ชื่อคอร์ส "+course.course_name
+			option.id=course.course_id
+			option.value=course.course_id
+			add_test.appendChild(option)
+		})
+	}
+	
+	async function getQuestionName() {
+        const response = await fetch("http://127.0.0.1:8000/AllQuestionData/", {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'accept': 'application/json',
+            },
+			
+        })
+		const json = await response.json()
+        questions = json.data;
+		count = json.count;
+
+		let testname = ""
+		
+		const addTestId = document.getElementById("add_test") 
+		questions.forEach(question => {
+			if (question.course_id == addTestId.value) {
+				testname = question.question_name
+			}
+		});
+		const testnamebox = document.getElementById("testname")	
+		testnamebox.value = testname
+		testnamebox.disabled = testname!=""
+		console.log(testname!='')
+	}
+
+	
+
+	// VALUES ("{data.q_name}", "{data.q}", "{data.a1}", "{data.a2}", "{data.a3}", "{data.a4}", "{data.correct_answer}", "{data.course_id}")''')
+	
+	async function Addtest() {
+		
+		const test = document.querySelector("#multipletest");
+		const testname = document.getElementById("testname");
+		const addtest = document.getElementById("add_test");
+		
+		const testcheck = document.getElementById("testname").value;;
+		const questest = document.getElementById("ques").value;;
+		const ans1 = document.getElementById("ans1").value;
+		const ans2 = document.getElementById("ans2").value;
+		const ans3 = document.getElementById("ans3").value;
+		const ans4 = document.getElementById("ans4").value;
+		// const radio1 = document.getElementById("radio1").value;
+		// const radio2 = document.getElementById("radio2").value;
+		// const radio3 = document.getElementById("radio3").value;
+		// const radio4 = document.getElementById("radio4").value;
+		const radio1 = document.getElementById("radio1");
+		const radio2 = document.getElementById("radio2");
+		const radio3 = document.getElementById("radio3");
+		const radio4 = document.getElementById("radio4");
+
+		
+		if (radio1.checked==true) {
+			document.getElementById("radio_error").style.color = "black";
+			document.getElementById("radio_error").innerHTML="*เลือกคำตอบข้อที่ 1";
+		}
+			
+		else if(radio2.checked==true) {
+			document.getElementById("radio_error").style.color = "black";
+			document.getElementById("radio_error").innerHTML="*เลือกคำตอบข้อที่ 2";
+		}
+			
+		else if(radio3.checked==true) {
+			document.getElementById("radio_error").style.color = "black";
+			document.getElementById("radio_error").innerHTML="*เลือกคำตอบข้อที่ 3";
+		}
+			
+		else if(radio4.checked==true) {
+			document.getElementById("radio_error").style.color = "black";
+			document.getElementById("radio_error").innerHTML="*เลือกคำตอบข้อที่ 4";
+		}
+			
+		else {
+			document.getElementById("radio_error").style.color = "#DC3545";
+			document.getElementById("radio_error").innerHTML="*กรุณาเลือกคำตอบอย่างใดอย่างหนึ่ง";
+		}
+		
+
+		if (testcheck.trim()) {
+            document.getElementById("test_error").innerHTML="";
+        }
+        if (questest.trim()) {
+            document.getElementById("ques_error").innerHTML="";
+        }
+		if (ans1.trim()) {
+            document.getElementById("ans1_error").innerHTML="";
+        }
+        if (ans2.trim()) {
+            document.getElementById("ans2_error").innerHTML="";
+        }
+		if (ans3.trim()) {
+            document.getElementById("ans3_error").innerHTML="";
+        }
+        if (ans4.trim()) {
+            document.getElementById("ans4_error").innerHTML="";
+        }
+
+        if (!testcheck.trim()|| !questest.trim()|| !ans1.trim()|| !ans2.trim()|| !ans3.trim()|| !ans4.trim()) {
+            if (testcheck.trim() === "") {
+                document.getElementById("test_error").innerHTML="*กรุณากรอกชื่อแบบทดสอบ";
+            }
+            if (questest.trim() === "") {
+                document.getElementById("ques_error").innerHTML="*กรุณากรอกโจทย์คำถาม";
+            }
+			if (ans1.trim() === "") {
+            	document.getElementById("ans1_error").innerHTML="*กรุณากรอกคำตอบ";
+			}
+			if (ans2.trim() === "") {
+				document.getElementById("ans2_error").innerHTML="*กรุณากรอกคำตอบ";
+			}
+			if (ans3.trim() === "") {
+				document.getElementById("ans3_error").innerHTML="*กรุณากรอกคำตอบ";
+			}
+			if (ans4.trim() === "") {
+				document.getElementById("ans4_error").innerHTML="*กรุณากรอกคำตอบ";
+			}
+				return
+        }
+		
+		const ques = test.querySelectorAll('input[type="text"]');
+		const answer = test.querySelector('input[type="radio"]:checked');
+		const data = {
+				q_name : testname.value,
+				q : ques[0].value,
+				a1 : ques[1].value,
+				a2 : ques[2].value,
+				a3 : ques[3].value,
+				a4 : ques[4].value,
+				correct_answer : ques[answer.value].value,
+				course_id : addtest.value
+		}
+	
+		//console.log(data)
+        const response = await fetch("http://127.0.0.1:8000/question/", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'accept': 'application/json',
+            },
+			body:JSON.stringify(data)
+        })
+		window.location.reload();
+	}
+
+	async function Edittest() {
+		const test = document.querySelector("#editmultipletest");
+		const testname = document.getElementById("edit_question_title");
+		
+		const editques_id = document.getElementById("edit_question_id");
+
+		const ques = test.querySelectorAll('input[type="text"]');
+		const answer = test.querySelector('input[type="radio"]:checked');
+		const data = {
+				
+				q_name : ques[0].value,
+				a1 : ques[1].value,
+				a2 : ques[2].value,
+				a3 : ques[3].value,
+				a4 : ques[4].value,
+				correct_answer : ques[answer.value].value,
+			
+				question_id : editques_id.value
+		}
+	
+		//console.log(data)
+        const response = await fetch("http://127.0.0.1:8000/UpdateQuizdata/", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'accept': 'application/json',
+            },
+			body:JSON.stringify(data)
+        })
+		window.location.reload();
+	}	
+
+	async function getAllQuestion() {
+		const res = await fetch("http://127.0.0.1:8000/GetEditQuizCourse/", {
+			method: "GET"
+		})
+		const json = await res.json()
+		const data = json.data
+		editQuestions = data
+
+		
+		const edit_test_id = document.getElementById("edit_test_id")
+		for (let i in order) {
+			let testname = ""
+	
+			questions.forEach(question => {
+				if (question.course_id == order[i]) {
+					testname = question.question_name
+				}
+			});
+
+			const option = document.createElement("option")
+			option.innerText = order[i] + " " + testname
+			option.value = order[i]
+			edit_test_id.appendChild(option)
+		}
+
+		const questions_filter = []
+		for (let i in data) {
+			if (data[i].course_id == order[0]) {
+				questions_filter.push({question_id : data[i].question_id, question_title : data[i].question_title})
+			}
+		}
+		
+		const edit_question_id = document.getElementById("edit_question_id")
+		
+		for (let i in questions_filter) {
+			const option = document.createElement("option")
+			option.innerText = parseInt(i) + 1
+			option.value = questions_filter[i].question_id
+			edit_question_id.appendChild(option)
+		}
+		
+		const edit_question_name = document.getElementById("edit_question_name")
+		const edit_question_title = document.getElementById("edit_question_title")
+
+		const edit_choice_1 = document.getElementById("edit_choice_1")
+		const edit_choice_2 = document.getElementById("edit_choice_2")
+		const edit_choice_3 = document.getElementById("edit_choice_3")
+		const edit_choice_4 = document.getElementById("edit_choice_4")
+
+		const edit_radio1 = document.getElementById("edit_radio1")
+		const edit_radio2 = document.getElementById("edit_radio2")
+		const edit_radio3 = document.getElementById("edit_radio3")
+		const edit_radio4 = document.getElementById("edit_radio4")
+
+		for (let i in data) {
+			if (data[i].question_id == questions_filter[0].question_id) {
+				edit_question_name.value = data[i].question_name
+				edit_question_title.value = data[i].question_title
+				edit_choice_1.value = data[i].question_ans1
+				edit_choice_2.value = data[i].question_ans2
+				edit_choice_3.value = data[i].question_ans3
+				edit_choice_4.value = data[i].question_ans4
+				
+				switch (data[i].question_correct) {
+					case data[i].question_ans1:
+						edit_radio1.checked = true
+						break;
+					case data[i].question_ans2:
+						edit_radio2.checked = true
+						break;
+					case data[i].question_ans3:
+						edit_radio3.checked = true
+						break;
+					case data[i].question_ans4:
+						edit_radio4.checked = true
+						break;
+				}
+			}
+
+		}
+
+	}
+
+	document.getElementById("edit_test_id").addEventListener("change", (e) => {
+		const questions_id = []
+		for (let i in editQuestions) {
+			if (editQuestions[i].course_id == e.target.value) {
+				questions_id.push(editQuestions[i].question_id)
+			}
+		}
+
+		const edit_question_id = document.getElementById("edit_question_id")
+		
+		while (edit_question_id.hasChildNodes()) {
+			edit_question_id.removeChild(edit_question_id.firstChild);
+        }
+		
+		for (let i in questions_id) {
+			const option = document.createElement("option")
+			option.innerText = parseInt(i) + 1
+			option.value = questions_id[i]
+			edit_question_id.appendChild(option)
+		}
+
+		const edit_question_name = document.getElementById("edit_question_name")
+		const edit_question_title = document.getElementById("edit_question_title")
+
+		const edit_choice_1 = document.getElementById("edit_choice_1")
+		const edit_choice_2 = document.getElementById("edit_choice_2")
+		const edit_choice_3 = document.getElementById("edit_choice_3")
+		const edit_choice_4 = document.getElementById("edit_choice_4")
+
+		const edit_radio1 = document.getElementById("edit_radio1")
+		const edit_radio2 = document.getElementById("edit_radio2")
+		const edit_radio3 = document.getElementById("edit_radio3")
+		const edit_radio4 = document.getElementById("edit_radio4")
+
+		
+		for (let i in editQuestions) {
+			if (editQuestions[i].question_id == questions_id[0]) {
+				edit_question_name.value = editQuestions[i].question_name
+				edit_question_title.value = editQuestions[i].question_title
+				edit_choice_1.value = editQuestions[i].question_ans1
+				edit_choice_2.value = editQuestions[i].question_ans2
+				edit_choice_3.value = editQuestions[i].question_ans3
+				edit_choice_4.value = editQuestions[i].question_ans4
+
+				switch (editQuestions[i].question_correct) {
+					case editQuestions[i].question_ans1:
+						edit_radio1.checked = true
+						break;
+					case editQuestions[i].question_ans2:
+						edit_radio2.checked = true
+						break;
+					case editQuestions[i].question_ans3:
+						edit_radio3.checked = true
+						break;
+					case editQuestions[i].question_ans4:
+						edit_radio4.checked = true
+						break;
+				}
+			}
+		}
+	})
+
+	document.getElementById("edit_question_id").addEventListener("change", (e) => {
+		const question_id = e.target.value
+
+		const edit_question_name = document.getElementById("edit_question_name")
+		const edit_question_title = document.getElementById("edit_question_title")
+
+		const edit_choice_1 = document.getElementById("edit_choice_1")
+		const edit_choice_2 = document.getElementById("edit_choice_2")
+		const edit_choice_3 = document.getElementById("edit_choice_3")
+		const edit_choice_4 = document.getElementById("edit_choice_4")
+
+		const edit_radio1 = document.getElementById("edit_radio1")
+		const edit_radio2 = document.getElementById("edit_radio2")
+		const edit_radio3 = document.getElementById("edit_radio3")
+		const edit_radio4 = document.getElementById("edit_radio4")
+		
+		for (let i in editQuestions) {
+			if (editQuestions[i].question_id == question_id) {
+				edit_question_name.value = editQuestions[i].question_name
+				edit_question_title.value = editQuestions[i].question_title
+				edit_choice_1.value = editQuestions[i].question_ans1
+				edit_choice_2.value = editQuestions[i].question_ans2
+				edit_choice_3.value = editQuestions[i].question_ans3
+				edit_choice_4.value = editQuestions[i].question_ans4
+
+				switch (editQuestions[i].question_correct) {
+					case editQuestions[i].question_ans1:
+						edit_radio1.checked = true
+						break;
+					case editQuestions[i].question_ans2:
+						edit_radio2.checked = true
+						break;
+					case editQuestions[i].question_ans3:
+						edit_radio3.checked = true
+						break;
+					case editQuestions[i].question_ans4:
+						edit_radio4.checked = true
+						break;
+				}
+			}
+		}
+	})
+
+	async function intialize() {
+		await getCourseId()
+		await getQuestionName()
+		await getQuestion()
+		await getAllQuestion()
+	}	
+	intialize()
+
+	async function search () {
+		const coursesearch = document.getElementById('test_table');
+        while (coursesearch.hasChildNodes()) {
+            coursesearch.removeChild(coursesearch.firstChild);
+        }
+        const search_bar = document.getElementById('search_bar')
+
+        const course_search = []
+        if(search_bar.value == ''){
+            var datalenght = Object.keys(test_data).length;
+
+		const testlist = document.getElementById('test_table');
+		console.log(test_data)
+        var datalenght = Object.keys(count).length;
+        for (let i in order) {
+			let testname = ""
+			const id = order[i]
+			questions.forEach(question => {
+				if (question.course_id == id) {
+					testname = question.question_name
+				} 
+			});
+
+			
+			let course_name = ""
+			for (let i in course) {
+				if (course[i].course_id == id ) {
+					course_name = course[i].course_name;
+				}
+			} 
+            //console.log(json.data[t]);
+            const box = document.createElement('tr');
+            box.innerHTML = `   
+                                <td class="col-1">${id}</td>
+                                <td class="col-2">${course_name}</td>
+                                <td class="col-3">${testname}</td>
+                                <td class="col-2">${count[id]} ข้อ</td>
+                            `
+			
+							// `<div class="row bg-light text-dark mb-3">	
+                            //     <label class="col-sm-12 form-label fw-bolder text-dark mt-2">
+							// 	จำนวน: ${json.count[id]} 
+							// 	ชื่อแบบทดสอบ: ${testname} 
+							// 	<br>
+							// 	คอร์ส ID: ${id}
+							// 	ชื่อคอร์ส: ${course_name} 
+                            //     </label>
+                            
+                            // </div>`
+            box.classList.add('box')
+            testlist.appendChild(box)
+        }
+		return
+		
+		}
+		console.log(order)
+
+		for(let i in order){
+			let course_name = ""
+            let testname = ""
+			questions.forEach(question => {
+				if (question.course_id == order[i]) {
+					testname = question.question_name
+					course_name = question.course_name
+				} 
+			});
+			
+			if (testname.includes(search_bar.value)||course_name.includes(search_bar.value)) {
+                course_search.push(order[i])
+            }
+
+			
+        }
+        const testlist = document.getElementById('test_table');
+		console.log(course_search)
+        for (let i in course_search) {
+			let testname = ""
+			const id = course_search[i]
+			questions.forEach(question => {
+				if (question.course_id == id) {
+					testname = question.question_name
+				} 
+			});
+
+			
+			let course_name = ""
+			for (let i in course) {
+				if (course[i].course_id == id ) {
+					course_name = course[i].course_name;
+				}
+			
+			} 
+            //console.log(json.data[t]);
+            const box = document.createElement('tr');
+            box.innerHTML = `   
+                                <td class="col-1">${id}</td>
+                                <td class="col-2">${course_name}</td>
+                                <td class="col-3">${testname}</td>
+                                <td class="col-2">${count[id]} ข้อ</td>
+                            `
+			
+							// `<div class="row bg-light text-dark mb-3">	
+                            //     <label class="col-sm-12 form-label fw-bolder text-dark mt-2">
+							// 	จำนวน: ${json.count[id]} 
+							// 	ชื่อแบบทดสอบ: ${testname} 
+							// 	<br>
+							// 	คอร์ส ID: ${id}
+							// 	ชื่อคอร์ส: ${course_name} 
+                            //     </label>
+                            
+                            // </div>`
+            box.classList.add('box')
+            testlist.appendChild(box)
+	}
+}
+</script>
+
+</body>
+</html>

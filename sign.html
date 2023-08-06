@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login & Registration Form</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" href="fontawesome/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <form id="logintest">
+      <div class="cont">
+        <div class="form mt-5">
+          <h2>เข้าสู่ระบบ</h2>
+          <label>
+            <span>อีเมล</span>
+            <input id ="loginEmail" type="email" name="email" placeholder="กรอกอีเมล" autocomplete="email">
+            <a class="text-danger" id="logerror"></a>
+          </label>
+          <label>
+            <span>รหัสผ่าน</span>
+            <input id ="loginPwd" type="password" name="password" placeholder="กรอกรหัสผ่าน" autocomplete="current-password">
+            <a class="text-danger" id="pwderror"></a>
+          </label>
+          <button type="button" onclick="loginSubmit()" class="btn btn-primary" >เข้าสู่ระบบ</button>
+        
+          <!-- <p class="forgot-pass">ลืมรหัสผ่าน?</p> -->
+          <a class="text_under" href="admin.html">เข้าสู่ระบบแอดมิน</a>
+
+        </div>
+    </form>
+    <form id="sign">
+        <div class="sub-cont">
+          <div class="img">
+            <div class="img-text m-up">
+              <h2>สมาชิกใหม่?</h2>
+              <a>ลงทะเบียนและค้นพบโอกาสใหม่ๆ มากมาย!</a>
+            </div>
+            <div class="img-text m-in">
+              <h2>สมัครบัญชีแล้ว?</h2>
+              <a>หากคุณมีบัญชีอยู่แล้ว เพียงลงชื่อเข้าสู่ระบบ เราคิดถึงคุณแล้ว!</a>
+            </div>
+            <div class="img-btn">
+              <span class="m-up">สมัครสมาชิก</span>
+              <span class="m-in">เข้าสู่ระบบ</span>
+            </div>
+          </div>
+          <div class="form sign-up mt-3">
+            <h2>สมัครสมาชิก</h2>
+            <label>
+              <span>ชื่อ</span>
+              <input id="fname" name="first_name" type="text" placeholder="กรอกชื่อ">
+              <a class="text-danger" id="error1"></a>
+            </label>
+            <label>
+              <span>นามสกุล</span>
+              <input id="lname" name="last_name" type="text" placeholder="กรอกนามสกุล">
+              <a class="text-danger" id="error2"></a>
+            </label>
+            <label>
+              <span>อีเมล</span>
+              <input id="registerEmail" name="email" type="email" placeholder="กรอกอีเมล" autocomplete="email">
+              <a class="text-danger" id="error3"></a>
+            </label>
+            <label>
+              <span>รหัสผ่าน</span>
+              <input id="pwd" name="password" type="password" placeholder="กรอกรหัสผ่าน" autocomplete="new-password">
+              <a class="text-danger" id="error4"></a>
+            </label>
+            
+            <button type="button" onclick="handleSubmit()" class="btn btn-primary">สมัครสมาชิก</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  
+<script type="text/javascript" src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+
+
+    const login = document.querySelector('#logintest');
+    const admin = document.querySelector('#logintest');
+    const sign = document.querySelector('#sign');
+    // login.addEventListener('submit', loginSubmit);
+
+    // User Login
+    async function loginSubmit(event) {
+      const loginInput = document.getElementById("loginEmail");
+      const logininput = loginInput.value;
+      const pwdLogin = document.getElementById("loginPwd");
+      const pwdlogin = pwdLogin.value;
+
+      if (logininput.trim()) {
+        document.getElementById("logerror").innerHTML="";
+        
+      }
+        
+      if (pwdlogin.trim()) {
+        document.getElementById("pwderror").innerHTML="";
+        
+      }
+
+      if (!logininput.trim()|| !pwdlogin.trim()) {
+        if (logininput.trim() === "") {
+          document.getElementById("logerror").innerHTML="*กรุณากรอกอีเมล";
+      
+        }
+  
+        if (pwdlogin.trim() === "") {
+            document.getElementById("pwderror").innerHTML="*กรุณากรอกรหัสผ่าน";
+        
+        }
+      }
+
+      const formData = new FormData(login);
+      const data = Object.fromEntries(formData); 
+      const new_data = {
+                        "email": data.email,
+                        "password": data.password,
+                      }
+      const jsonData = JSON.stringify(new_data);
+      const response = await fetch("http://127.0.0.1:8000/login/", {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'accept': 'application/json',
+          
+      },
+      body: jsonData
+      })
+      const json = await response.json()
+      console.log(json)
+      console.log(json['message'])
+      if(json['message'] === 'Login completed!') {
+
+        window.location.assign("./User/index.html")
+        localStorage.setItem("userEmail", json.email);
+      }
+        else {
+          alert("The user is not existed or the password or email is incorrect!")
+        }
+    }
+    
+    // User Register
+    async function handleSubmit(event) {
+
+      const fnameInput = document.getElementById("fname");
+      const fname = fnameInput.value;
+      const lnameInput = document.getElementById("lname");
+      const lname = lnameInput.value;
+      const emailInput = document.getElementById("registerEmail");
+      const email = emailInput.value;
+      const pwdInput = document.getElementById("pwd");
+      const pwd = pwdInput.value;
+
+
+
+      if (fname.trim()) {
+        document.getElementById("error1").innerHTML="";
+        
+      }
+        
+      if (lname.trim()) {
+        document.getElementById("error2").innerHTML="";
+        
+      }
+
+      if (email.trim()) {
+        document.getElementById("error3").innerHTML="";
+       
+      }
+
+      if (pwd.trim()) {
+        document.getElementById("error4").innerHTML="";
+       
+      }
+      // Check if the username is not empty
+      if ( !fname.trim()|| !lname.trim()|| !email.trim()|| !pwd.trim()) {
+      
+
+        if (fname.trim() === "") {
+          document.getElementById("error1").innerHTML="*กรุณากรอกชื่อ";
+        
+        }
+        
+        if (lname.trim() === "") {
+        document.getElementById("error2").innerHTML="*กรุณากรอกนามสกุล";
+        
+        }
+
+        if (email.trim() === "") {
+          document.getElementById("error3").innerHTML="*กรุณากรอกอีเมล";
+       
+        }
+
+        if (pwd.trim() === "") {
+          document.getElementById("error4").innerHTML="*กรุณากรอกรหัสผ่าน";
+       
+        }
+        return
+      }
+      
+
+      
+       
+      const formData = new FormData(sign);
+      const data = Object.fromEntries(formData); 
+      const new_data = {
+                        "email": data.email,
+                        "firstname": data.first_name,
+                        "surname": data.last_name,
+                        "password": data.password,
+                      }
+      console.log(new_data);
+      const jsonData = JSON.stringify(new_data);
+      const response = await fetch("http://127.0.0.1:8000/register/", {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'accept': 'application/json',
+      },
+      body: jsonData
+      })
+      const json = await response.json()
+      console.log(json)
+      if(json['status'] === 'Successful') {
+    
+        window.location.assign("./User/index.html")
+        localStorage.setItem("userEmail", json.email);
+      }
+      else {
+
+        alert("The user or password or password are already existed!")
+      }
+    }
+
+</script>
+</body>
+</html>

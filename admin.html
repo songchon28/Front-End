@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login & Registration Form</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="admin.css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+  <form id="logintest">
+    <div class="cont">
+      <div class="form sign-in mt-4">
+        <h2>เข้าสู่ระบบแอดมิน</h2>
+        <label>
+          <span>อีเมล</span>
+          <input id="loginEmail" type="email" name="email" placeholder="กรอกอีเมล">
+          <a class="text-danger" id="logerror"></a>
+        </label>
+        <label>
+          <span>รหัสผ่าน</span>
+          <input id="loginPwd" type="password" name="password" placeholder="กรอกรหัสผ่าน">
+          <a class="text-danger" id="pwderror"></a>
+        </label>
+        <button type="button" onclick="adminSubmit()" class="btn btn-primary">เข้าสู่ระบบ</button> 
+        <a class="text_under" href="sign.html">เข้าสู่ระบบผู้ใช้</a>
+      </div>
+    </div>
+  </form>
+  
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  const admin = document.querySelector('#logintest');
+  // Admin Login
+  async function adminSubmit(event) {
+    const loginInput = document.getElementById("loginEmail");
+    const logininput = loginInput.value;
+    const pwdLogin = document.getElementById("loginPwd");
+    const pwdlogin = pwdLogin.value;
+
+    if (logininput.trim()) {
+      document.getElementById("logerror").innerHTML="";
+      
+    }
+      
+    if (pwdlogin.trim()) {
+      document.getElementById("pwderror").innerHTML="";
+      
+    }
+
+    if (!logininput.trim()|| !pwdlogin.trim()) {
+      if (logininput.trim() === "") {
+        document.getElementById("logerror").innerHTML="*กรุณากรอกอีเมล";
+    
+      }
+
+      if (pwdlogin.trim() === "") {
+          document.getElementById("pwderror").innerHTML="*กรุณากรอกรหัสผ่าน";
+      
+      }
+      return
+    }
+
+    const adminData = new FormData(admin);
+    const data = Object.fromEntries(adminData); 
+    const new_data = {
+                      "email": data.email,
+                      "password": data.password
+                    }
+    const jsonData = JSON.stringify(new_data);
+    console.log(jsonData)
+    const response = await fetch("http://127.0.0.1:8000/adminLogin/", {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'accept': 'application/json',
+        
+    },
+    body: jsonData
+    })
+    const json = await response.json()
+    console.log(json)
+    console.log(json['message'])
+    if(json['message'] === 'Login completed!') {
+
+      window.location.assign("./User/admin_user.html");
+      localStorage.setItem("adminEmail", json.email);
+    }
+      else {
+        alert("This user is not an Administrator")
+      }
+    }
+</script>
+</body>
+</html>

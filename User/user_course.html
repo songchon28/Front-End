@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Account Settings UI Design</title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="fontawesome/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="css/account.css">
+	
+</head>
+<body>
+    <!-- Page Loader -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+
+    </div>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-book-reader ml-3"></i>
+                Open<span style="color:black">-</span>L<span style="color:black">earning</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link nav-link-1" href="index.html">คอร์สเรียนทั้งหมด</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-2" href="about.html">เกี่ยวกับ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-3"  href="contact.html">ติดต่อ</a>
+                </li>
+                <li class="nav-item">
+                    <img src="css/img/img_avatar.png" class="avatar" onclick="toggleMenu()" style="cursor: pointer;">
+                    <label class="mt-sm-2" id="profile" onclick="toggleMenu()" style="cursor: pointer;"></label>
+                    <i class="fas fa-caret-down ml-2" onclick="toggleMenu()" style="cursor: pointer;"></i>
+					<div class="sub-menu-wrap" id="subMenu">
+						<div class="sub-menu">
+							<div class="user-info">
+								<img src="css/img/img_avatar.png">
+								<label class="" id="profile"></label>
+								<label id="profile2"></label>
+								
+							</div>
+							<hr>
+							<a class="sub-menu-link" href="user_profile.html">
+								<i class="fas fa-user icon"></i> 
+								<p>บัญชีผู้ใช้</p>
+								
+							</a>
+							<a class="sub-menu-link" href="user_course.html">
+								<i class="fas fa-book icon"></i> 
+								<p>คอร์สเรียน</p>
+								
+							</a>
+							<a class="sub-menu-link" href="user_payment.html">
+								<i class="fas fa-wallet icon"></i> 
+								<p>ประวัติชำระเงิน</p>
+								
+							</a>
+							<a class="sub-menu-link" onclick="logoutUser()">
+								<i class="fas fa-sign-out-alt icon"></i> 
+								<p>ออกจากระบบ</p>
+								
+							</a>
+						</div>
+					</div>
+                </li>
+            </ul>
+            </div>
+        </div>
+    </nav>
+
+<body>
+	<section class="row py-0 my-0">
+		<div class="container col-sm-10">
+			<h1 class="mb-5"></h1>
+			<div class="bg-white shadow container-user d-block d-sm-flex">
+				<div class="profile-tab-nav border-right">
+					<div class="p-4">
+						<div class="img-circle text-center mb-3">
+							<img src="css/img/img_avatar.png" alt="Image" >
+						</div>
+						<h4 class="text-center mb-3" id="fullname"></h4>
+						<!-- <div class="text-center">
+                            <button class="btn btn-primary" onclick="logoutUser()">
+                                ออกจากระบบ
+                            </button>
+                        </div> -->
+					</div>
+					<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+						<a class="nav-link" id="account-tab" href="user_profile.html" role="tab" aria-controls="account" aria-selected="true">
+							<i class="fas fa-user text-center mr-2"></i> 
+							บัญชีผู้ใช้
+						</a>
+						
+						<a class="nav-link active" id="course-tab"  href="user_course.html" role="tab" aria-controls="course" aria-selected="false">
+							<i class="fas fa-book text-center mr-2"></i> 
+							คอร์สเรียน
+						</a>
+						<a class="nav-link" id="payment-tab"  href="user_payment.html" role="tab" aria-controls="payment" aria-selected="false">
+							<i class="fas fa-wallet text-center mr-2"></i> 
+							ประวัติการชำระเงิน
+						</a>
+					
+					</div>
+				</div>
+				<div class="p-4 p-md-5 h-100 w-100 d-flex flex-column">
+					<div class="row">
+                        <div class="col-sm-8">
+                    		<h3>คอร์สเรียน</h3>
+						</div>
+
+						<div class="search-box col-sm-4 mt-2">
+							<i class="fas fa-search ml-1">&#xE8B6;</i>
+							<input id="search_bar" type="text" class="form-control" style="width: 330px" placeholder="ค้นหา&hellip;" onclick="search()">
+						</div>
+					</div>
+         
+					<div class="p-4 p-md-5 h-100 w-100" id="v-pills-tabContent">
+						<div class="fade show active w-100 h-100" id="course" role="tabpanel" aria-labelledby="course-tab">
+
+							<div class="h-100 w-100">
+								<table class="table table-fixed h-100 w-100 d-block overflow-auto">
+									<thead class="table table-dark table-striped sticky-top d-table w-100 mb-0" style="z-index: 0;">
+                                      <tr>
+                                        <th class="col-1" scope="col">คอร์ส ID</th>
+                                        <th class="col-2" scope="col">ชื่อคอร์ส</th>
+                                        <th class="col-6" scope="col">รายละเอียดคอร์ส</th>
+										<th scope="col-3" scope="col">รายละเอียดคอร์ส</th>
+                                    
+                                      </tr>
+                                    </thead>
+
+									<tbody id="course_table" class=" w-100 d-table"></tbody>
+                                    <!-- <tbody>
+                                      <tr>      
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td>Mark</td>
+                                        <td>Otto</td> 
+                                      </tr>
+                                    </tbody> -->
+                                </table>    
+                                <!-- <div id="user" class="col-md-12"> -->
+                            </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+<!-- <script src="user_profile.js"></script> -->
+<script>
+	document.getElementById('search_bar').addEventListener('keypress',event=>{
+            if(event.key == 'Enter') {
+                event.preventDefault()
+                search()
+            }
+        })
+    var course_data = {}
+	
+	const subMenu = document.getElementById("subMenu");
+	async function toggleMenu () {
+		subMenu.classList.toggle("open-menu");
+	}
+
+	async function logoutUser() {
+		localStorage.removeItem("userEmail");
+		window.location.assign("/sign.html");
+	}
+
+	const email = document.querySelector('#profile');
+	const userProfile = localStorage.getItem("userEmail");
+	const jsondata = JSON.stringify({user_email: userProfile});
+
+	async function getUser() {
+		const response = await fetch("http://127.0.0.1:8000/userData/",{
+		
+		method: 'POST',
+		headers: {
+		'Content-Type': 'application/json',
+		'accept': 'application/json',
+		
+	},
+	body: jsondata
+	})
+
+	const user = await response.json()
+	console.log(user)
+
+	const fullname = document.getElementById('fullname');
+	const email_profile = document.getElementById('profile');
+	fullname.innerText = user.data.fname + " " + user.data.lname
+	email_profile.innerText = user.data.email
+	const email_profile2 = document.getElementById('profile2');
+	email_profile2.innerText = user.data.email
+
+	}
+	getUser()
+
+	async function getUserCourse() {
+		const response = await fetch("http://127.0.0.1:8000/UserCourse/",{
+		
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'accept': 'application/json',
+			
+			},
+			body: jsondata
+		})
+		
+		const json = await response.json()
+		const course = document.getElementById('course_table');
+		var data = json.data;
+		course_data = json.data;
+		var datalenght = Object.keys(data).length;
+		for (var i = 0; i < datalenght; i++) {
+			const box = document.createElement('tr');
+			box.innerHTML = `    
+								<td class="col-1">${json.data[i]['course_id']}</td>
+								<td class="col-2">${json.data[i]['course_name']}</td>
+								<td class="col-6">${json.data[i]['course_descript']}</td>
+								<td class="col-3"><a class="col-sm-3 course-link btn btn-primary align-self-center" href=${"video-detail.html?id="+json.data[i]['course_id']}>
+									กดเข้าคอร์ส
+								</a>
+								</td>	
+							`
+			box.classList.add('box')
+			course.appendChild(box)
+		
+		}
+	}
+
+	async function search() {
+		const courselist = document.getElementById('course_table');
+		while (courselist.hasChildNodes()) {
+			courselist.removeChild(courselist.firstChild);
+		}
+		const search_bar = document.getElementById('search_bar')
+		console.log(course_data)
+		const course_search = []
+		if(search_bar.value == ''){
+			var datalenght = Object.keys(course_data).length;
+			for (var i = 0; i < datalenght; i++) {
+				const box = document.createElement('tr');
+				box.innerHTML = `  
+									<td class="col-1">${course_data[i]['course_id']}</td>
+									<td class="col-2">${course_data[i]['course_name']}</td>
+									<td class="col-6">${course_data[i]['course_descript']}</td>
+									<td class="col-3"><a class="col-sm-3 course-link btn btn-primary align-self-center" href=${"video-detail.html?id="+course_data[i]['course_id']}>
+										กดเข้าคอร์ส
+									</a>
+									</td>
+								`
+				box.classList.add("w-25")
+				box.classList.add('box')
+				courselist.appendChild(box)
+			
+			}
+			return
+		}
+
+		for (let i in course_data){
+			if (course_data[i].course_name.includes(search_bar.value)|| course_data[i].course_id.includes(search_bar.value)) {
+				course_search.push(course_data[i])
+			}
+			console.log(search_bar.value)
+			console.log(course_data[i].course_name)
+			}
+			var datalenght = Object.keys(course_search).length;
+				
+            for (var i = 0; i < datalenght; i++) {
+                const box = document.createElement('tr');
+                box.innerHTML = `  
+									 <td class="col-1">${course_search[i]['course_id']}</td>
+									 <td class="col-2">${course_search[i]['course_name']}</td>
+									 <td class="col-6">${course_search[i]['course_descript']}</td>
+									 <td class="col-3"><a class="col-sm-3 course-link btn btn-primary align-self-center" href=${"video-detail.html?id="+course_search[i]['course_id']}>
+										  กดเข้าคอร์ส
+									  </a>
+									 </td>
+							 `
+                box.classList.add("w-25")
+                box.classList.add('box')
+                courselist.appendChild(box)
+                // <input class="col-sm-3 checkon_off" type="checkbox" checked data-toggle="toggle" data-style="android" data-onstyle="info"> //
+                }
+
+		}
+	getUserCourse()
+	
+
+
+
+
+
+
+</script>
+</body>
+</html>
