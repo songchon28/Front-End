@@ -9,6 +9,60 @@
 	<link rel="stylesheet" type="text/css" href="css/account.css">
 	
 </head>
+<style>
+	.btn-confirm {
+		padding: 12px 63px 12px;
+		background-color: #5643FF;
+		color: #fff;
+		border-radius: 50px;
+		font-size: 20px;
+	}
+
+	.btn-confirm:hover,
+	.btn-confirm:focus {
+		background-color:#001c99;
+		color: #fff;
+	}
+
+	.form-group {
+		display: flex;
+		align-items:center;
+	}
+
+	.modal {
+		display: none; /* Hidden by default */
+		position: fixed; /* Stay in place */
+		z-index: 99999; /* Sit on top */
+		padding-top: 200px; /* Location of the box */
+		left: 0;
+		top: 0;
+		width: 100%; /* Full width */
+		height: 100%; /* Full height */
+		overflow: auto; /* Enable scroll if needed */
+		background-color: rgb(0,0,0); /* Fallback color */
+		background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  	}
+
+	.modal-content {
+		background-color: #fefefe;
+		margin: auto;
+		padding: 20px;
+		border: 1px solid #888;
+		display: flex;
+    	justify-content: center;
+    	align-items: center;
+		height: 400px;
+		width: 600px;
+		
+	
+	}
+
+	.modal-backdrop {
+		display: none;
+		z-index: 1040 !important;
+	}
+</style>
+
 <body>
     <!-- Page Loader -->
     <div id="loader-wrapper">
@@ -118,26 +172,45 @@
 					<div class="tab-content p-4 p-md-5 h-100 overflow-auto" id="v-pills-tabContent">
 						<div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab" data-dropdown>	
 							<div class="col-sm-12 name">
+								
 								<div class="form-group">
-									<label>ชื่อ</label>
+									<label class="col-sm-2">ชื่อ:</label>
 									<input id="firstname" name="first_name" type="text" class="form-control">
 								</div>
 							
 								<div class="form-group">
-									<label>นามสกุล</label>
+									<label class="col-sm-2">นามสกุล:</label>
 									<input id="lastname" name="last_name" type="text" class="form-control">
 								</div>
 							
 								<div class="form-group">
-									<a>อีเมล: <label id="email" name="email" type="text"></label></a>
+									<label class="col-sm-2">อีเมล:</label><label id="email" name="email" type="text"></label>
+									
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-sm-12 text-right">
-									<button class="btn btn-primary" onclick="editUser()">
-										<i class="fas fa-edit"></i>
-										แก้ไข
+									<button id="confirmBtn" class="btn btn-primary open-button">
+										<i class="fas fa-save"></i>
+										บันทึก
 									</button>
+									<!-- <dialog class="modal" id="modal">
+										<h2>An interesting title</h2>
+										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum esse nisi, laboriosam illum temporibus ipsam?</p>
+										<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, quo.</p>
+										<button class="button close-button">close modal</button>
+									</dialog> -->
+									
+								</div>
+							</div>
+							<div id="confirmmodal" class="modal">
+								<!-- Course Modal content -->
+								<div class="modal-content">
+									<h1 class="mb-5">แก้ไขข้อมูลเรียบร้อย!</h1>
+										<button class="btn btn-confirm" onclick="editUser()">
+											ตกลง
+										</button>
+									</div>
 								</div>
 							</div>							
 						</div>
@@ -146,11 +219,25 @@
 				</div>
 			</div>
 		</div>
+
 	</section>
 
 
  
 <script>
+	const confirmmodal = document.getElementById("confirmmodal");
+    const confirmBtn = document.getElementById("confirmBtn");
+    
+    confirmBtn.onclick = function() {
+		confirmmodal.style.display = "block";
+    }
+    
+    window.onclick = function(event) {
+		if (event.target == confirmmodal) {
+			confirmmodal.style.display = "none";
+		}
+    }
+
 
 	const subMenu = document.getElementById("subMenu");
 	async function toggleMenu () {

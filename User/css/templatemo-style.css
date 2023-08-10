@@ -164,7 +164,7 @@ a:hover { color:#001c99; }
     position: absolute;
     top: 100%;
     right: 4.8%;
-    width: 280px;
+    width: 300px;
     max-height: 0px;
     overflow: hidden;
     transition: max-height 0.5s;
@@ -648,7 +648,7 @@ figure.effect-ming:hover img { opacity: 0.4; }
     border-radius: 30px 30px 30px 30px;
     justify-content: center;
     background-color: #ffffff;
-    height: 570px;
+    height: 480px;
     
 }
 

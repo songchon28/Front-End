@@ -8,6 +8,23 @@
 	<link rel="stylesheet" href="fontawesome/css/all.min.css">
 	<link rel="stylesheet" type="text/css" href="css/admin.css">
 </head>
+<style>
+	.btn-confirm {
+		padding: 12px 63px 12px;
+		background-color: #5643FF;
+		color: #fff;
+		border-radius: 50px;
+		font-size: 20px;
+	}
+
+	.btn-confirm:hover,
+	.btn-confirm:focus {
+		background-color:#001c99;
+		color: #fff;
+	}
+
+</style>
+
 <body>
     <!-- Page Loader -->
     <!-- <div id="loader-wrapper">
@@ -223,7 +240,7 @@
                                         <i class="fas fa-times"></i>
                                         ยกเลิก
                                     </button>
-                                    <button class="btn btn-add" type="submit" onclick="addCourse()">
+                                    <button id="confirmBtn" class="btn btn-add" type="button" onclick="addCourse(event)">
                                         <i class="fas fa-plus"></i>
                                         เพิ่ม
                                     </button>
@@ -254,7 +271,7 @@
                             <div class="col-md-10">
                                 <div id="course_price" class="form-group">
                                     ชื่อคอร์ส<span style="color:#7e7e7e"></span>
-                                    <input id="c_name_edit" name="c_name" type="text" class="form-control">
+                                    <input id="c_name_edit" name="c_name" type="text" class="form-control" onclick="checkInputs()">
                                     <a class="text-danger" id="editname_error"></a>
                                 </div>
                             </div>
@@ -262,14 +279,14 @@
                             <div class="col-md-10">
                                 <div id="course_price" class="form-group">
                                     ราคาคอร์ส<span style="color:#7e7e7e"></span>
-                                    <input id="c_price_edit" name="c_price" type="text" class="form-control">
+                                    <input id="c_price_edit" name="c_price" type="text" class="form-control" onclick="checkInputs()">
                                     <a class="text-danger" id="editprice_error"></a>
                                 </div>
                             </div>
                             <div class="col-md-10">
                                 <div id="course_descript" class="form-group">
                                     รายละเอียดคอร์ส<span style="color:#7e7e7e"></span>
-                                    <input id="c_description_edit" name="c_description" type="text" class="form-control">
+                                    <input id="c_description_edit" name="c_description" type="text" class="form-control" onclick="checkInputs()">
                                     <a class="text-danger" id="editdescript_error"></a>
                                 </div>
                             </div>
@@ -286,7 +303,7 @@
                                     <i class="fas fa-times"></i>
                                     ยกเลิก
                                 </button>
-                                <button class="btn btn-cancel-edit" type="button" onclick="editCourse(event)">
+                                <button class="btn btn-cancel-edit" id="editcourse" type="button" onclick="editCourse(event)" disabled>
                                     <i class="fas fa-edit"></i>
 									แก้ไข
 								
@@ -298,6 +315,27 @@
 			</div>
 		</div>
 	</section>
+    <div id="confirmmodal" class="modal" style="padding-top: 200px;">
+
+        <div class="modal-content" style="display: flex; justify-content: center; align-items: center; height: 400px; width: 600px;">
+            <h1 class="mb-5">เพิ่มคอร์สเรียนเรียบร้อย!</h1>
+                <button class="btn btn-confirm" id="acceptBtn">
+                    ตกลง
+                </button>
+            </div>
+        </div>
+    </div>
+   
+    <div id="updatemodal" class="modal" style="padding-top: 200px;">
+        <div class="modal-content" style="display: flex; justify-content: center; align-items: center; height: 400px; width: 600px;">
+            <h1 class="mb-5">แก้ไขคอร์สเรียนเรียบร้อย!</h1>
+                <button class="btn btn-confirm" id="editbtn">
+                    ตกลง
+                </button>
+            </div>
+        </div>
+    </div>
+    
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
@@ -306,7 +344,20 @@
 <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
 <script>
+    document.getElementById("acceptBtn").addEventListener("click", event => {
+        const confirmmodal = document.getElementById("confirmmodal");
+        confirmmodal.style.display = 'none';
+        const courseModal = document.getElementById("courseModal");
+        courseModal.style.display = 'none';
+    })
     
+    document.getElementById("editbtn").addEventListener("click", event => {
+        const updatemodal = document.getElementById("updatemodal");
+        updatemodal.style.display = 'none';
+        const editModal = document.getElementById("editModal");
+        editModal.style.display = 'none';
+    })
+
     document.getElementById('search_bar').addEventListener('keypress',event=>{
         if(event.key == 'Enter'){
             event.preventDefault()
@@ -389,35 +440,36 @@
 		localStorage.removeItem("adminEmail");
 		window.location.assign("/sign.html");
 	}
-    // async function getAdmin() {
-    //     const adminProfile = localStorage.getItem("adminEmail");
-    //     const admindata = JSON.stringify({user_email: adminProfile});
-    //     const response = await fetch("http://127.0.0.1:8000/userData/",{
-        
-    //     method: 'POST',
-    //     headers: {
-    //     'Content-Type': 'application/json',
-    //     'accept': 'application/json',
-        
-    // },
-    // body: admindata
-    // })
-
-    // const user = await response.json()
-    // console.log(user)
-
-    // const fullname = document.getElementById('fullname');
-    // fullname.innerText = user.data.fname + " " + user.data.lname
-    // const email_profile = document.getElementById('profile');
-	// email_profile.innerText = user.data.email
     
-    // }
-    // getAdmin()
+    const cnameedit = document.getElementById("c_name_edit");
+	const cpriceedit = document.getElementById("c_price_edit");
+	const descriptedit = document.getElementById("c_description_edit");
+    const editcourse = document.getElementById('editcourse');
 
-    //GET COURSE
-
+	let originalValues = {}
+    async function checkInputs() {
+        if (
+            cnameedit.value !== originalValues.cnameedit ||
+            cpriceedit.value !== originalValues.cpriceedit ||
+            descriptedit.value !== originalValues.descriptedit
+        ) {
+            editcourse.disabled = false;
+        } else {
+            editcourse.disabled = true;
+        }
+        console.log(originalValues)
+    }
     
     let courseData = []
+    cnameedit.addEventListener("input", event => {
+        checkInputs()
+    })
+    cpriceedit.addEventListener("input", event => {
+        checkInputs()
+    })
+    descriptedit.addEventListener("input", event => {
+        checkInputs()
+    })
 
 
     async function getCourse() {
@@ -432,6 +484,13 @@
         const courselist = document.getElementById('course_table');
         course_data = json.data;
         courseData = json.data;
+
+        originalValues = {
+            cnameedit: courseData[0].course_name,
+            cpriceedit: courseData[0].course_price,
+            descriptedit: courseData[0].course_descript
+
+        };
         
         var datalenght = Object.keys(course_data).length;
         const courseid_dropdown = document.getElementById('courseid_dropdown')
@@ -607,6 +666,7 @@
             const size = Math.round(imgfile.size/1024**2);
             if (size < limit) {
                 // document.getElementById("info1").innerText=`File size OK: ${size} MB`;
+                document.getElementById("info1").innerText=``;
                 return true;
             } else {
                 document.getElementById("info1").innerText=`มีขนาดไฟล์รูปภาพมากกว่า 3MB (${(size).toFixed(2)} MB)`;
@@ -628,7 +688,8 @@
             const limit = 300;
             const size = Math.round(videofile.size/1024**2);
             if (size < limit) {
-                // document.getElementById("info2").innerText=`File size OK: ${size} MB`;
+                // document.getElementById("info2").innerText=`มีขนาดไฟล์วิดีโอ ${size} MB`;
+                document.getElementById("info2").innerText=``;
                 return true;
             } else {
                 document.getElementById("info2").innerText=`มีขนาดไฟล์วิดีโอมากกว่า 300MB (${(size).toFixed(2)} MB)`;
@@ -637,51 +698,53 @@
         }
 
     //Upload Video
-    async function addCourse() {
+    async function addCourse(event) {
         event.preventDefault()
-        const course_name = document.getElementById('c_name').value;
-        const course_price = document.getElementById('c_price').value;
-        const course_descript = document.getElementById('c_description').value;
+        const confirmmodal = document.getElementById("confirmmodal");
+        const confirmBtn = document.getElementById("confirmBtn");
+        
+        const pic_text = document.getElementById('pic-text');
+        const video_text = document.getElementById('video-text'); 
+        const course_name = document.getElementById('c_name');
+        const course_price = document.getElementById('c_price');
+        const course_descript = document.getElementById('c_description');
         const course_image = document.querySelector('#imagefile');
         const course_video = document.querySelector('#videofile');
   
         // const validimg = validateImgSize()
         const validvideo = validateVideoSize()
-
-        if (course_name.trim()) {
+        
+       
+        if (course_name.value.trim()) {
             document.getElementById("name_error").innerHTML="";
         }
-        if (course_price.trim()) {
+        if (course_price.value.trim()) {
             document.getElementById("price_error").innerHTML="";
         }
-        if (course_descript.trim()) {
+        if (course_descript.value.trim()) {
             document.getElementById("descript_error").innerHTML="";
         }
-        if ( !course_name.trim()|| !course_price.trim()|| !course_descript.trim()|| !validvideo) {
-            if (course_name.trim() === "") {
+        if ( !course_name.value.trim()|| !course_price.value.trim()|| !course_descript.value.trim()|| !validvideo) {
+            if (course_name.value.trim() === "") {
                 document.getElementById("name_error").innerHTML="*กรุณากรอกชื่อคอร์ส";
             }
-            if (course_name.trim() === "") {
+            if (course_price.value.trim() === "") {
                 document.getElementById("price_error").innerHTML="*กรุณากรอกราคาคอร์ส";
             }
-            if (course_name.trim() === "") {
+            if (course_descript.value.trim() === "") {
                 document.getElementById("descript_error").innerHTML="*กรุณากรอกราบละเอียดคอร์ส";
             }
             return
         }
 
-        
-
-
-        
         var formData = new FormData();
         formData.append("filevideoname", course_video.files[0]?.name);
         formData.append("filevideo", course_video.files[0]);
         formData.append("fileimagename", course_image.files[0]?.name ? course_image.files[0]?.name : "default.jpg");
         formData.append("fileimage", course_image.files[0]);
-        formData.append("c_name", course_name);
-        formData.append("c_price", course_price);
-        formData.append("c_descript", course_descript);
+        formData.append("c_name", course_name.value);
+        formData.append("c_price", course_price.value);
+        formData.append("c_descript", course_descript.value);
         formData.append("c_open", 1);
         // console.log(course_video.files)
         // console.log(course_image.files)
@@ -692,7 +755,17 @@
         // },
         body: formData
         })
-
+        const json = await response.json()
+        console.log(json)
+        confirmmodal.style.display = "block";
+        course_name.value = '';
+        course_price.value = '';
+        course_descript.value = '';
+        course_image.files = null;
+        course_video.files = null;
+        pic_text.innerText = 'ไม่ได้เลือกไฟล์รูปภาพ'
+        video_text.innerText = 'ไม่ได้เลือกไฟล์วิดีโอ'
+        
         // if(json['status'] === 'Successful') {
   
         // window.location.assign(".admin_course.html")
@@ -703,9 +776,9 @@
         // }
     }
 
-    async function editCourse() {
+    async function editCourse(event) {
         event.preventDefault()
-        
+        const updatemodal = document.getElementById("updatemodal");
         const course_name = document.getElementById('c_name_edit').value;
         const course_price = document.getElementById('c_price_edit').value;
         const course_descript = document.getElementById('c_description_edit').value;
@@ -744,30 +817,40 @@
         console.log(jsonData)
         const response = await fetch("http://127.0.0.1:8000/EditCoursedata/",{
 
-        method: 'POST',
-        headers: {
-        'Content-Type': 'application/json',
-        'accept': 'application/json',
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            'accept': 'application/json',
 
-        },
-        body: jsonData
+            },
+            body: jsonData
         })
 
         const json = await response.json()
         console.log(json)
-
+        updatemodal.style.display = 'block';
     }
 
     document.getElementById('courseid_dropdown').addEventListener("change", (event) => {
+        const editcourse = document.getElementById('editcourse')
         const course_name = document.getElementById('c_name_edit')
         const course_price = document.getElementById('c_price_edit')
         const course_descript = document.getElementById('c_description_edit')
         const course_id = document.getElementById('courseid_dropdown').value;
+
+        editcourse.disabled = true;
+
         for (let i in courseData) {
             if (course_id == courseData[i].course_id) {
                 course_name.value = courseData[i].course_name
                 course_price.value = courseData[i].course_price
                 course_descript.value = courseData[i].course_descript
+                originalValues = {
+                cnameedit: courseData[i].course_name,
+                cpriceedit: courseData[i].course_price,
+                descriptedit: courseData[i].course_descript
+
+                };
             }
         }
     })

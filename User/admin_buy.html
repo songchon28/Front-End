@@ -156,9 +156,15 @@
 		<!-- Modal -->
 		<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-				<div class="modal-content">
+				<div class="modal-content" style="width: 500px; height: 500px" >
 					<div class="modal-header">
-						<div class="modal-title" id="exampleModalScrollableTitle"><h5 id="fullname"></h5></div>
+						<div class="modal-title" id="exampleModalScrollableTitle">
+							<h5 id="fullname"></h5>
+							<h5>
+								คอร์สที่ขายได้มีดังนี้
+							</h5>
+						</div>
+						
 						
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
@@ -208,10 +214,12 @@
 			const dateFormat = date.toLocaleString('th-TH', {
 				dateStyle: "full"
 				})
+			
+			const price = new Intl.NumberFormat().format(bills[day].bill_total)
             const box = document.createElement('tr');
             box.innerHTML = `
 								<td class="col-4">${dateFormat}</td>
-								<td class="col-2">${bills[day].bill_total} บาท </td>
+								<td class="col-2">${price} บาท </td>
 								<td class="col-3">${bills[day].course_total} คอร์ส </td>
 								<td class="col-3"><a id=${day} class="course-link btn btn-primary">รายละเอียด</a></td>
 							`
@@ -239,7 +247,7 @@
 				for(let id in bills[day].course){
 					const div = document.createElement('div');
 					const fullname = document.getElementById('fullname');
-					fullname.innerText = dateFormat + ' คอร์สที่ขายได้มีดังนี้'
+					fullname.innerText = dateFormat
 					div.innerText = 'Course ID:' + id + ' ชื่อคอร์ส ' + bills[day].course[id].course_name + " จำนวน " + bills[day].course[id].count + " คอร์ส "
 					courselist.appendChild(div)
 				}
@@ -325,10 +333,11 @@
 			const dateFormat = date.toLocaleString('th-TH', {
 				dateStyle: "full"
 				})
+			const price = new Intl.NumberFormat().format(bills[day].bill_total)
             const box = document.createElement('tr');
             box.innerHTML = `
 									<td class="col-4">${dateFormat}</td>
-									<td class="col-2">${course_count[day].bill_total} บาท </td>
+									<td class="col-2">${price} บาท </td>
 									<td class="col-3">${course_count[day].course_total} คอร์ส </td>
 									<td class="col-3"><a id=${day} class="course-link btn btn-primary">รายละเอียด</a></td>
 							`
@@ -356,7 +365,7 @@
 				for(let id in course_count[day].course){
 					const div = document.createElement('div');
 					const fullname = document.getElementById('fullname');
-					fullname.innerText = dateFormat + ' คอร์สที่ขายได้มีดังนี้'
+					fullname.innerText = dateFormat
 					div.innerText = 'Course ID:' + id + ' ชื่อคอร์ส ' + course_count[day].course[id].course_name + " จำนวน " + course_count[day].course[id].count + " คอร์ส "
 					courselist.appendChild(div)
 				}

@@ -121,10 +121,9 @@
 
 						<div class="search-box col-sm-4 mt-2">
 							<i class="fas fa-search ml-1">&#xE8B6;</i>
-							<input id="search_bar" type="text" class="form-control" style="width: 330px" placeholder="ค้นหา&hellip;" onclick="search()">
+							<input id="search_bar" type="text" class="form-control" style="width: 330px;" placeholder="ค้นหา&hellip;" onclick="search()">
 						</div>
 					</div>
-         
 					<div class="p-4 p-md-5 h-100 w-100" id="v-pills-tabContent">
 						<div class="fade show active w-100 h-100" id="course" role="tabpanel" aria-labelledby="course-tab">
 
@@ -132,11 +131,13 @@
 								<table class="table table-fixed h-100 w-100 d-block overflow-auto">
 									<thead class="table table-dark table-striped sticky-top d-table w-100 mb-0" style="z-index: 0;">
                                       <tr>
-                                        <th class="col-1" scope="col">คอร์ส ID</th>
                                         <th class="col-2" scope="col">ชื่อคอร์ส</th>
-                                        <th class="col-6" scope="col">รายละเอียดคอร์ส</th>
-										<th scope="col-3" scope="col">รายละเอียดคอร์ส</th>
-                                    
+										
+										<th class="col-1" scope="col">คอร์ส ID</th>
+                                        <th class="col-4" scope="col">รายละเอียดคอร์ส</th>
+										<th scope="col-2" scope="col">วันที่ชำระ</th>
+										<th scope="col-3" scope="col"></th>
+                                    	
                                       </tr>
                                     </thead>
 
@@ -159,6 +160,7 @@
 			</div>
 		</div>
 	</section>
+	
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
@@ -232,15 +234,17 @@
 		course_data = json.data;
 		var datalenght = Object.keys(data).length;
 		for (var i = 0; i < datalenght; i++) {
+			const date = new Date(json.data[i]['bill_date']) 
+			const dateFormat = date.toLocaleString('th-TH', {
+				dateStyle: "medium"
+			})
 			const box = document.createElement('tr');
-			box.innerHTML = `    
-								<td class="col-1">${json.data[i]['course_id']}</td>
+			box.innerHTML = `
 								<td class="col-2">${json.data[i]['course_name']}</td>
-								<td class="col-6">${json.data[i]['course_descript']}</td>
-								<td class="col-3"><a class="col-sm-3 course-link btn btn-primary align-self-center" href=${"video-detail.html?id="+json.data[i]['course_id']}>
-									กดเข้าคอร์ส
-								</a>
-								</td>	
+								<td class="col-1">${json.data[i]['course_id']}</td>
+								<td class="col-4">${json.data[i]['course_descript']}</td>
+								<td class="col-2">${dateFormat}</td>
+								<td class="col-3"><a class="course-link btn btn-primary align-self-center" href=${"video-detail.html?id="+json.data[i]['course_id']}>กดเข้าคอร์ส</a></td>
 							`
 			box.classList.add('box')
 			course.appendChild(box)
@@ -259,12 +263,17 @@
 		if(search_bar.value == ''){
 			var datalenght = Object.keys(course_data).length;
 			for (var i = 0; i < datalenght; i++) {
+				const date = new Date(course_data[i]['bill_date']) 
+				const dateFormat = date.toLocaleString('th-TH', {
+					dateStyle: "medium"
+				})
 				const box = document.createElement('tr');
 				box.innerHTML = `  
-									<td class="col-1">${course_data[i]['course_id']}</td>
 									<td class="col-2">${course_data[i]['course_name']}</td>
-									<td class="col-6">${course_data[i]['course_descript']}</td>
-									<td class="col-3"><a class="col-sm-3 course-link btn btn-primary align-self-center" href=${"video-detail.html?id="+course_data[i]['course_id']}>
+									<td class="col-1">${course_data[i]['course_id']}</td>
+									<td class="col-4">${course_data[i]['course_descript']}</td>
+									<td class="col-2">${dateFormat}</td>
+									<td class="col-3"><a class="course-link btn btn-primary align-self-center" href=${"video-detail.html?id="+course_data[i]['course_id']}>
 										กดเข้าคอร์ส
 									</a>
 									</td>
@@ -287,15 +296,20 @@
 			var datalenght = Object.keys(course_search).length;
 				
             for (var i = 0; i < datalenght; i++) {
+				const date = new Date(course_search[i]['bill_date']) 
+				const dateFormat = date.toLocaleString('th-TH', {
+					dateStyle: "medium"
+				})
                 const box = document.createElement('tr');
                 box.innerHTML = `  
-									 <td class="col-1">${course_search[i]['course_id']}</td>
-									 <td class="col-2">${course_search[i]['course_name']}</td>
-									 <td class="col-6">${course_search[i]['course_descript']}</td>
-									 <td class="col-3"><a class="col-sm-3 course-link btn btn-primary align-self-center" href=${"video-detail.html?id="+course_search[i]['course_id']}>
-										  กดเข้าคอร์ส
-									  </a>
-									 </td>
+									<td class="col-2">${course_search[i]['course_name']}</td>
+									<td class="col-1">${course_search[i]['course_id']}</td>
+									<td class="col-4">${course_search[i]['course_descript']}</td>
+									<td class="col-2">${dateFormat}</td>
+									<td class="col-3"><a class="col-sm-3 course-link btn btn-primary align-self-center" href=${"video-detail.html?id="+course_search[i]['course_id']}>
+										  	กดเข้าคอร์ส
+									 	 </a>
+									</td>
 							 `
                 box.classList.add("w-25")
                 box.classList.add('box')

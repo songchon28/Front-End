@@ -49,7 +49,7 @@ body {
             <br> 
             เพื่อชำระเงินภายใน <span id="time"></span>
             นาที
-            <button onclick="paySubmit()" class ="btn btn-primary tm-btn-big mt-3 mb-3">ยืนยันการชำระเงิน</button>
+            <button id="delayButton" onclick="paySubmit()" class ="btn btn-primary tm-btn-big mt-3 mb-3">ยืนยันการชำระเงิน</button>
         </div>
         <div class="row justify-content-center">
             <img class="qr-code img-thumbnail img-responsive" src="https://api.omise.co/charges/chrg_test_5whzuxxbto6aci1k8r6/documents/docu_test_5whzuxzw2n6kwsb62uj/downloads/DF75C3E700EF20A4"/> 
@@ -61,6 +61,23 @@ body {
     <script src = "https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="https://cdn.omise.co/omise.js"></script>
     <script>
+        document.getElementById('delayButton').addEventListener('click', function() {
+        // Disable the button to prevent multiple clicks during the delay
+        this.disabled = true;
+
+        // Set a delay of 2 seconds (10000 milliseconds)
+        var delayInMilliseconds = 10000;
+
+        // Perform your action after the delay
+        setTimeout(function() {
+            // Enable the button again
+            document.getElementById('delayButton').disabled = false;
+
+            // Perform your action here
+            
+        }, delayInMilliseconds);
+    });
+
         let charge_id = ""
         const user_email = localStorage.getItem("userEmail")
         async function getOmise() {

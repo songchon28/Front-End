@@ -200,6 +200,11 @@ https://templatemo.com/tm-556-catalog-z
 
     <script>
     
+    async function logoutUser() {
+		localStorage.removeItem("userEmail");
+		window.location.assign("/sign.html");
+	}
+
     const subMenu = document.getElementById("subMenu");
         async function toggleMenu () {
             subMenu.classList.toggle("open-menu");

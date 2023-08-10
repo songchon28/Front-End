@@ -241,11 +241,12 @@
 			const dateFormat = date.toLocaleString('th-TH', {
 				dateStyle: "full", timeStyle: "medium"
 			})
+			const price = new Intl.NumberFormat().format(json.data[i]['bill_total'])
 			const box = document.createElement('tr');
 			box.innerHTML = `    
 								<td class="col-1">${json.data[i]['course_id']}</td>
 								<td class="col-1">${json.data[i]['bill_id']}</td>
-								<td class="col-1">${json.data[i]['bill_total']} บาท</td>
+								<td class="col-1">${price} บาท</td>
 								<td class="col-3">${dateFormat}</td>
 							`
 			box.classList.add('box')
@@ -299,11 +300,12 @@
 				const dateFormat = date.toLocaleString('th-TH', {
 					dateStyle: "full" //, timeStyle: "medium"
 				})
+				const price = new Intl.NumberFormat().format(bill_data[i]['bill_total'])
 				const box = document.createElement('tr');
 				box.innerHTML = `
 									<td class="col-1">${bill_data[i]['course_id']}</td>
 									<td class="col-1">${bill_data[i]['bill_id']}</td>
-									<td class="col-1">${bill_data[i]['bill_total']} บาท</td>
+									<td class="col-1">${price} บาท</td>
 									<td class="col-3">${dateFormat}</td>
 								`
 				box.classList.add('box')
