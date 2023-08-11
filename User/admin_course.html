@@ -189,7 +189,7 @@
                             <div class="row d-flex justify-content-center">
                                 <div class="col-md-10">
                                     <div id="course_name" class="form-group">
-                                        <h1 class="mb-4">เพิ่มคอร์สเรียน</h1>  
+                                        <h1 class="mb-4">เพิ่มคอร์สเรียน</h1>
                                         ชื่อคอร์ส<span style="color:#7e7e7e"> (จำนวนตัวอักษรไม่เกิน 40 ตัวอักษร)</span>
                                         <input id="c_name" name="c_name" type="text" class="form-control" value="">
                                         <a class="text-danger" id="name_error"></a>
@@ -253,7 +253,7 @@
                 <div id="editModal" class="modal">
                     <!-- Edit Course Modal content -->
                     <div class="modal-content">
-                        <span class="closeE text-right">&times;</span>
+                        <span class="closeE text-right" style="cursor: pointer;">&times;</span>
                         <div class="row d-flex justify-content-center">
                         
                             <div class="col-md-10">
@@ -319,7 +319,7 @@
 
         <div class="modal-content" style="display: flex; justify-content: center; align-items: center; height: 400px; width: 600px;">
             <h1 class="mb-5">เพิ่มคอร์สเรียนเรียบร้อย!</h1>
-                <button class="btn btn-confirm" id="acceptBtn">
+                <button class="btn btn-confirm" id="acceptBtn" onClick="window.location.href=window.location.href">
                     ตกลง
                 </button>
             </div>
@@ -329,7 +329,7 @@
     <div id="updatemodal" class="modal" style="padding-top: 200px;">
         <div class="modal-content" style="display: flex; justify-content: center; align-items: center; height: 400px; width: 600px;">
             <h1 class="mb-5">แก้ไขคอร์สเรียนเรียบร้อย!</h1>
-                <button class="btn btn-confirm" id="editbtn">
+                <button  class="btn btn-confirm" id="editbtn" onClick="window.location.href=window.location.href">
                     ตกลง
                 </button>
             </div>
@@ -364,6 +364,10 @@
             search()
         }
     })
+
+    document.getElementById("c_price").addEventListener("keyup", function() {
+        this.value = this.value.replace(/[^0-9]/g, "");
+    });
 
     const picFileBtn = document.getElementById("imagefile");
     const picBtn = document.getElementById("pic-button");
@@ -457,7 +461,6 @@
         } else {
             editcourse.disabled = true;
         }
-        console.log(originalValues)
     }
     
     let courseData = []
@@ -732,7 +735,7 @@
                 document.getElementById("price_error").innerHTML="*กรุณากรอกราคาคอร์ส";
             }
             if (course_descript.value.trim() === "") {
-                document.getElementById("descript_error").innerHTML="*กรุณากรอกราบละเอียดคอร์ส";
+                document.getElementById("descript_error").innerHTML="*กรุณากรอกรายละเอียดคอร์ส";
             }
             return
         }
@@ -797,11 +800,11 @@
             if (course_name.trim() === "") {
                 document.getElementById("editname_error").innerHTML="*กรุณากรอกชื่อคอร์ส";
             }
-            if (course_name.trim() === "") {
+            if (course_price.trim() === "") {
                 document.getElementById("editprice_error").innerHTML="*กรุณากรอกราคาคอร์ส";
             }
-            if (course_name.trim() === "") {
-                document.getElementById("editdescript_error").innerHTML="*กรุณากรอกราบละเอียดคอร์ส";
+            if (course_descript.trim() === "") {
+                document.getElementById("editdescript_error").innerHTML="*กรุณากรอกรายละเอียดคอร์ส";
             }
             return
         }

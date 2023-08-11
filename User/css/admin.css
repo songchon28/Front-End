@@ -431,7 +431,7 @@ input:checked + .slider:after
     float: right;
     border : none;
     font-weight: bold;
-  }-control
+  }
   
   .closeE:hover,
   .closeE:active,

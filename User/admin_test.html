@@ -118,7 +118,6 @@
 					</div>
 				</li>
             </ul>
-            
         </div>
     </nav>
 <body>
@@ -190,8 +189,8 @@
 										<div class="col-md-10">
 											<div class="form-group mb-5">
 												คำถาม<span style="color:#7e7e7e"> (จำนวนตัวอักษรไม่เกิน 200 ตัวอักษร)</span><a id="ques_error" class="ml-3 text-danger"></a>
-												<input id="ques" type="text" class="form-control" placeholder="กรอกคำถามข้อที่ 1" maxlength="200">
-												<a id="radio_error" class="text-danger mt-2">*กรุณาเลือกคำตอบอย่างใดอย่างหนึ่งเป็นคำตอบที่ถูกต้อง</a>
+												<input id="ques" type="text" class="form-control" placeholder="กรอกคำถาม" maxlength="200">
+												<a id="radio_error" class="text-danger mt-2">*กรุณากดปุ่มเพื่อเลือกคำตอบที่ถูกต้องเพียงข้อเดียว</a>
 											</div>
 										</div>
 										
@@ -275,44 +274,46 @@
 								</div>
 								<div class="col-md-10">
 									<div class="form-group">
-										ชื่อแบบทดสอบ<span style="color:#7e7e7e"></span>
+										ชื่อแบบทดสอบ<span style="color:#7e7e7e"> (จำนวนตัวอักษรไม่เกิน 40 ตัวอักษร)</span><a id="edittest_error" class="ml-3 text-danger"></a>
 										<input id="edit_question_name" type="text" class="form-control" placeholder="กรอกชื่อแบบทดสอบ" maxlength="40" oninput="checkInputs()">
+										
 									</div>
 								</div>
 								<!-- TEST NO.1 -->
 								<fieldset id="editmultipletest">
 									<div class="row d-flex justify-content-center">
 										<div class="col-md-10">
-											<div class="form-group">
-												คำถาม<span style="color:#7e7e7e"></span>
-												<input id="edit_question_title" type="text" class="form-control" placeholder="กรอกคำถามข้อที่ 1" maxlength="400" oninput="checkInputs()">
+											<div class="form-group mb-5">
+												คำถาม<span style="color:#7e7e7e"> (จำนวนตัวอักษรไม่เกิน 200 ตัวอักษร)</span><a id="editques_error" class="ml-3 text-danger"></a>
+												<input id="edit_question_title" type="text" class="form-control" placeholder="กรอกคำถาม" maxlength="400" oninput="checkInputs()">
+												
 											</div>
 										</div>
 										<div class="col-md-10">
-											<div class="form-check mb-2">
+											<div class="form-check mb-4">
 												<label class="form-check-label" for="radio1">
 													<input type="radio" class="form-check-input mt-3" id="edit_radio1" name="optradio" value="1" onclick="checkInputs()">
 													<input id="edit_choice_1" type="text" class="form-control" placeholder="กรอกคำตอบ" maxlength="40" oninput="checkInputs()">
-													<a id="ans1_error" class="text-danger"></a>
+													<a id="editchoice1_error" class="text-danger" style="left: 450px; top:340px;"></a>
 												</label>
 											</div>
 										</div>
 										<div class="col-md-10">
-											<div class="form-check mb-2">
+											<div class="form-check mb-4">
 												<label class="form-check-label" for="radio2">
 													<input type="radio" class="form-check-input mt-3" id="edit_radio2" name="optradio" value="2" onclick="checkInputs()">
 													<input id="edit_choice_2" type="text" class="form-control" placeholder="กรอกคำตอบ" maxlength="40" oninput="checkInputs()">
-													<a id="ans2_error" class="text-danger"></a>
+													<a id="editchoice2_error" class="text-danger" style="left: 450px; top:410px;"></a>
 						
 												</label>
 											</div>
 										</div>
 										<div class="col-md-10">
-											<div class="form-check mb-2">
+											<div class="form-check mb-4">
 												<label class="form-check-label" for="radio3">
 													<input type="radio" class="form-check-input mt-3" id="edit_radio3" name="optradio" value="3" onclick="checkInputs()">
 													<input id="edit_choice_3" type="text" class="form-control" placeholder="กรอกคำตอบ" maxlength="40" oninput="checkInputs()">
-													<a id="ans3_error" class="text-danger"></a>
+													<a id="editchoice3_error" class="text-danger" style="left: 450px; top:480px;"></a>
 												</label>
 											</div>
 										</div>
@@ -322,7 +323,7 @@
 													<input type="radio" class="form-check-input mt-3" id="edit_radio4" name="optradio" value="4" onclick="checkInputs()">
 													<input id="edit_choice_4" type="text" class="form-control" placeholder="กรอกคำตอบ" maxlength="40" oninput="checkInputs()">
 													<br>
-													<a id="ans4_error" class="text-danger"></a>
+													<a id="editchoice4_error" class="text-danger" style="left: 450px; top:550px;"></a>
 												</label>
 											</div>
 										</div>
@@ -688,40 +689,36 @@
 		const ans2 = document.getElementById("ans2");
 		const ans3 = document.getElementById("ans3");
 		const ans4 = document.getElementById("ans4");
-		// const radio1 = document.getElementById("radio1").value;
-		// const radio2 = document.getElementById("radio2").value;
-		// const radio3 = document.getElementById("radio3").value;
-		// const radio4 = document.getElementById("radio4").value;
 		const radio1 = document.getElementById("radio1");
 		const radio2 = document.getElementById("radio2");
 		const radio3 = document.getElementById("radio3");
 		const radio4 = document.getElementById("radio4");
 
 		
-		if (radio1.checked==true) {
-			document.getElementById("radio_error").style.color = "black";
-			document.getElementById("radio_error").innerHTML="*คุณกำลังเลือกคำตอบข้อที่ 1";
-		}
+		// if (radio1.checked==true) {
+		// 	document.getElementById("radio_error").style.color = "black";
+		// 	document.getElementById("radio_error").innerHTML="";
+		// }
 			
-		else if(radio2.checked==true) {
-			document.getElementById("radio_error").style.color = "black";
-			document.getElementById("radio_error").innerHTML="*คุณกำลังเลือกคำตอบข้อที่ 2";
-		}
+		// else if(radio2.checked==true) {
+		// 	document.getElementById("radio_error").style.color = "black";
+		// 	document.getElementById("radio_error").innerHTML="";
+		// }
 			
-		else if(radio3.checked==true) {
-			document.getElementById("radio_error").style.color = "black";
-			document.getElementById("radio_error").innerHTML="*คุณกำลังเลือกคำตอบข้อที่ 3";
-		}
+		// else if(radio3.checked==true) {
+		// 	document.getElementById("radio_error").style.color = "black";
+		// 	document.getElementById("radio_error").innerHTML="";
+		// }
 			
-		else if(radio4.checked==true) {
-			document.getElementById("radio_error").style.color = "black";
-			document.getElementById("radio_error").innerHTML="*คุณกำลังเลือกคำตอบข้อที่ 4";
-		}
+		// else if(radio4.checked==true) {
+		// 	document.getElementById("radio_error").style.color = "black";
+		// 	document.getElementById("radio_error").innerHTML="";
+		// }
 			
-		else {
-			document.getElementById("radio_error").style.color = "#DC3545";
-			document.getElementById("radio_error").innerHTML="*กรุณาเลือกคำตอบอย่างใดอย่างหนึ่งเป็นคำตอบที่ถูกต้อง";
-		}
+		// else {
+			
+		// 	document.getElementById("radio_error").innerHTML="*กรุณากดปุ่มเลือกเพียงข้อเดียวเป็นคำตอบที่ถูกต้อง";
+		// }
 		
 
 		if (testcheck.trim()) {
@@ -863,18 +860,17 @@
 		const edittitle_id = document.getElementById("edit_test_id");
 		const editques_id = document.getElementById("edit_question_id");
 
-		const testname = document.getElementById("edit_question_name");
-		const questitle = document.getElementById("edit_question_title");
+		const editques_name = document.getElementById("edit_question_name");
+		const editques_title = document.getElementById("edit_question_title");
 		const edit_choice_1 = document.getElementById("edit_choice_1");
 		const edit_choice_2 = document.getElementById("edit_choice_2");
 		const edit_choice_3 = document.getElementById("edit_choice_3");
 		const edit_choice_4 = document.getElementById("edit_choice_4");
+		const edit_radio1 = document.getElementById("edit_radio1");
+		const edit_radio2 = document.getElementById("edit_radio2");
+		const edit_radio3 = document.getElementById("edit_radio3");
+		const edit_radio4 = document.getElementById("edit_radio4");
 		const editButton = document.getElementById('Edittest');
-		// const edit_radio1 = document.getElementById("edit_radio1");
-		// const edit_radio2 = document.getElementById("edit_radio2");
-		// const edit_radio3 = document.getElementById("edit_radio3");
-		// const edit_radio4 = document.getElementById("edit_radio4");
-
 		// let originalValues = {
 		// 	testname: testname.value,
 		// 	questitle: questitle.value,
@@ -898,6 +894,46 @@
 		// 		editButton.disabled = true;
 		// 	}
 		// }
+		if (editques_name.value.trim()) {
+            document.getElementById("edittest_error").innerHTML="";
+        }
+        if (editques_title.value.trim()) {
+            document.getElementById("editques_error").innerHTML="";
+        }
+		if (edit_choice_1.value.trim()) {
+            document.getElementById("editchoice1_error").innerHTML="";
+        }
+        if (edit_choice_2.value.trim()) {
+            document.getElementById("editchoice2_error").innerHTML="";
+        }
+		if (edit_choice_3.value.trim()) {
+            document.getElementById("editchoice3_error").innerHTML="";
+        }
+        if (edit_choice_4.value.trim()) {
+            document.getElementById("editchoice4_error").innerHTML="";
+        }
+
+        if (!editques_name.value.trim()|| !editques_title.value.trim()|| !edit_choice_1.value.trim()|| !edit_choice_2.value.trim()|| !edit_choice_3.value.trim()|| !edit_choice_4.value.trim()) {
+            if (editques_name.value.trim() === "") {
+                document.getElementById("edittest_error").innerHTML="*กรุณากรอกชื่อแบบทดสอบ";
+            }
+            if (editques_title.value.trim() === "") {
+                document.getElementById("editques_error").innerHTML="*กรุณากรอกโจทย์คำถาม";
+            }
+			if (edit_choice_1.value.trim() === "") {
+            	document.getElementById("editchoice1_error").innerHTML="*กรุณากรอกคำตอบของตัวเลือกที่ 1";
+			}
+			if (edit_choice_2.value.trim() === "") {
+				document.getElementById("editchoice2_error").innerHTML="*กรุณากรอกคำตอบของตัวเลือกที่ 2";
+			}
+			if (edit_choice_3.value.trim() === "") {
+				document.getElementById("editchoice3_error").innerHTML="*กรุณากรอกคำตอบของตัวเลือกที่ 3";
+			}
+			if (edit_choice_4.value.trim() === "") {
+				document.getElementById("editchoice4_error").innerHTML="*กรุณากรอกคำตอบของตัวเลือกที่ 4";
+			}
+				return
+        }
 
 		const ques = test.querySelectorAll('input[type="text"]');
 		const answer = test.querySelector('input[type="radio"]:checked');

@@ -240,8 +240,19 @@ function showAnswer() {
 
     resultsContainer.innerHTML = `<div class="bg-white row d-flex align-items-center justify-content-center">
                                     <div class="col">
-                                      <div class="wow slideInDown"><h2>${result}</h2></div>
+                                      <div class="wow slideInDown mb-3"><h1>${result}</h1></div>
                                       <div class="wow fadeIn" data-wow-delay="1s" data-wow-duration="1s">
+                                      <p>คะแนนประเมิน</p> 
+                                        <div class="text-left mb-5" style="margin-left: 150px;"> 
+                                          <p style="font-size: 18px;">
+                                            <br>81% - 100% = ดีมาก
+                                            <br>61% - 80%  = ดี
+                                            <br>41% - 60%  = ปานกลาง
+                                            <br>21% - 40%  = น้อย
+                                            <br> 0% - 20%  = น้อยที่สุด
+                                          </p>
+                                        </div>
+                                      <p> 
                                       <p>คุณตอบคำถามถูกต้อง ${numCorrect} เต็ม ${myQuestions.length} คะแนน</p>
                                       
                                       <a href=${"choice1.html?course_id=" + course_id}><button id="playAgain" class="mr-2 btn btn-default">เล่นใหม่</button></a>
