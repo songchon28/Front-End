@@ -270,7 +270,7 @@
                             </div>
                             <div class="col-md-10">
                                 <div id="course_price" class="form-group">
-                                    ชื่อคอร์ส<span style="color:#7e7e7e"></span>
+                                    ชื่อคอร์ส<span style="color:#7e7e7e"> (จำนวนตัวอักษรไม่เกิน 40 ตัวอักษร)</span>
                                     <input id="c_name_edit" name="c_name" type="text" class="form-control" onclick="checkInputs()">
                                     <a class="text-danger" id="editname_error"></a>
                                 </div>
@@ -278,14 +278,14 @@
                             
                             <div class="col-md-10">
                                 <div id="course_price" class="form-group">
-                                    ราคาคอร์ส<span style="color:#7e7e7e"></span>
+                                    ราคาคอร์ส<span style="color:#7e7e7e"> (บาท)</span>
                                     <input id="c_price_edit" name="c_price" type="text" class="form-control" onclick="checkInputs()">
                                     <a class="text-danger" id="editprice_error"></a>
                                 </div>
                             </div>
                             <div class="col-md-10">
                                 <div id="course_descript" class="form-group">
-                                    รายละเอียดคอร์ส<span style="color:#7e7e7e"></span>
+                                    รายละเอียดคอร์ส<span style="color:#7e7e7e"> (จำนวนตัวอักษรไม่เกิน 400 ตัวอักษร)</span>
                                     <input id="c_description_edit" name="c_description" type="text" class="form-control" onclick="checkInputs()">
                                     <a class="text-danger" id="editdescript_error"></a>
                                 </div>
@@ -366,6 +366,10 @@
     })
 
     document.getElementById("c_price").addEventListener("keyup", function() {
+        this.value = this.value.replace(/[^0-9]/g, "");
+    });
+
+    document.getElementById("c_price_edit").addEventListener("keyup", function() {
         this.value = this.value.replace(/[^0-9]/g, "");
     });
 
@@ -509,12 +513,13 @@
             option.innerText = json.data[i]['course_id'] + " " + json.data[i]['course_name']
             option.value = json.data[i]['course_id'] 
             courseid_dropdown.appendChild(option)
-            const box = document.createElement('tr');
+            const price = new Intl.NumberFormat().format(json.data[i]['course_price'])
+            const box = document.createElement('tr'); 
             box.innerHTML = `
                                     <td class="col-1">${json.data[i]['course_id']}</td>
                                     <td class="col-2">${json.data[i]['course_name']}</td>
                                     <td class="col-5">${json.data[i]['course_descript']}</td>
-                                    <td class="col-2">${json.data[i]['course_price']} บาท</td>
+                                    <td class="col-2">${price} บาท</td>
                                     <td class="col-2">
                                         <label class="switch align-self-center">
                                             <input id="${json.data[i]['course_id']}" type="checkbox">
@@ -564,12 +569,13 @@
         if(search_bar.value == ''){
             var datalenght = Object.keys(course_data).length;
         for (var i = 0; i < datalenght; i++) {
+            const price = new Intl.NumberFormat().format(json.data[i]['course_price'])
             const box = document.createElement('tr');
             box.innerHTML = `
                                 <td class="col-1">${course_data[i]['course_id']}</td>
                                 <td class="col-2">${course_data[i]['course_name']}</td>
                                 <td class="col-5">${course_data[i]['course_descript']}</td>
-                                <td class="col-2">${course_data[i]['course_price']} บาท</td>
+                                <td class="col-2">${price} บาท</td>
                                 <td class="col-2">
                                     <label class="switch align-self-center">
                                         <input id="${course_data[i]['course_id']}" type="checkbox">
@@ -607,12 +613,13 @@
         }
             var datalenght = Object.keys(course_search).length;
         for (var i = 0; i < datalenght; i++) {
+            const price = new Intl.NumberFormat().format(json.data[i]['course_price'])
             const box = document.createElement('tr');
             box.innerHTML = `
                                 <td class="col-1">${course_search[i]['course_id']}</td>
                                 <td class="col-2">${course_search[i]['course_name']}</td>
                                 <td class="col-5">${course_search[i]['course_descript']}</td>
-                                <td class="col-2">${course_search[i]['course_price']} บาท</td>
+                                <td class="col-2">${price} บาท</td>
                                 <td class="col-2">
                                     <label class="switch align-self-center">
                                         <input id="${course_search[i]['course_id']}" type="checkbox">
