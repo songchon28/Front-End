@@ -291,7 +291,7 @@
     // async function getAdmin() {
 	// 	const adminProfile = localStorage.getItem("adminEmail");
 	// 	const admindata = JSON.stringify({user_email: adminProfile});
-	// 	const response = await fetch("http://localhost:8000/userData/",{
+	// 	const response = await fetch("http://20.205.2.101:8000/userData/",{
 		
 	// 	method: 'POST',
 	// 	headers: {
@@ -314,7 +314,7 @@
 	// getAdmin()
 
 	async function getAllBill() {
-        const response = await fetch("http://localhost:8000/AllBillData/", {
+        const response = await fetch("http://20.205.2.101:8000/AllBillData/", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

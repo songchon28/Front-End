@@ -277,7 +277,7 @@
 	const jsondata = JSON.stringify({user_email: userProfile});
 
 	async function getUser () {
-		const response = await fetch("http://localhost:8000/userData/",{
+		const response = await fetch("http://20.205.2.101:8000/userData/",{
 		
 		method: 'POST',
    		headers: {
@@ -326,7 +326,7 @@ getUser()
 
 		const jsonData = JSON.stringify(new_data);
 		console.log(jsonData)
-		const response = await fetch("http://localhost:8000/Updatedata/",{
+		const response = await fetch("http://20.205.2.101:8000/Updatedata/",{
 		
 		method: 'POST',
 		headers: {

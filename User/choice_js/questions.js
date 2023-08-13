@@ -7,7 +7,7 @@ async function getQuestions() {
 
   course_id = id
 
-  const response_checkquiz = await fetch("http://localhost:8000/ShowCourseTest/" + id, {
+  const response_checkquiz = await fetch("http://20.205.2.101:8000/ShowCourseTest/" + id, {
       method: 'GET',
       headers: {
           'Content-Type': 'application/json',

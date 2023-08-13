@@ -518,7 +518,7 @@
 	// async function getAdmin() {
 	// 	const adminProfile = localStorage.getItem("adminEmail");
 	// 	const admindata = JSON.stringify({user_email: adminProfile});
-	// 	const response = await fetch("http://localhost:8000/userData/",{
+	// 	const response = await fetch("http://20.205.2.101:8000/userData/",{
 		
 	// 	method: 'POST',
 	// 	headers: {
@@ -562,7 +562,7 @@
 	})
 
 	async function getQuestion() {
-        const response = await fetch("http://localhost:8000/AllQuestionData/", {
+        const response = await fetch("http://20.205.2.101:8000/AllQuestionData/", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -622,7 +622,7 @@
 
 	
 	async function getCourseId() {
-        const response = await fetch("http://localhost:8000/AllCourseData/", {
+        const response = await fetch("http://20.205.2.101:8000/AllCourseData/", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -644,7 +644,7 @@
 	}
 	
 	async function getQuestionName() {
-        const response = await fetch("http://localhost:8000/AllQuestionData/", {
+        const response = await fetch("http://20.205.2.101:8000/AllQuestionData/", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -776,7 +776,7 @@
 		}
 	
 		//console.log(data)
-        const response = await fetch("http://localhost:8000/question/", {
+        const response = await fetch("http://20.205.2.101:8000/question/", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -952,7 +952,7 @@
 		}
 	
 		//console.log(data)
-        const response = await fetch("http://localhost:8000/UpdateQuizdata/", {
+        const response = await fetch("http://20.205.2.101:8000/UpdateQuizdata/", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -975,7 +975,7 @@
 	}	
 
 	async function getAllQuestion() {
-		const res = await fetch("http://localhost:8000/GetEditQuizCourse/", {
+		const res = await fetch("http://20.205.2.101:8000/GetEditQuizCourse/", {
 			method: "GET"
 		})
 		const json = await res.json()
