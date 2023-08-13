@@ -540,7 +540,7 @@
 
 
     async function getCourse() {
-        const response = await fetch("http://127.0.0.1:8000/AllCourseData/", {
+        const response = await fetch("http://20.205.2.101:8000/AllCourseData/", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -765,7 +765,7 @@
     }
 
     async function deleteCourse(course_id) {
-        const response = await fetch(`http://127.0.0.1:8000/DeleteCourse/${course_id}`, {
+        const response = await fetch(`http://20.205.2.101:8000/DeleteCourse/${course_id}`, {
             method: "DELETE"
             
         })
@@ -869,7 +869,7 @@
         // console.log(course_video.files)
         // console.log(course_image.files)
         confirmBtn.disabled = true
-        const response = await fetch("http://127.0.0.1:8000/course/", {
+        const response = await fetch("http://20.205.2.101:8000/course/", {
         method: 'POST',
         // headers: {
         //     'accept': 'application/json'
@@ -936,7 +936,7 @@
 
         const jsonData = JSON.stringify(new_data);
         console.log(jsonData)
-        const response = await fetch("http://127.0.0.1:8000/EditCoursedata/",{
+        const response = await fetch("http://20.205.2.101:8000/EditCoursedata/",{
 
             method: 'POST',
             headers: {
