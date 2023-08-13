@@ -229,11 +229,24 @@ label .actual-button {
     background-color: #5643FF;
 }
 
-
 .btn-primary:hover,
 .btn-primary:focus {
   background-color:#001c99;
 }
+
+.btn-danger {  
+  border: 0;
+  border-radius: 25px;
+  padding: 10px 20px 10px;
+  font-size: 1.2rem;
+}
+
+.btn-danger:hover,
+.btn-danger:focus {
+background-color:#ff7777;
+}
+
+
 .btn-edit, .btn-cancel {
     background-color: #E7E5F9;
     color: #5643FF;
