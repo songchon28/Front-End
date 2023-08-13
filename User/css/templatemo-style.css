@@ -158,7 +158,9 @@ a:hover { color:#001c99; }
 .container-fluid { max-width: 1600px; }
 .tm-container-small { max-width: 1050px; }
 
-
+.bg-white {
+    border-radius: 10px 10px 10px 10px;
+}
 
 .sub-menu-wrap {
     position: absolute;
