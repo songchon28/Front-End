@@ -345,6 +345,23 @@
 <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
 <script>
+    document.getElementById('confirmBtn').addEventListener('click', function() {
+        // Disable the button to prevent multiple clicks during the delay
+        this.disabled = true;
+
+        // Set a delay of 2 seconds (10000 milliseconds)
+        var delayInMilliseconds = 10000;
+
+        // Perform your action after the delay
+        setTimeout(function() {
+            // Enable the button again
+            document.getElementById('confirmBtn').disabled = false;
+
+            // Perform your action here
+            
+        }, delayInMilliseconds);
+    });
+
     document.getElementById("acceptBtn").addEventListener("click", event => {
         const confirmmodal = document.getElementById("confirmmodal");
         confirmmodal.style.display = 'none';
