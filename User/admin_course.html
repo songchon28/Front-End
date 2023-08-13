@@ -336,6 +336,22 @@
             </div>
         </div>
     </div>
+
+    <div id="deletemodal" class="modal" style="padding-top: 200px;">
+        <div class="modal-content" style="display: flex; justify-content: center; align-items: center; height: 400px; width: 600px;">
+            <h1 class="mb-5">คุณแน่ใจแล้วหรือว่าจะลบคอร์สนี้?</h1>
+            ชื่อคอร์ส:<h4 id="coursename"></h4>
+            <div class="row">
+                <button  class="btn btn-confirm" id="modalcancel" onClick="window.location.href=window.location.href">
+                    ยกเลิก
+                </button>
+                <button  class="btn btn-confirm" id="yesdelete">
+                    ตกลง
+                </button>
+            </div>
+        
+        </div>
+    </div>
     
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -345,22 +361,32 @@
 <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
 <script>
-    document.getElementById('confirmBtn').addEventListener('click', function() {
-        // Disable the button to prevent multiple clicks during the delay
-        this.disabled = true;
+    // document.getElementById('confirmBtn').addEventListener('click', function() {
+    //     // Disable the button to prevent multiple clicks during the delay
+    //     this.disabled = true;
 
-        // Set a delay of 2 seconds (10000 milliseconds)
-        var delayInMilliseconds = 10000;
+    //     // Set a delay of 2 seconds (10000 milliseconds)
+    //     var delayInMilliseconds = 60000;
 
-        // Perform your action after the delay
-        setTimeout(function() {
-            // Enable the button again
-            document.getElementById('confirmBtn').disabled = false;
+    //     // Perform your action after the delay
+    //     setTimeout(function() {
+    //         // Enable the button again
+    //         document.getElementById('confirmBtn').disabled = false;
 
-            // Perform your action here
+    //         // Perform your action here
             
-        }, delayInMilliseconds);
-    });
+    //     }, delayInMilliseconds);
+    // });
+
+    // email_profile1.innerText = user.data.email
+    const deletemodal = document.getElementById("deletemodal")
+    const coursename = document.getElementById("coursename")
+    const yesdelete = document.getElementById("yesdelete")
+
+    yesdelete.addEventListener("click",event =>{
+        deleteCourse(yesdelete.value)
+        window.location.reload()
+    })
 
     document.getElementById("acceptBtn").addEventListener("click", event => {
         const confirmmodal = document.getElementById("confirmmodal");
@@ -376,12 +402,15 @@
         editModal.style.display = 'none';
     })
 
-    document.getElementById('search_bar').addEventListener('keypress',event=>{
-        if(event.key == 'Enter'){
-            event.preventDefault()
-            search()
-        }
-    })
+    // document.getElementById('search_bar').addEventListener('keypress',event=>{
+    //     if(event.key == 'Enter'){
+    //         event.preventDefault()
+    //         search()
+    //     }
+    // })
+    document.getElementById('search_bar').addEventListener("input",event=>{
+		search()
+	})
 
     document.getElementById("c_price").addEventListener("keyup", function() {
         this.value = this.value.replace(/[^0-9]/g, "");
@@ -451,6 +480,7 @@
     var editbtn = document.getElementById("editBtn");
     var closeedit = document.getElementsByClassName("closeE")[0];
     var editcancel= document.getElementById("editcancel")
+    var modalcancel = document.getElementById("modalcancel")
     editbtn.onclick = function() {
         editmodal.style.display = "block";
     }
@@ -464,6 +494,9 @@
     }
     editcancel.onclick = function() {
 		editmodal.style.display = "none";
+    }
+    modalcancel.onclick = function() {
+		deletemodal.style.display = "none";
     }
 
     const subMenu = document.getElementById("subMenu");
@@ -507,7 +540,7 @@
 
 
     async function getCourse() {
-        const response = await fetch("http://20.205.2.101:8000/AllCourseData/", {
+        const response = await fetch("http://127.0.0.1:8000/AllCourseData/", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -553,7 +586,7 @@
                                         <span class="slider round"></span>
                                     </label>
                                 </td> 
-                                <td class="col-1"><button class="course-link btn btn-danger"><i class="fas fa-trash"></i></button></td>
+                                <td class="col-1"><button  class="course-link btn btn-danger" id="${json.data[i]['course_id']}"><i class="fas fa-trash" id="${json.data[i]['course_id']}"></i></button></td>
                             `
                             // `<div class="row bg-light text-dark mb-3">	
                             //     <label class="col-sm-9 form-label fw-bolder text-dark mt-2">ID: ${json.data[c]['course_id']} ชื่อ: ${json.data[c]['course_name']} 
@@ -577,17 +610,33 @@
                 }
                 else {       
                     courseCheck(toggle.id, 0)
-                }                
+                }
+        
             })
+
+            
+            
+            const delBtn = box.querySelector("button");
+            delBtn.addEventListener("click", function(event) {
+                // console.log(json.data[i]['course_name'])
+                deletemodal.style.display = "block";
+                yesdelete.value = event.target.id
+                for (let i in courseData){
+                    if (courseData[i].course_id == event.target.id){
+                        coursename.innerText = courseData[i].course_name
+                    }
+                    
+                } 
+            })
+
             box.classList.add('box')
             courselist.appendChild(box)
+            
             // <input class="col-sm-3 checkon_off" type="checkbox" checked data-toggle="toggle" data-style="android" data-onstyle="info"> //
         }
     }
 
-
-
-    async function search(){
+    async function search() {
         const coursesearch = document.getElementById('course_table');
         while (coursesearch.hasChildNodes()) {
             coursesearch.removeChild(coursesearch.firstChild);
@@ -597,7 +646,7 @@
         if(search_bar.value == ''){
             var datalenght = Object.keys(course_data).length;
         for (var i = 0; i < datalenght; i++) {
-            const price = new Intl.NumberFormat().format(json.data[i]['course_price'])
+            const price = new Intl.NumberFormat().format(course_data[i]['course_price'])
             const box = document.createElement('tr');
             box.innerHTML = `
                                 <td class="col-1">${course_data[i]['course_id']}</td>
@@ -610,7 +659,7 @@
                                         <span class="slider round"></span>
                                     </label>
                                 </td>
-                                <td class="col-1"><button class="course-link btn btn-danger"><i class="fas fa-trash"></i></button></td>
+                                <td class="col-1"><button  class="course-link btn btn-danger" id="${course_data[i]['course_id']}"><i class="fas fa-trash" id="${course_data[i]['course_id']}"></i></button></td>
                             `
                             
         const toggle = box.getElementsByTagName("input")[0];
@@ -626,6 +675,18 @@
                 courseCheck(toggle.id, 0)
             }                
         })
+        const delBtn = box.querySelector("button");
+            delBtn.addEventListener("click", function(event) {
+                // console.log(json.data[i]['course_name'])
+                deletemodal.style.display = "block";
+                yesdelete.value = event.target.id
+                for (let i in courseData){
+                    if (courseData[i].course_id == event.target.id){
+                        coursename.innerText = courseData[i].course_name
+                    }
+                    
+                } 
+            })
         box.classList.add('box')
         coursesearch.appendChild(box)
         
@@ -637,12 +698,10 @@
             if (course_data[i].course_name.includes(search_bar.value)) {
                 course_search.push(course_data[i])
             }
-            console.log(search_bar.value)
-            console.log(course_data[i].course_name)
         }
             var datalenght = Object.keys(course_search).length;
         for (var i = 0; i < datalenght; i++) {
-            const price = new Intl.NumberFormat().format(json.data[i]['course_price'])
+            const price = new Intl.NumberFormat().format(course_search[i]['course_price'])
             const box = document.createElement('tr');
             box.innerHTML = `
                                 <td class="col-1">${course_search[i]['course_id']}</td>
@@ -655,7 +714,7 @@
                                         <span class="slider round"></span>
                                     </label>
                                 </td>
-                                <td class="col-1"><button class="course-link btn btn-danger"><i class="fas fa-trash"></i></button></td>
+                                <td class="col-1"><button  class="course-link btn btn-danger" id="${course_search[i]['course_id']}"><i class="fas fa-trash" id="${course_search[i]['course_id']}"></i></button></td>
                             `
                             
         const toggle = box.getElementsByTagName("input")[0];
@@ -671,6 +730,18 @@
                 courseCheck(toggle.id, 0)
             }                
         })
+        const delBtn = box.querySelector("button");
+            delBtn.addEventListener("click", function(event) {
+                // console.log(json.data[i]['course_name'])
+                deletemodal.style.display = "block";
+                yesdelete.value = event.target.id
+                for (let i in courseData){
+                    if (courseData[i].course_id == event.target.id){
+                        coursename.innerText = courseData[i].course_name
+                    }
+                    
+                } 
+            })
         box.classList.add('box')
         coursesearch.appendChild(box)
         }
@@ -693,15 +764,10 @@
     // console.log(json)
     }
 
-    async function deleteCourse() {
-        const response = await fetch("http://20.205.2.101:8000/DeleteCourse/", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json',
-                'accept': 'application/json',
-            },
-            body: JSON.stringify ({
-            })
+    async function deleteCourse(course_id) {
+        const response = await fetch(`http://127.0.0.1:8000/DeleteCourse/${course_id}`, {
+            method: "DELETE"
+            
         })
     // const json = await response.json()
     // console.log(json)
@@ -802,7 +868,8 @@
         formData.append("c_open", 1);
         // console.log(course_video.files)
         // console.log(course_image.files)
-        const response = await fetch("http://20.205.2.101:8000/course/", {
+        confirmBtn.disabled = true
+        const response = await fetch("http://127.0.0.1:8000/course/", {
         method: 'POST',
         // headers: {
         //     'accept': 'application/json'
@@ -819,7 +886,7 @@
         course_video.files = null;
         pic_text.innerText = 'ไม่ได้เลือกไฟล์รูปภาพ'
         video_text.innerText = 'ไม่ได้เลือกไฟล์วิดีโอ'
-        
+        confirmBtn.disabled = false
         // if(json['status'] === 'Successful') {
   
         // window.location.assign(".admin_course.html")
@@ -869,7 +936,7 @@
 
         const jsonData = JSON.stringify(new_data);
         console.log(jsonData)
-        const response = await fetch("http://20.205.2.101:8000/EditCoursedata/",{
+        const response = await fetch("http://127.0.0.1:8000/EditCoursedata/",{
 
             method: 'POST',
             headers: {

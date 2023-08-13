@@ -446,12 +446,15 @@
         // editModal.style.display = 'none';
     })
 
-	document.getElementById('search_bar').addEventListener('keypress',event=>{
-		if(event.key == 'Enter'){
-			event.preventDefault()
-			search()
+	// document.getElementById('search_bar').addEventListener('keypress',event=>{
+	// 	if(event.key == 'Enter'){
+	// 		event.preventDefault()
+	// 		search()
 		
-		}
+	// 	}
+	// })
+	document.getElementById('search_bar').addEventListener("input",event=>{
+		search()
 	})
 
 

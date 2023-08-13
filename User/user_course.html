@@ -169,12 +169,16 @@
 <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 <!-- <script src="user_profile.js"></script> -->
 <script>
-	document.getElementById('search_bar').addEventListener('keypress',event=>{
-            if(event.key == 'Enter') {
-                event.preventDefault()
-                search()
-            }
-        })
+	// document.getElementById('search_bar').addEventListener('keypress',event=>{
+    //         if(event.key == 'Enter') {
+    //             event.preventDefault()
+    //             search()
+    //         }
+    //     })
+	document.getElementById('search_bar').addEventListener("input",event=>{
+		search()
+	})
+
     var course_data = {}
 	
 	const subMenu = document.getElementById("subMenu");
