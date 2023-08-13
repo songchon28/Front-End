@@ -157,9 +157,10 @@
                                       <tr>
                                         <th class="col-1" scope="col">คอร์ส ID</th>
                                         <th class="col-2" scope="col">ชื่อคอร์ส</th>
-                                        <th class="col-5" scope="col">คำอธิบาย</th>
+                                        <th class="col-3" scope="col">คำอธิบาย</th>
                                         <th class="col-2" scope="col">ราคา</th>
                                         <th class="col-2" scope="col">สถานะคอร์ส</th>
+                                        <th class="col-2" scope="col"></th>
                                         
                                       </tr>
                                     </thead>
@@ -516,16 +517,17 @@
             const price = new Intl.NumberFormat().format(json.data[i]['course_price'])
             const box = document.createElement('tr'); 
             box.innerHTML = `
-                                    <td class="col-1">${json.data[i]['course_id']}</td>
-                                    <td class="col-2">${json.data[i]['course_name']}</td>
-                                    <td class="col-5">${json.data[i]['course_descript']}</td>
-                                    <td class="col-2">${price} บาท</td>
-                                    <td class="col-2">
-                                        <label class="switch align-self-center">
-                                            <input id="${json.data[i]['course_id']}" type="checkbox">
-                                            <span class="slider round"></span>
-                                        </label>
-                                    </td> 
+                                <td class="col-1">${json.data[i]['course_id']}</td>
+                                <td class="col-2">${json.data[i]['course_name']}</td>
+                                <td class="col-3">${json.data[i]['course_descript']}</td>
+                                <td class="col-2">${price} บาท</td>
+                                <td class="col-2">
+                                    <label class="switch align-self-center">
+                                        <input id="${json.data[i]['course_id']}" type="checkbox">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </td> 
+                                <td class="col-2"><button class="course-link btn btn-primary"><i class="fas fa-trash"></i></button></td>
                             `
                             // `<div class="row bg-light text-dark mb-3">	
                             //     <label class="col-sm-9 form-label fw-bolder text-dark mt-2">ID: ${json.data[c]['course_id']} ชื่อ: ${json.data[c]['course_name']} 
@@ -574,14 +576,15 @@
             box.innerHTML = `
                                 <td class="col-1">${course_data[i]['course_id']}</td>
                                 <td class="col-2">${course_data[i]['course_name']}</td>
-                                <td class="col-5">${course_data[i]['course_descript']}</td>
+                                <td class="col-3">${course_data[i]['course_descript']}</td>
                                 <td class="col-2">${price} บาท</td>
                                 <td class="col-2">
                                     <label class="switch align-self-center">
                                         <input id="${course_data[i]['course_id']}" type="checkbox">
                                         <span class="slider round"></span>
                                     </label>
-                                </td> 
+                                </td>
+                                <td class="col-2"><button class="course-link btn btn-primary"><i class="fas fa-trash"></i></button></td>
                             `
                             
         const toggle = box.getElementsByTagName("input")[0];
@@ -618,14 +621,15 @@
             box.innerHTML = `
                                 <td class="col-1">${course_search[i]['course_id']}</td>
                                 <td class="col-2">${course_search[i]['course_name']}</td>
-                                <td class="col-5">${course_search[i]['course_descript']}</td>
+                                <td class="col-3">${course_search[i]['course_descript']}</td>
                                 <td class="col-2">${price} บาท</td>
                                 <td class="col-2">
                                     <label class="switch align-self-center">
                                         <input id="${course_search[i]['course_id']}" type="checkbox">
                                         <span class="slider round"></span>
                                     </label>
-                                </td> 
+                                </td>
+                                <td class="col-2"><button class="course-link btn btn-primary"><i class="fas fa-trash"></i>ลบ</button></td>
                             `
                             
         const toggle = box.getElementsByTagName("input")[0];
@@ -657,6 +661,20 @@
             body: JSON.stringify({
                 course_id: course_id,
                 course_open: course_open
+            })
+        })
+    // const json = await response.json()
+    // console.log(json)
+    }
+
+    async function deleteCourse() {
+        const response = await fetch("http://20.205.2.101:8000/DeleteCourse/", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'accept': 'application/json',
+            },
+            body: JSON.stringify ({
             })
         })
     // const json = await response.json()
