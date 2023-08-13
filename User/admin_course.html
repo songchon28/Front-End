@@ -519,7 +519,7 @@
             box.innerHTML = `
                                 <td class="col-1">${json.data[i]['course_id']}</td>
                                 <td class="col-2">${json.data[i]['course_name']}</td>
-                                <td class="col-3">${json.data[i]['course_descript']}</td>
+                                <td class="col-4">${json.data[i]['course_descript']}</td>
                                 <td class="col-2">${price} บาท</td>
                                 <td class="col-2">
                                     <label class="switch align-self-center">
@@ -527,7 +527,7 @@
                                         <span class="slider round"></span>
                                     </label>
                                 </td> 
-                                <td class="col-2"><button class="course-link btn btn-danger"><i class="fas fa-trash"></i></button></td>
+                                <td class="col-1"><button class="course-link btn btn-danger"><i class="fas fa-trash"></i></button></td>
                             `
                             // `<div class="row bg-light text-dark mb-3">	
                             //     <label class="col-sm-9 form-label fw-bolder text-dark mt-2">ID: ${json.data[c]['course_id']} ชื่อ: ${json.data[c]['course_name']} 
@@ -576,7 +576,7 @@
             box.innerHTML = `
                                 <td class="col-1">${course_data[i]['course_id']}</td>
                                 <td class="col-2">${course_data[i]['course_name']}</td>
-                                <td class="col-3">${course_data[i]['course_descript']}</td>
+                                <td class="col-4">${course_data[i]['course_descript']}</td>
                                 <td class="col-2">${price} บาท</td>
                                 <td class="col-2">
                                     <label class="switch align-self-center">
@@ -584,7 +584,7 @@
                                         <span class="slider round"></span>
                                     </label>
                                 </td>
-                                <td class="col-2"><button class="course-link btn btn-danger"><i class="fas fa-trash"></i></button></td>
+                                <td class="col-1"><button class="course-link btn btn-danger"><i class="fas fa-trash"></i></button></td>
                             `
                             
         const toggle = box.getElementsByTagName("input")[0];
@@ -621,7 +621,7 @@
             box.innerHTML = `
                                 <td class="col-1">${course_search[i]['course_id']}</td>
                                 <td class="col-2">${course_search[i]['course_name']}</td>
-                                <td class="col-3">${course_search[i]['course_descript']}</td>
+                                <td class="col-4">${course_search[i]['course_descript']}</td>
                                 <td class="col-2">${price} บาท</td>
                                 <td class="col-2">
                                     <label class="switch align-self-center">
@@ -629,7 +629,7 @@
                                         <span class="slider round"></span>
                                     </label>
                                 </td>
-                                <td class="col-2"><button class="course-link btn btn-danger"><i class="fas fa-trash"></i></button></td>
+                                <td class="col-1"><button class="course-link btn btn-danger"><i class="fas fa-trash"></i></button></td>
                             `
                             
         const toggle = box.getElementsByTagName("input")[0];
