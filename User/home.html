@@ -204,7 +204,7 @@ https://templatemo.com/tm-556-catalog-z
         const jsondata = JSON.stringify({user_email: UserEmail});
 
         async function getUser () {
-            const response = await fetch("http://127.0.0.1:8000/userData/",{
+            const response = await fetch("http://localhost:8000/userData/",{
             
             method: 'POST',
             headers: {
@@ -226,7 +226,7 @@ https://templatemo.com/tm-556-catalog-z
         
         async function getCourse() {
 
-        const response = await fetch("http://127.0.0.1:8000/ShowCourseOpen/", {
+        const response = await fetch("http://localhost:8000/ShowCourseOpen/", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

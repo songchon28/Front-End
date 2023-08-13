@@ -214,7 +214,7 @@ https://templatemo.com/tm-556-catalog-z
     const jsondata = JSON.stringify({user_email: UserEmail});
 
     async function getUser () {
-        const response = await fetch("http://127.0.0.1:8000/userData/",{
+        const response = await fetch("http://localhost:8000/userData/",{
         
         method: 'POST',
         headers: {
@@ -236,21 +236,21 @@ https://templatemo.com/tm-556-catalog-z
     async function getVideo() {
         const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get('id');
-        const response = await fetch("http://127.0.0.1:8000/ShowCourseVideo/" + id, {
+        const response = await fetch("http://localhost:8000/ShowCourseVideo/" + id, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'accept': 'application/json',
             },
         })
-        const response_checkcourse = await fetch("http://127.0.0.1:8000/whopaythiscourse/" + id, {
+        const response_checkcourse = await fetch("http://localhost:8000/whopaythiscourse/" + id, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'accept': 'application/json',
             },
         })
-        const response_checkquiz = await fetch("http://127.0.0.1:8000/CourseHaveQuiz/" + id, {
+        const response_checkquiz = await fetch("http://localhost:8000/CourseHaveQuiz/" + id, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

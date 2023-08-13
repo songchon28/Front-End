@@ -480,7 +480,7 @@
 
 
     async function getCourse() {
-        const response = await fetch("http://127.0.0.1:8000/AllCourseData/", {
+        const response = await fetch("http://localhost:8000/AllCourseData/", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -648,7 +648,7 @@
 
     //COURSE CHECKED/UNCHECKED
     async function courseCheck(course_id, course_open) {
-        const response = await fetch("http://127.0.0.1:8000/Updatecourse/", {
+        const response = await fetch("http://localhost:8000/Updatecourse/", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -758,7 +758,7 @@
         formData.append("c_open", 1);
         // console.log(course_video.files)
         // console.log(course_image.files)
-        const response = await fetch("http://127.0.0.1:8000/course/", {
+        const response = await fetch("http://localhost:8000/course/", {
         method: 'POST',
         // headers: {
         //     'accept': 'application/json'
@@ -825,7 +825,7 @@
 
         const jsonData = JSON.stringify(new_data);
         console.log(jsonData)
-        const response = await fetch("http://127.0.0.1:8000/EditCoursedata/",{
+        const response = await fetch("http://localhost:8000/EditCoursedata/",{
 
             method: 'POST',
             headers: {

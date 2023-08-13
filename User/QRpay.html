@@ -83,7 +83,7 @@ body {
         async function getOmise() {
             const urlParams = new URLSearchParams(window.location.search);
             const id = urlParams.get('course_id');
-            const response = await fetch("http://127.0.0.1:8000/ShowCourseVideo/" + id, {
+            const response = await fetch("http://localhost:8000/ShowCourseVideo/" + id, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -97,7 +97,7 @@ body {
             "amount": price,
             "currency": "THB"
             }, async function(statusCode, response) {
-            const res = await fetch("http://127.0.0.1:8000/qrpay/", {
+            const res = await fetch("http://localhost:8000/qrpay/", {
                 
                 
                 method: 'POST',
@@ -123,7 +123,7 @@ body {
         async function paySubmit() {
             const urlParams = new URLSearchParams(window.location.search);
             const id = urlParams.get('course_id');
-            const response = await fetch("http://127.0.0.1:8000/ShowCourseVideo/" + id, {
+            const response = await fetch("http://localhost:8000/ShowCourseVideo/" + id, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -132,7 +132,7 @@ body {
              })
             const data = await response.json()
             const price = data.data.course_price*100
-            const res = await fetch("http://127.0.0.1:8000/checkpay/", {
+            const res = await fetch("http://localhost:8000/checkpay/", {
             
                 method: 'POST',
                 headers: {
