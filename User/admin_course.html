@@ -339,17 +339,21 @@
 
     <div id="deletemodal" class="modal" style="padding-top: 200px;">
         <div class="modal-content" style="display: flex; justify-content: center; align-items: center; height: 400px; width: 600px;">
-            <h1 class="mb-5">คุณแน่ใจแล้วหรือว่าจะลบคอร์สนี้?</h1>
-            ชื่อคอร์ส:<h4 id="coursename"></h4>
-            <div class="row">
-                <button  class="btn btn-confirm" id="modalcancel" onClick="window.location.href=window.location.href">
-                    ยกเลิก
-                </button>
-                <button  class="btn btn-confirm" id="yesdelete">
-                    ตกลง
-                </button>
+            <h2 class="mb-4">คุณแน่ใจที่จะลบคอร์สนี้ใช่หรือไม่?</h2>
+            <div class="d-flex">
+                <h4 class="mr-1">ชื่อคอร์ส: </h4>
+                <h4 id="coursename" class="mb-5"></h4>
             </div>
-        
+            <div class="row d-flex justify-content-center">
+                <div class="col-sm-12">
+                    <button  class="mr-2 btn btn-canceldelete" id="modalcancel" onClick="window.location.href=window.location.href" >
+                        ยกเลิก
+                    </button>
+                    <button  class="ml-2 btn btn-confirm" id="yesdelete">
+                        ตกลง
+                    </button>
+                </div>
+            </div>      
         </div>
     </div>
     

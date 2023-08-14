@@ -237,7 +237,7 @@ label .actual-button {
 .btn-danger {  
   border: 0;
   border-radius: 25px;
-  padding: 10px 20px 10px;
+  padding: 8px 15px 8px;
   font-size: 1.2rem;
 }
 
@@ -248,12 +248,12 @@ background-color:#ff7777;
 
 
 .btn-edit, .btn-cancel {
-    background-color: #E7E5F9;
-    color: #5643FF;
-    border: 1;
-    border-radius: 25px;
-    padding: 10px 20px 10px;
-    font-size: 1.2rem;
+  background-color: #E7E5F9;
+  color: #5643FF;
+  border: 1;
+  border-radius: 25px;
+  padding: 10px 20px 10px;
+  font-size: 1.2rem;
 }
 
 .btn-add, .btn-cancel-edit {
@@ -265,7 +265,24 @@ background-color:#ff7777;
   font-size: 1.2rem;
 }
 
+btn-cancel1 {
+  background-color: #E7E5F9;
+  color: #5643FF;
+  border: 1;
+  border-radius: 25px;
+  padding: 10px 20px 10px;
+  font-size: 1.2rem;
+}
 
+.btn-canceldelete {
+  padding: 12px 63px 12px;
+  background-color: #E7E5F9;
+  border: 1;
+  color: #5643FF;;
+  border-radius: 50px;
+  font-size: 20px;
+  
+}
 
 /*on-off Course*/
 
