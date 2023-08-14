@@ -192,21 +192,21 @@
                                     <div id="course_name" class="form-group">
                                         <h1 class="mb-4">เพิ่มคอร์สเรียน</h1>
                                         ชื่อคอร์ส<span style="color:#7e7e7e"> (จำนวนตัวอักษรไม่เกิน 40 ตัวอักษร)</span>
-                                        <input id="c_name" name="c_name" type="text" class="form-control" value="">
+                                        <input id="c_name" name="c_name" type="text" class="form-control" value="" maxlength="40">
                                         <a class="text-danger" id="name_error"></a>
                                     </div>
                                 </div>
                                 <div class="col-md-10">
                                     <div id="course_price" class="form-group">
                                         ราคาคอร์ส<span style="color:#7e7e7e"> (บาท)</span>
-                                        <input id="c_price" name="c_price" type="text" class="form-control" value="">
+                                        <input id="c_price" name="c_price" type="text" class="form-control" value="" maxlength="4">
                                         <a class="text-danger" id="price_error"></a>
                                     </div>
                                 </div>
                                 <div class="col-md-10">
                                     <div id="course_descript" class="form-group">
                                         รายละเอียดคอร์ส<span style="color:#7e7e7e"> (จำนวนตัวอักษรไม่เกิน 400 ตัวอักษร)</span>
-                                        <input id="c_description" name="c_description" type="text" class="form-control" value="">
+                                        <input id="c_description" name="c_description" type="text" class="form-control" value="" maxlength="400">
                                         <a class="text-danger" id="descript_error"></a>
                                     </div>
                                 </div>
@@ -272,7 +272,7 @@
                             <div class="col-md-10">
                                 <div id="course_price" class="form-group">
                                     ชื่อคอร์ส<span style="color:#7e7e7e"> (จำนวนตัวอักษรไม่เกิน 40 ตัวอักษร)</span>
-                                    <input id="c_name_edit" name="c_name" type="text" class="form-control" onclick="checkInputs()">
+                                    <input id="c_name_edit" name="c_name" type="text" class="form-control" onclick="checkInputs()" maxlength="40">
                                     <a class="text-danger" id="editname_error"></a>
                                 </div>
                             </div>
@@ -280,14 +280,14 @@
                             <div class="col-md-10">
                                 <div id="course_price" class="form-group">
                                     ราคาคอร์ส<span style="color:#7e7e7e"> (บาท)</span>
-                                    <input id="c_price_edit" name="c_price" type="text" class="form-control" onclick="checkInputs()">
+                                    <input id="c_price_edit" name="c_price" type="text" class="form-control" onclick="checkInputs()" maxlength="4">
                                     <a class="text-danger" id="editprice_error"></a>
                                 </div>
                             </div>
                             <div class="col-md-10">
                                 <div id="course_descript" class="form-group">
                                     รายละเอียดคอร์ส<span style="color:#7e7e7e"> (จำนวนตัวอักษรไม่เกิน 400 ตัวอักษร)</span>
-                                    <input id="c_description_edit" name="c_description" type="text" class="form-control" onclick="checkInputs()">
+                                    <input id="c_description_edit" name="c_description" type="text" class="form-control" onclick="checkInputs()" maxlength="400">
                                     <a class="text-danger" id="editdescript_error"></a>
                                 </div>
                             </div>
