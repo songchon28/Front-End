@@ -288,6 +288,7 @@ https://templatemo.com/tm-556-catalog-z
                                         <div class="d-flex button-video-page">
                                             <a href=${"choice1.html?course_id="+json.data['course_id']} class="btn btn-primary tm-btn-big-test mt-3">ทำแบบทดสอบ</a>
                                             <a href=${"QRpay.html?course_id="+json.data['course_id']} class="btn btn-primary tm-btn-big-pay mt-3 mb-3">ชำระเงิน</a>
+                                            <a class="text-danger mt-3" id="button-error">*กรุณาชำระเงินเพื่อดูคลิปวิดีโอ</a>
                                         </div>
                                     </div>
                                 </div>
@@ -304,6 +305,7 @@ https://templatemo.com/tm-556-catalog-z
             if(checkquiz.have_quiz == "false"){
                 console.log("test");
                 testbutton.classList.add("d-none")
+
             }
 
 
