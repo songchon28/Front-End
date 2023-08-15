@@ -246,7 +246,7 @@ input[type=radio] {
    CHANGE RADIO BUTTON WHEN CLICKED
 -------------------- */
 
-.answers input[type=radio].with-font:focus + label:before {
+.answers input[type=radio].with-font:checked + label:before {
     content: "\f00c";
     font-size: 1.6em;
     color: green;
@@ -256,7 +256,7 @@ input[type=radio] {
    CHANGE LABEL WHEN CLICKED
 -------------------- */
 
-.answers input[type=radio].with-font:focus + label {
+.answers input[type=radio].with-font:checked + label {
     background: #fff !important;
     color: #444;
 }
