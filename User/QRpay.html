@@ -156,7 +156,7 @@ body {
             console.log(json)
             if(json['status'] === 'Successful') {
   
-                window.history.back()
+                window.location.href= "video-detail.html?course_id="+json.data['course_id'];
             }
             else {
                 alert("กรุณาชำระเงิน")
