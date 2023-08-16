@@ -134,7 +134,7 @@
 							</div>	 -->
 							<div class="h-100 w-100">
 								<table class="table table-fixed h-100 w-100 d-block overflow-auto ">
-									<thead class="table table-dark table-striped sticky-top d-table w-100 mb-0" style="z-index: 1;">
+									<thead class="table table-dark table-striped sticky-top d-table w-100 mb-0" style="z-index: 10;">
                                       <tr>
                                         <th class="col-1" scope="col">คอร์ส ID</th>
 										<th class="col-2" scope="col">ชื่อคอร์ส</th>
@@ -245,7 +245,7 @@
 		for (var i = 0; i < datalenght; i++) {
 			const date = new Date(json.data[i]['bill_date']) 
 			const dateFormat = date.toLocaleString('th-TH', {
-				dateStyle: "full", timeStyle: "medium"
+				dateStyle: "full"
 			})
 			const price = new Intl.NumberFormat().format(json.data[i]['bill_total'])
 			const box = document.createElement('tr');
