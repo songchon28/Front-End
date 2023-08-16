@@ -25,6 +25,7 @@ table {
     right: 5.1%;
     width: 300px;
     max-height: 0px;
+    z-index: 10;
     overflow: hidden;
     transition: max-height 0.5s;   
 }
@@ -37,7 +38,7 @@ table {
     position: relative;
     background-color: rgb(255, 255, 255);
     border-style: groove;
-    z-index: 10px;
+    z-index: 10;
     padding: 20px;
     margin: 10px;
 
@@ -181,7 +182,7 @@ left: 10px;
 nav {
     height: 74px;
     background-color: rgb(255, 255, 255);
-    z-index: 1;
+    z-index: 100;
 }
 .navbar-toggler:focus { box-shadow: none; }
 .navbar-brand {

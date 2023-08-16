@@ -115,7 +115,7 @@
 					</div>
 				</div>
 				<div class="p-4 p-md-5 h-100 w-100 d-flex flex-column">
-					<div class="row">
+					<div class="row h-100">
 						<div class="col-sm-8">
 							<h3>ข้อมูลของผู้ใช้</h3>
 						</div>
@@ -263,7 +263,7 @@
 		var data = json.data;
 		var datalenght = Object.keys(data).length;
 		user_data = data
-		
+		console.log(user_data)
 
 		
 		
@@ -286,11 +286,16 @@
 									<td class="col-3">${dateFormat}</td>
 									<td class="col-2"><a id="${i}" class="course-link btn btn-primary">รายละเอียด</a></td>
 							`
-			
+		
+		if (data[i].course[0].course_id == "None") {
+			box.querySelector("a").classList.add("disabled") 
+		}
+		
+		
 		box.querySelector("a").addEventListener("click", (e) => {
 			const courselist = document.querySelector('#user_course')
 			const id = e.target.id
-
+			
 			while (courselist.hasChildNodes()) {
 				courselist.removeChild(courselist.firstChild);
 			}
@@ -342,7 +347,7 @@
 							<td class="col-2">${user_data[i]['lname']}</td>
 							<td class="col-2">${user_data[i]['email']}</td>
 							<td class="col-3">${dateFormat}</td>
-							<td class="col-2"><a id="${i}" class="course-link btn btn-primary">กดเข้าคอร์ส</a></td>
+							<td class="col-2"><a id="${i}" class="course-link btn btn-primary">รายละเอียด</a></td>
 							`
                             
 			box.querySelector("a").addEventListener("click", (e) => {
@@ -394,7 +399,7 @@
 								<td class="col-2">${course_search[i]['lname']}</td>
 								<td class="col-2">${course_search[i]['email']}</td>
 								<td class="col-3">${dateFormat}</td>
-								<td class="col-2"><a id="${i}" class="course-link btn btn-primary">กดเข้าคอร์ส</a></td>
+								<td class="col-2"><a id="${i}" class="course-link btn btn-primary">รายละเอียด</a></td>
 							`
                             
 		box.querySelector("a").addEventListener("click", (e) => {
