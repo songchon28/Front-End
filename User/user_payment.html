@@ -242,16 +242,18 @@
 		const bill = document.getElementById('course_table');
 		var data = json.data;
 		var datalenght = Object.keys(data).length;
+		console.log(json.data)
 		for (var i = 0; i < datalenght; i++) {
 			const date = new Date(json.data[i]['bill_date']) 
 			const dateFormat = date.toLocaleString('th-TH', {
-				dateStyle: "full"
+				dateStyle: "full" , timeStyle: "medium", timeZone: "Asia/Bangkok"
 			})
+
 			const price = new Intl.NumberFormat().format(json.data[i]['bill_total'])
 			const box = document.createElement('tr');
 			box.innerHTML = `    
 								<td class="col-1">${json.data[i]['course_id']}</td>
-								<th class="col-2" scope="col">${json.data[i]['course_name']}</th>
+								<th class="col-2">${json.data[i]['course_name']}</th>
 								<td class="col-1">${json.data[i]['bill_id']}</td>
 								<td class="col-1">${price} บาท</td>
 								<td class="col-3">${dateFormat}</td>
@@ -304,7 +306,7 @@
 			for (var i = 0; i < datalenght; i++) {
 				const date = new Date(bill_data[i]['bill_date']) 
 				const dateFormat = date.toLocaleString('th-TH', {
-					dateStyle: "full" //, timeStyle: "medium"
+					dateStyle: "full" , timeStyle: "medium"
 				})
 				const price = new Intl.NumberFormat().format(bill_data[i]['bill_total'])
 				const box = document.createElement('tr');
@@ -334,7 +336,7 @@
             for (var i = 0; i < datalenght; i++) {
 				const date = new Date(bill_search[i]['bill_date']) 
 				const dateFormat = date.toLocaleString('th-TH', {
-					dateStyle: "full" //, timeStyle: "medium"
+					dateStyle: "full" , timeStyle: "medium"
 				})
 				const box = document.createElement('tr');
 				box.innerHTML = `

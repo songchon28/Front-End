@@ -349,7 +349,10 @@
 							<td class="col-3">${dateFormat}</td>
 							<td class="col-2"><a id="${i}" class="course-link btn btn-primary">รายละเอียด</a></td>
 							`
-                            
+							
+			if (user_data[i].course[0].course_id == "None") {
+				box.querySelector("a").classList.add("disabled") 
+			}
 			box.querySelector("a").addEventListener("click", (e) => {
 				const courselist = document.querySelector('#user_course')
 				const id = e.target.id
@@ -401,7 +404,9 @@
 								<td class="col-3">${dateFormat}</td>
 								<td class="col-2"><a id="${i}" class="course-link btn btn-primary">รายละเอียด</a></td>
 							`
-                            
+		if (course_search[i].course[0].course_id == "None") {
+			box.querySelector("a").classList.add("disabled") 
+		}
 		box.querySelector("a").addEventListener("click", (e) => {
 			const courselist = document.querySelector('#user_course')
 			const id = e.target.id
