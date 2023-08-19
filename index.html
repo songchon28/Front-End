@@ -150,8 +150,7 @@
       body: jsonData
       })
       const json = await response.json()
-      (json)
-      (json['message'])
+     
       if(json['message'] === 'Login completed!') {
 
         window.location.assign("./User/home.html")
@@ -249,7 +248,7 @@
       body: jsonData
       })
       const json = await response.json()
-      (json)
+      
       if(json['status'] === 'Successful') {
     
         window.location.assign("./User/home.html")

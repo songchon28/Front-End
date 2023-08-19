@@ -112,7 +112,7 @@ body {
                 })
             })
                 const json = await res.json()
-                (json)
+                
                 charge_id = json.data.charge_id
                 (charge_id)
             });
@@ -153,7 +153,7 @@ body {
 
             // }, 6000);
             const json = await res.json()
-            (json)
+            
             if(json['status'] === 'Successful') {
   
                 window.location.href= "video-detail.html?id="+id;
