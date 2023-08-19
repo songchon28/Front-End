@@ -82,9 +82,9 @@
     },
     body: jsonData
     })
-    
-   
-   
+    const json = await response.json()
+    console.log(json)
+    consoloe.log(json['message'])
     if(json['message'] === 'Login completed!') {
 
       window.location.assign("./User/admin_user.html");
