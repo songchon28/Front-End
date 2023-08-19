@@ -51,7 +51,7 @@ async function getQuestions() {
     falseAnswerText: "คำตอบไม่ถูกต้อง!"
   })
   }
-console.log(myQuestions)
+(myQuestions)
 }
 
 

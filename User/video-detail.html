@@ -225,7 +225,7 @@ https://templatemo.com/tm-556-catalog-z
     })
 
         const user = await response.json()
-        console.log(user)
+        (user)
         const email = document.getElementById('email');
         email.innerText = user.data.email
         const email2 = document.getElementById('email2');
@@ -258,7 +258,7 @@ https://templatemo.com/tm-556-catalog-z
             },
         })
         let src = ""
-        console.log(id)
+        (id)
         const json = await response.json()
         const checkcourse = await response_checkcourse.json()
         const checkquiz = await response_checkquiz.json()
@@ -271,7 +271,7 @@ https://templatemo.com/tm-556-catalog-z
         const videolist = document.getElementById('videoCourse');
         var data = json.data;
         var datalenght = Object.keys(data).length;
-        console.log(datalenght)
+        (datalenght)
         const box = document.createElement('div');
          box.innerHTML =    `<div class="row mb-4">
                                 <h2 class="col-12 tm-text-primary">${json.data['course_name']}</h2>
@@ -305,7 +305,7 @@ https://templatemo.com/tm-556-catalog-z
             }});
 
             if(checkquiz.have_quiz == "false"){
-                console.log("test");
+                ("test");
                 testbutton.classList.add("d-none")
                 
             }
@@ -314,7 +314,7 @@ https://templatemo.com/tm-556-catalog-z
             box.classList.add('box')
             videolist.appendChild(box)
             // <input class="col-sm-3 checkon_off" type="checkbox" checked data-toggle="toggle" data-style="android" data-onstyle="info"> //
-            console.log(data)
+            (data)
             $(window).trigger('resize');
         }
             

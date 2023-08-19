@@ -208,7 +208,7 @@
 	})
 
 	const user = await response.json()
-	console.log(user)
+	(user)
 
 	const fullname = document.getElementById('fullname');
 	const email_profile = document.getElementById('profile');
@@ -262,7 +262,7 @@
 			courselist.removeChild(courselist.firstChild);
 		}
 		const search_bar = document.getElementById('search_bar')
-		console.log(course_data)
+		(course_data)
 		const course_search = []
 		if(search_bar.value == ''){
 			var datalenght = Object.keys(course_data).length;
@@ -294,8 +294,8 @@
 			if (course_data[i].course_name.includes(search_bar.value)|| course_data[i].course_id.includes(search_bar.value)) {
 				course_search.push(course_data[i])
 			}
-			console.log(search_bar.value)
-			console.log(course_data[i].course_name)
+			(search_bar.value)
+			(course_data[i].course_name)
 			}
 			var datalenght = Object.keys(course_search).length;
 				

@@ -235,7 +235,7 @@
 	// })
 
 	// const user = await response.json()
-	// console.log(user)
+	// (user)
 
 	// const fullname = document.getElementById('fullname');
 	// fullname.innerText = user.data.fname + " " + user.data.lname
@@ -263,7 +263,7 @@
 		var data = json.data;
 		var datalenght = Object.keys(data).length;
 		user_data = data
-		console.log(user_data)
+		(user_data)
 
 		
 		
@@ -272,7 +272,7 @@
 
 
 		for (var i = 0; i < datalenght; i++) {
-			console.log(json.data[i]);
+			(json.data[i]);
 			const date = new Date(json.data[i]['date']) 
 			const dateFormat = date.toLocaleString('th-TH', {
 				dateStyle: "full" //timeStyle: "medium"
@@ -384,8 +384,8 @@
             if (user_data[i].fname.includes(search_bar.value)) {
                 course_search.push(user_data[i])
             }
-            // console.log(search_bar.value)
-            // console.log(user_data[i].fname)
+            // (search_bar.value)
+            // (user_data[i].fname)
         }
             var datalenght = Object.keys(course_search).length;
         

@@ -112,7 +112,7 @@ var all_questions = [{
       
       // Display the score with the appropriate message
       var percentage = score / self.questions.length;
-      console.log(percentage);
+      (percentage);
       var message;
       if (percentage === 1) {
         message = 'Great job!'

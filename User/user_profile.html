@@ -286,7 +286,7 @@
 	})
 
 	const user = await response.json()
-	console.log(user)
+	(user)
 	
 	const fullname = document.getElementById('fullname');
 	const first = document.getElementById('firstname');
@@ -319,7 +319,7 @@ getUser()
 					}
 
 		const jsonData = JSON.stringify(new_data);
-		console.log(jsonData)
+		(jsonData)
 		const response = await fetch("http://20.205.2.101:8000/Updatedata/",{
 		
 		method: 'POST',
@@ -332,7 +332,7 @@ getUser()
 	})
 
 	const user = await response.json()
-	console.log(user)
+	(user)
 	window.location.reload()
 	}
 

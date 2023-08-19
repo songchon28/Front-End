@@ -521,7 +521,7 @@
 	// })
 
 	// const user = await response.json()
-	// console.log(user)
+	// (user)
 
 	// const fullname = document.getElementById('fullname');
 	// fullname.innerText = user.data.fname + " " + user.data.lname
@@ -540,7 +540,7 @@
 	document.getElementById("add_test").addEventListener("change", event => {
 		
 		let testname = ""
-		console.log(questions)
+		(questions)
 		questions.forEach(question => {
 			if (question.course_id == event.target.value) {
 				testname = question.question_name
@@ -549,7 +549,7 @@
 		const testnamebox = document.getElementById("testname")	
 		testnamebox.value = testname
 		testnamebox.disabled = testname!=""
-		console.log(testname)
+		(testname)
 	})
 
 	async function getQuestion() {
@@ -586,7 +586,7 @@
 				}
 			
 			} 
-            //console.log(json.data[t]);
+            //(json.data[t]);
             const box = document.createElement('tr');
             box.innerHTML = `   
                                 <td class="col-1">${id}</td>
@@ -658,7 +658,7 @@
 		const testnamebox = document.getElementById("testname")	
 		testnamebox.value = testname
 		testnamebox.disabled = testname!=""
-		console.log(testname!='')
+		(testname!='')
 	}
 
 	
@@ -766,7 +766,7 @@
 				course_id : addtest.value
 		}
 	
-		//console.log(data)
+		//(data)
         const response = await fetch("http://20.205.2.101:8000/question/", {
             method: 'POST',
             headers: {
@@ -776,7 +776,7 @@
 			body:JSON.stringify(data)
         })
 		const json = await response.json()
-        console.log(json)
+        (json)
 		
 		confirmmodal.style.display = "block";
         questest.value = '';
@@ -794,7 +794,7 @@
 			question_name: question_name,
 			course_id: course_id
 		})
-        console.log(questions)
+        (questions)
 		// window.location.reload();
 	}
 
@@ -942,7 +942,7 @@
 				question_id : editques_id.value
 		}
 	
-		//console.log(data)
+		//(data)
         const response = await fetch("http://20.205.2.101:8000/UpdateQuizdata/", {
             method: 'POST',
             headers: {
@@ -952,7 +952,7 @@
 			body:JSON.stringify(data)
         })
 		const json = await response.json()
-		console.log(json)
+		(json)
 		updatemodal.style.display = 'block';
 		editButton.disabled = true;
 		// testname.value = ''
@@ -1175,7 +1175,7 @@
             var datalenght = Object.keys(test_data).length;
 
 		const testlist = document.getElementById('test_table');
-		console.log(test_data)
+		(test_data)
         var datalenght = Object.keys(count).length;
         for (let i in order) {
 			let testname = ""
@@ -1193,7 +1193,7 @@
 					course_name = course[i].course_name;
 				}
 			} 
-            //console.log(json.data[t]);
+            //(json.data[t]);
             const box = document.createElement('tr');
             box.innerHTML = `   
                                 <td class="col-1">${id}</td>
@@ -1218,7 +1218,7 @@
 		return
 		
 		}
-		console.log(order)
+		(order)
 
 		for(let i in order){
 			let course_name = ""
@@ -1237,7 +1237,7 @@
 			
         }
         const testlist = document.getElementById('test_table');
-		console.log(course_search)
+		(course_search)
         for (let i in course_search) {
 			let testname = ""
 			const id = course_search[i]
@@ -1255,7 +1255,7 @@
 				}
 			
 			} 
-            //console.log(json.data[t]);
+            //(json.data[t]);
             const box = document.createElement('tr');
             box.innerHTML = `   
                                 <td class="col-1">${id}</td>

@@ -622,7 +622,7 @@
             
             const delBtn = box.querySelector("button");
             delBtn.addEventListener("click", function(event) {
-                // console.log(json.data[i]['course_name'])
+                // (json.data[i]['course_name'])
                 deletemodal.style.display = "block";
                 yesdelete.value = event.target.id
                 for (let i in courseData){
@@ -681,7 +681,7 @@
         })
         const delBtn = box.querySelector("button");
             delBtn.addEventListener("click", function(event) {
-                // console.log(json.data[i]['course_name'])
+                // (json.data[i]['course_name'])
                 deletemodal.style.display = "block";
                 yesdelete.value = event.target.id
                 for (let i in courseData){
@@ -736,7 +736,7 @@
         })
         const delBtn = box.querySelector("button");
             delBtn.addEventListener("click", function(event) {
-                // console.log(json.data[i]['course_name'])
+                // (json.data[i]['course_name'])
                 deletemodal.style.display = "block";
                 yesdelete.value = event.target.id
                 for (let i in courseData){
@@ -765,7 +765,7 @@
             })
         })
     // const json = await response.json()
-    // console.log(json)
+    // (json)
     }
 
     async function deleteCourse(course_id) {
@@ -774,7 +774,7 @@
             
         })
     // const json = await response.json()
-    // console.log(json)
+    // (json)
     }
  
     getCourse()
@@ -870,8 +870,8 @@
         formData.append("c_price", course_price.value);
         formData.append("c_descript", course_descript.value);
         formData.append("c_open", 1);
-        // console.log(course_video.files)
-        // console.log(course_image.files)
+        // (course_video.files)
+        // (course_image.files)
         confirmBtn.disabled = true
         const response = await fetch("http://20.205.2.101:8000/course/", {
         method: 'POST',
@@ -881,7 +881,7 @@
         body: formData
         })
         const json = await response.json()
-        console.log(json)
+        (json)
         confirmmodal.style.display = "block";
         course_name.value = '';
         course_price.value = '';
@@ -939,7 +939,7 @@
                         }
 
         const jsonData = JSON.stringify(new_data);
-        console.log(jsonData)
+        (jsonData)
         const response = await fetch("http://20.205.2.101:8000/EditCoursedata/",{
 
             method: 'POST',
@@ -952,7 +952,7 @@
         })
 
         const json = await response.json()
-        console.log(json)
+        (json)
         updatemodal.style.display = 'block';
     }
 

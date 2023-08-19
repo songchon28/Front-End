@@ -214,7 +214,7 @@
 	})
 
 	const user = await response.json()
-	console.log(user)
+	(user)
 
 	const fullname = document.getElementById('fullname');
 	const email_profile1 = document.getElementById('profile1');
@@ -242,7 +242,7 @@
 		const bill = document.getElementById('course_table');
 		var data = json.data;
 		var datalenght = Object.keys(data).length;
-		console.log(json.data)
+		(json.data)
 		for (var i = 0; i < datalenght; i++) {
 			const date = new Date(json.data[i]['bill_date']) 
 			const dateFormat = date.toLocaleString('th-TH', {
@@ -271,7 +271,7 @@
 	// 		billlist.removeChild(billlist.firstChild);
 	// 	}
 	// 	const search_bar = document.getElementById('search_bar')
-	// 	console.log(bill_data)
+	// 	(bill_data)
 	// 	const course_search = []
 	// 	if(search_bar.value == ''){
 	// 		var datalenght = Object.keys(bill_data).length;
@@ -328,8 +328,8 @@
 			{
 				bill_search.push(bill_data[i])
 			}
-			// console.log(search_bar.value)
-			// console.log(bill_data[i].bill_id)
+			// (search_bar.value)
+			// (bill_data[i].bill_id)
 			}
 			var datalenght = Object.keys(bill_search).length;
 				
