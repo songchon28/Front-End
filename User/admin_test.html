@@ -540,7 +540,7 @@
 	document.getElementById("add_test").addEventListener("change", event => {
 		
 		let testname = ""
-		(questions)
+		
 		questions.forEach(question => {
 			if (question.course_id == event.target.value) {
 				testname = question.question_name
@@ -549,7 +549,7 @@
 		const testnamebox = document.getElementById("testname")	
 		testnamebox.value = testname
 		testnamebox.disabled = testname!=""
-		(testname)
+		
 	})
 
 	async function getQuestion() {
@@ -658,7 +658,7 @@
 		const testnamebox = document.getElementById("testname")	
 		testnamebox.value = testname
 		testnamebox.disabled = testname!=""
-		(testname!='')
+		
 	}
 
 	
