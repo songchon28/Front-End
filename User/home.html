@@ -216,7 +216,7 @@ https://templatemo.com/tm-556-catalog-z
         })
 
             const user = await response.json()
-            console.log(user)
+           
                
             const email = document.getElementById('email');
             email.innerText = user.data.email
@@ -237,7 +237,7 @@ https://templatemo.com/tm-556-catalog-z
         const json = await response.json()
         const courselist = document.getElementById('courselist');
         course_data = json.data;
-        (course_data)
+        
         var datalenght = Object.keys(course_data).length;
         for (var i = 0; i < datalenght; i++) {
             const box = document.createElement('div');
@@ -282,7 +282,7 @@ https://templatemo.com/tm-556-catalog-z
                 courselist.removeChild(courselist.firstChild);
             }
             const search_bar = document.getElementById('search_bar')
-            (course_data)
+           
             const course_search = []
             if(search_bar.value == '') {
                 var datalenght = Object.keys(course_data).length;
@@ -328,8 +328,8 @@ https://templatemo.com/tm-556-catalog-z
                 if (course_data[i].course_name.includes(search_bar.value)) {
                     course_search.push(course_data[i])
                 }
-                (search_bar.value)
-                (course_data[i].course_name)
+                // (search_bar.value)
+                // (course_data[i].course_name)
             }
                 var datalenght = Object.keys(course_search).length;
             for (var i = 0; i < datalenght; i++) {

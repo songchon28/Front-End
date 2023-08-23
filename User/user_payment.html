@@ -242,7 +242,7 @@
 		const bill = document.getElementById('course_table');
 		var data = json.data;
 		var datalenght = Object.keys(data).length;
-		(json.data)
+		
 		for (var i = 0; i < datalenght; i++) {
 			const date = new Date(json.data[i]['bill_date']) 
 			const dateFormat = date.toLocaleString('th-TH', {
