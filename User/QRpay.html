@@ -116,7 +116,7 @@ body {
                 const json = await res.json()
                 
                 charge_id = json.data.charge_id
-                document.getElementById("qrcode").src=jsondata.Qrimage
+                document.getElementById("qrcode").src=json.data.Qrimage
             });
 
         }
