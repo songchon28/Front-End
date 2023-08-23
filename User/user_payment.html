@@ -324,12 +324,11 @@
 			return
 		}
 		for (let i in bill_data){
-			if (bill_data[i].course_name.includes(search_bar.value)|| course_data[i].course_id.includes(search_bar.value)) 
+			if (bill_data[i].course_name.includes(search_bar.value)|| bill_data[i].course_id.includes(search_bar.value)) 
 			{
 				bill_search.push(bill_data[i])
 			}
-			(search_bar.value)
-			(bill_data[i].bill_id)
+			
 			}
 			var datalenght = Object.keys(bill_search).length;
 				
