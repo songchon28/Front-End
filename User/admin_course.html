@@ -643,6 +643,8 @@
     async function search() {
         const coursesearch = document.getElementById('course_table');
         while (coursesearch.hasChildNodes()) {
+            // Inside the loop, this line removes the first child element of the coursesearch element using the removeChild() method.
+			// The method is applied to the coursesearch element and uses 
             coursesearch.removeChild(coursesearch.firstChild);
         }
         const search_bar = document.getElementById('search_bar')

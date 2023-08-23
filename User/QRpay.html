@@ -52,7 +52,7 @@ body {
             <button id="delayButton" onclick="paySubmit()" class ="btn btn-primary tm-btn-big mt-3 mb-3">ยืนยันการชำระเงิน</button>
         </div>
         <div class="row justify-content-center">
-            <img class="qr-code img-thumbnail img-responsive" src="https://api.omise.co/charges/chrg_test_5whzuxxbto6aci1k8r6/documents/docu_test_5whzuxzw2n6kwsb62uj/downloads/DF75C3E700EF20A4"/> 
+            <img id="qrcode" class="qr-code img-thumbnail img-responsive"/> 
             
         </div>  
     </div>
@@ -61,6 +61,7 @@ body {
     <script src = "https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="https://cdn.omise.co/omise.js"></script>
     <script>
+        
         document.getElementById('delayButton').addEventListener('click', function() {
         // Disable the button to prevent multiple clicks during the delay
         this.disabled = true;
@@ -81,6 +82,7 @@ body {
         let charge_id = ""
         const user_email = localStorage.getItem("userEmail")
         async function getOmise() {
+
             const urlParams = new URLSearchParams(window.location.search);
             const id = urlParams.get('course_id');
             const response = await fetch("http://20.205.2.101:8000/ShowCourseVideo/" + id, {
@@ -114,7 +116,7 @@ body {
                 const json = await res.json()
                 
                 charge_id = json.data.charge_id
-                
+                document.getElementById("qrcode").src=jsondata.Qrimage
             });
 
         }
