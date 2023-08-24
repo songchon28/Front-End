@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Nunito', sans-serif;
+    font-family: Comic Sans MS, Helvetica, sans-serif;
   }
 
 .container-fluid { max-width: 1770px; }
@@ -15,12 +15,13 @@
     justify-content: center;
     align-items: center;
     background: #E7E5F9;
-    font-family: 'Nunito', sans-serif;
+    font-family: Comic Sans MS, Helvetica, sans-serif;
   }
 
   nav {
     height: 74px;
     background-color: rgb(255, 255, 255);
+    font-family: Comic Sans MS, Helvetica, sans-serif;
   }
   
   .navbar-toggler:focus { box-shadow: none; }
@@ -92,7 +93,7 @@
     padding-bottom: 5px;
     border-bottom: 1px solid rgba(109, 93, 93, 0.4);
     text-align: left;
-    font-family: 'Nunito', sans-serif; 
+    font-family: Comic Sans MS, Helvetica, sans-serif;
   }
 
 ::placeholder {
@@ -107,7 +108,7 @@
   margin-bottom: 30px;
   text-transform: uppercase;
   
-  font-family: 'Nunito', sans-serif;
+  font-family: Comic Sans MS, Helvetica, sans-serif;
   width: 260px;
   height: 40px;
   background-color: #5643FF;
@@ -124,7 +125,7 @@
   margin-bottom: 30px;
   text-transform: uppercase;
   font-weight: 600;
-  font-family: 'Nunito', sans-serif;
+  font-family: Comic Sans MS, Helvetica, sans-serif;
 }
 
 .btn-primary:hover, .btn-primary:focus {
