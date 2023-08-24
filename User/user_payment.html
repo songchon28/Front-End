@@ -253,7 +253,7 @@
 			const box = document.createElement('tr');
 			box.innerHTML = `    
 								<td class="col-1">${json.data[i]['course_id']}</td>
-								<th class="col-2">${json.data[i]['course_name']}</th>
+								<td class="col-2">${json.data[i]['course_name']}</td>
 								<td class="col-1">${json.data[i]['bill_id']}</td>
 								<td class="col-1">${price} บาท</td>
 								<td class="col-3">${dateFormat}</td>
@@ -312,7 +312,7 @@
 				const box = document.createElement('tr');
 				box.innerHTML = `
 									<td class="col-1">${bill_data[i]['course_id']}</td>
-									<th class="col-2">${bill_data[i]['course_name']}</th>
+									<td class="col-2">${bill_data[i]['course_name']}</td>
 									<td class="col-1">${bill_data[i]['bill_id']}</td>
 									<td class="col-1">${price} บาท</td>
 									<td class="col-3">${dateFormat}</td>
@@ -340,7 +340,7 @@
 				const box = document.createElement('tr');
 				box.innerHTML = `
 									<td class="col-1">${bill_search[i]['course_id']}</td>
-									<th class="col-2">${bill_search[i]['course_name']}</th>
+									<td class="col-2">${bill_search[i]['course_name']}</td>
 									<td class="col-1">${bill_search[i]['bill_id']}</td>
 									<td class="col-1">${bill_search[i]['bill_total']} บาท</td>
 									<td class="col-3">${dateFormat}</td>
