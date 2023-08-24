@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
+
 *, *:before, *:after{
   margin: 0;
   padding: 0;
@@ -12,7 +14,15 @@
 
 .container-fluid { max-width: 1770px; }
 .tm-container-small { max-width: 1050px; }
+
+nav {
+  
+  height: 74px;
+  background-color: rgb(255, 255, 255);
+}
+
 .navbar-toggler:focus { box-shadow: none; }
+.navbar-brand i { font-size: 2rem; }
 .navbar-brand {
   color: #5643FF;
   font-size: 2.0rem;
@@ -21,9 +31,10 @@
 
 .navbar-brand i { font-size: 2rem; }
 
-body {
+body form {
+  
   width: 100%;
-  height: 100vh;
+  height: 800px;
   display: flex;
   justify-content: center;
   align-items: center;

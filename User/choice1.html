@@ -219,21 +219,23 @@ function showAnswer() {
     const scorepercent = numCorrect/quizLength;
     let result = ""
 
-    if (scorepercent >= 0.8) {
+    if (scorepercent > 0.8) {
       result = "ดีมาก"
     }
-    else if (scorepercent >= 0.6 ) {
+    else if (scorepercent > 0.6 ) {
       result = "ดี"
     }
-    else if (scorepercent >= 0.4) {
+    else if (scorepercent > 0.4) {
       result = "ปานกลาง"
     }
-    else if (scorepercent >= 0.2) {
+    else if (scorepercent > 0.2) {
       result = "น้อย"
     }
     else {
       result = "น้อยที่สุด"
     } 
+
+    const percent = scorepercent*100;
 
     // show number of correct answers out of total
     // if (numCorrect === quizLength) {
@@ -253,9 +255,9 @@ function showAnswer() {
                                           </p>
                                         </div>
                                       <p> 
-                                      <p>คุณตอบคำถามถูกต้อง ${numCorrect} เต็ม ${myQuestions.length} คะแนน</p>
+                                      <p>คุณตอบคำถามถูกต้อง ${numCorrect} เต็ม ${myQuestions.length} คะแนน (${percent})</p>
                                       
-                                      <a href=${"choice1.html?course_id=" + course_id}><button id="playAgain" class="mr-2 btn btn-default">เล่นใหม่</button></a>
+                                      <a href=${"choice1.html?course_id=" + course_id}><button id="playAgain" class="mr-2 btn btn-default">ทำแบบทดสอบใหม่</button></a>
                                       <a class="ml-2 btn btn-default" href=${"video-detail.html?id=" + course_id} left=5px>กลับหน้าคอร์ส</a>
                                       
                                     </div>

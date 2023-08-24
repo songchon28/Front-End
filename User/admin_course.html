@@ -198,15 +198,15 @@
                                 </div>
                                 <div class="col-md-10">
                                     <div id="course_price" class="form-group">
-                                        ราคาคอร์ส<span style="color:#7e7e7e"> (บาท)</span>
-                                        <input id="c_price" name="c_price" type="text" class="form-control" value="" maxlength="4">
+                                        ราคาคอร์ส<span style="color:#7e7e7e"> (ตัวเลขไม่เกิน 6 หลัก)</span>
+                                        <input id="c_price" name="c_price" type="text" class="form-control" value="" maxlength="6">
                                         <a class="text-danger" id="price_error"></a>
                                     </div>
                                 </div>
                                 <div class="col-md-10">
                                     <div id="course_descript" class="form-group">
                                         รายละเอียดคอร์ส<span style="color:#7e7e7e"> (จำนวนตัวอักษรไม่เกิน 400 ตัวอักษร)</span>
-                                        <input id="c_description" name="c_description" type="text" class="form-control" value="" maxlength="350">
+                                        <textarea id="c_description" name="c_description" rows="4" type="text" class="form-control" value="" maxlength="350"></textarea>
                                         <a class="text-danger" id="descript_error"></a>
                                     </div>
                                 </div>
@@ -214,9 +214,9 @@
                                 <div class="col-md-5 mb-5">
                                     <div class="col">
                                         <div class="form-group" >
-                                            <label>ไฟล์รูปภาพ</label>
+                                            <label>ไฟล์รูปภาพ</label><span style="color:#7e7e7e"> (อัปโหลดนามสกุลไฟล์รูปภาพ png jpg หรือ jpeg และขนาดไฟล์ไม่เกิน 3 MB)</span>
                                         </div>
-                                        <input type="file" id="imagefile" hidden="hidden" accept="image/*"/>
+                                        <input type="file" id="imagefile" hidden="hidden" accept="image/png, image/jpg, image/jpeg"/>
                                         <button type="button" id="pic-button">เลือกไฟล์</button>
                                         <span id="pic-text">ไม่ได้เลือกไฟล์รูปภาพ</span>
                                         <a id="info1" class="imgfile-error text-danger d-flex mt-2"></a>
@@ -227,9 +227,9 @@
                                 <div class="col-md-5 mb-5">
                                     <div class="col">
                                         <div class="form-group">
-                                            <label>ไฟล์วิดีโอ</label>
+                                            <label>ไฟล์วิดีโอ</label><span style="color:#7e7e7e"> (อัปโหลดนามสกุลไฟล์วิดีโอ mp4 และขนาดไฟล์ไม่เกิน 300 MB)</span>
                                         </div>
-                                        <input type="file" id="videofile" hidden="hidden" accept="video/*"/>
+                                        <input type="file" id="videofile" hidden="hidden" accept="video/mp4"/>
                                         <button type="button" id="video-button">เลือกไฟล์</button>
                                         <span id="video-text">ไม่ได้เลือกไฟล์วิดีโอ</span>
                                         <a id="info2" class="videofile-error text-danger d-flex mt-2"></a>
@@ -279,15 +279,16 @@
                             
                             <div class="col-md-10">
                                 <div id="course_price" class="form-group">
-                                    ราคาคอร์ส<span style="color:#7e7e7e"> (บาท)</span>
-                                    <input id="c_price_edit" name="c_price" type="text" class="form-control" onclick="checkInputs()" maxlength="4">
+                                    ราคาคอร์ส<span style="color:#7e7e7e"> (ตัวเลขไม่เกิน 6 หลัก)</span>
+                                    <input id="c_price_edit" name="c_price" type="text" class="form-control" onclick="checkInputs()" maxlength="6">
                                     <a class="text-danger" id="editprice_error"></a>
                                 </div>
                             </div>
                             <div class="col-md-10">
                                 <div id="course_descript" class="form-group">
                                     รายละเอียดคอร์ส<span style="color:#7e7e7e"> (จำนวนตัวอักษรไม่เกิน 400 ตัวอักษร)</span>
-                                    <input id="c_description_edit" name="c_description" type="text" class="form-control" onclick="checkInputs()" maxlength="350">
+                                    
+                                    <textarea id="c_description_edit" name="c_description" rows="4" type="text" class="form-control" onclick="checkInputs()" maxlength="350"></textarea>
                                     <a class="text-danger" id="editdescript_error"></a>
                                 </div>
                             </div>

@@ -216,16 +216,11 @@ a:hover { color:#001c99; }
     margin: 12px 7px;
 }
 
-
-
-
 .sub-menu-link p {
     margin-top: 14px;
     width: 100%;
     cursor: pointer;
 }
-
-
 
 .sub-menu-link .icon{
     width: 40px;
@@ -258,9 +253,6 @@ a:hover { color:#001c99; }
     margin-left: 75px;
     /* right: 220px;
     left: 1400px; */
-    
-    
-    
 }
 .btn { border-radius: 0; }
 .btn-primary {
