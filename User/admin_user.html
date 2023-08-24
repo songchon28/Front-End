@@ -274,7 +274,7 @@
 		for (var i = 0; i < datalenght; i++) {
 			(json.data[i]);
 			const date = new Date(json.data[i]['date']) 
-			const dateFormat = date.toLocaleString('th-TH', {
+			const dateFormat = date.toLocaleString('th-TH-u-ca-gregory', {
 				dateStyle: "full" //timeStyle: "medium"
 			})
 			const userlist = document.getElementById('user_table');
@@ -339,7 +339,7 @@
 			for (var i = 0; i < datalenght; i++) {
 	
 			const date = new Date(user_data[i]['date']) 
-			const dateFormat = date.toLocaleString('th-TH', {
+			const dateFormat = date.toLocaleString('th-TH-u-ca-gregory', {
 				dateStyle: "full" //timeStyle: "medium"
 			})
 			const userlist = document.getElementById('user_table');

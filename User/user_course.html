@@ -239,7 +239,7 @@
 		var datalenght = Object.keys(data).length;
 		for (var i = 0; i < datalenght; i++) {
 			const date = new Date(json.data[i]['bill_date']) 
-			const dateFormat = date.toLocaleString('th-TH', {
+			const dateFormat = date.toLocaleString('th-TH-u-ca-gregory', {
 				dateStyle: "medium"
 			})
 			const box = document.createElement('tr');
@@ -268,7 +268,7 @@
 			var datalenght = Object.keys(course_data).length;
 			for (var i = 0; i < datalenght; i++) {
 				const date = new Date(course_data[i]['bill_date']) 
-				const dateFormat = date.toLocaleString('th-TH', {
+				const dateFormat = date.toLocaleString('th-TH-u-ca-gregory', {
 					dateStyle: "medium"
 				})
 				const box = document.createElement('tr');
@@ -301,7 +301,7 @@
 				
             for (var i = 0; i < datalenght; i++) {
 				const date = new Date(course_search[i]['bill_date']) 
-				const dateFormat = date.toLocaleString('th-TH', {
+				const dateFormat = date.toLocaleString('th-TH-u-ca-gregory', {
 					dateStyle: "medium"
 				})
                 const box = document.createElement('tr');

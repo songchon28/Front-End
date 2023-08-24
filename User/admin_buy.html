@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="fontawesome/css/all.min.css">
 	<link rel="stylesheet" type="text/css" href="css/admin.css">
+	
 </head>
 <body>
     <!-- Page Loader -->
@@ -183,10 +184,11 @@
 <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
+
+
 <script>
 
 	var bills = []
-
 	const date_from = document.getElementById("date_from")
 	const date_to = document.getElementById("date_to")
 	
@@ -211,7 +213,7 @@
 				continue
 			}
 
-			const dateFormat = date.toLocaleString('th-TH', {
+			const dateFormat = date.toLocaleString('th-TH-u-ca-gregory',  {
 				dateStyle: "full"
 				})
 			
@@ -247,6 +249,9 @@
 				for (let id in bills[day].course){
 					const div = document.createElement('div');
 					const fullname = document.getElementById('fullname');
+					const dateFormat = date.toLocaleString('th-TH-u-ca-gregory', {
+						dateStyle: "full"
+					})
 					fullname.innerText = dateFormat
 					div.innerText = 'Course ID:' + id + ' ชื่อคอร์ส ' + bills[day].course[id].course_name + " จำนวน " + bills[day].course[id].count + " คอร์ส "
 					courselist.appendChild(div)
@@ -330,7 +335,7 @@
         var datalenght = Object.keys(course_count).length;
         for (let day in course_count) {
 			const date = new Date(day)
-			const dateFormat = date.toLocaleString('th-TH', {
+			const dateFormat = date.toLocaleString('th-TH-u-ca-gregory', {
 				dateStyle: "full"
 				})
 			const price = new Intl.NumberFormat().format(bills[day].bill_total)
@@ -365,6 +370,9 @@
 				for(let id in course_count[day].course){
 					const div = document.createElement('div');
 					const fullname = document.getElementById('fullname');
+					const dateFormat = date.toLocaleString('th-TH-u-ca-gregory', {
+						dateStyle: "full"
+					})
 					fullname.innerText = dateFormat
 					div.innerText = 'Course ID:' + id + ' ชื่อคอร์ส ' + course_count[day].course[id].course_name + " จำนวน " + course_count[day].course[id].count + " คอร์ส "
 					courselist.appendChild(div)
