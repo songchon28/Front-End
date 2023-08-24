@@ -5,7 +5,7 @@
     font-family: Comic Sans MS, Helvetica, sans-serif;
   }
 
-.container-fluid { max-width: 1770px; }
+.container-fluid { max-width: 1600px; }
 .tm-container-small { max-width: 1050px; }
   
   body form {
@@ -26,6 +26,9 @@
   
   .navbar-toggler:focus { box-shadow: none; }
   .navbar-brand i { font-size: 2rem; }
+  .navbar-brand path {
+    fill: #5643FF;
+  }
   .navbar-brand {
     color: #5643FF;
     font-size: 2.0rem;
