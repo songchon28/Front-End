@@ -293,7 +293,7 @@ https://templatemo.com/tm-556-catalog-z
                                         <img src=${course_data[i]['course_image']} alt="Image" class="img-fluid">
                                         <figcaption class="d-flex align-items-center justify-content-center">
                                             
-                                            <h1>${course_data[i]['course_name']}</h1>
+                                            <h1 style="word-break: break-all;">${course_data[i]['course_name']}</h1>
                                             
                                             <a href=${"video-detail.html?id="+course_data[i]['course_id']}></a>
                                         </figcaption>                    
@@ -302,9 +302,9 @@ https://templatemo.com/tm-556-catalog-z
                                         <div class="d-flex flex-column h-100">
 
                                             <div class="h-25">
-                                                <h4 class="mb-0">${course_data[i]['course_name']}</h4>
+                                                <h4 class="mb-0" style="word-break: break-all;">${course_data[i]['course_name']}</h4>
                                             </div>
-                                            <div class="descript text h-50">
+                                            <div class="descript text h-50" style="word-break: break-all;">
                                                 คำอธิบาย: ${course_data[i]['course_descript']}
                                             </div>
                                             
@@ -338,7 +338,7 @@ https://templatemo.com/tm-556-catalog-z
                                     <figure class="effect-ming tm-video-item mb-0 h-50">
                                         <img src=${course_search[i]['course_image']} alt="Image" class="img-fluid">
                                         <figcaption class="d-flex align-items-center justify-content-center">
-                                            <h1>${course_search[i]['course_name']}</h1>
+                                            <h1 style="word-break: break-all;">${course_search[i]['course_name']}</h1>
                                             <a href=${"video-detail.html?id="+course_search[i]['course_id']}></a>
                                         </figcaption>
                                     </figure>
@@ -346,9 +346,9 @@ https://templatemo.com/tm-556-catalog-z
                                         <div class="d-flex flex-column h-100">
 
                                             <div class="h-25">
-                                                <h4 class="mb-0">${course_search[i]['course_name']}</h4>
+                                                <h4 class="mb-0" style="word-break: break-all;">${course_search[i]['course_name']}</h4>
                                             </div>
-                                            <div class="descript text h-50">
+                                            <div class="descript text h-50" style="word-break: break-all;">
                                                 คำอธิบาย: ${course_search[i]['course_descript']}
                                             </div>
                                             
