@@ -159,8 +159,8 @@
                                         <th class="col-2" scope="col">ชื่อคอร์ส</th>
                                         <th class="col-4" scope="col">คำอธิบาย</th>
                                         <th class="col-2" style="text-align: right;" scope="col">ราคา (บาท)</th>
-                                        <th class="col-2" scope="col">สถานะคอร์ส</th>
-                                        <th class="col-1" scope="col"></th>
+                                        <th class="col-2" style="text-align:center;" scope="col">สถานะคอร์ส</th>
+                                        <th class="col-1" style="text-align:center;" scope="col"></th>
                                         
                                       </tr>
                                     </thead>
@@ -585,13 +585,13 @@
                                 <td class="col-2">${json.data[i]['course_name']}</td>
                                 <td class="col-4">${json.data[i]['course_descript']}</td>
                                 <td class="col-2" style="text-align: right;">${price}</td>
-                                <td class="col-2">
+                                <td class="col-2" style="text-align:center;">
                                     <label class="switch align-self-center">
                                         <input id="${json.data[i]['course_id']}" type="checkbox">
                                         <span class="slider round"></span>
                                     </label>
                                 </td> 
-                                <td class="col-1"><button  class="course-link btn btn-danger" id="${json.data[i]['course_id']}"><i class="fas fa-trash" id="${json.data[i]['course_id']}"></i></button></td>
+                                <td class="col-1" style="text-align:center;"><button class="course-link btn btn-danger" id="${json.data[i]['course_id']}"><i class="fas fa-trash" id="${json.data[i]['course_id']}"></i></button></td>
                             `
                             // `<div class="row bg-light text-dark mb-3">	
                             //     <label class="col-sm-9 form-label fw-bolder text-dark mt-2">ID: ${json.data[c]['course_id']} ชื่อ: ${json.data[c]['course_name']} 
