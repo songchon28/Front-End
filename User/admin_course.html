@@ -155,10 +155,10 @@
                                 <table class="table table-fixed w-100 h-100 d-block overflow-auto">
                                     <thead class="table table-dark table-striped sticky-top d-table mb-0" style="z-index: 1;">
                                       <tr>
-                                        <th class="col-1" scope="col">คอร์ส ID</th>
+                                        <th class="col-1" style="text-align: right;" scope="col">คอร์ส ID</th>
                                         <th class="col-2" scope="col">ชื่อคอร์ส</th>
                                         <th class="col-4" scope="col">คำอธิบาย</th>
-                                        <th class="col-2" scope="col">ราคา</th>
+                                        <th class="col-2" style="text-align: right;" scope="col">ราคา (บาท)</th>
                                         <th class="col-2" scope="col">สถานะคอร์ส</th>
                                         <th class="col-1" scope="col"></th>
                                         
@@ -581,10 +581,10 @@
             const price = new Intl.NumberFormat().format(json.data[i]['course_price'])
             const box = document.createElement('tr'); 
             box.innerHTML = `
-                                <td class="col-1">${json.data[i]['course_id']}</td>
+                                <td class="col-1" style="text-align: right;">${json.data[i]['course_id']}</td>
                                 <td class="col-2">${json.data[i]['course_name']}</td>
                                 <td class="col-4">${json.data[i]['course_descript']}</td>
-                                <td class="col-2">${price} บาท</td>
+                                <td class="col-2" style="text-align: right;">${price}</td>
                                 <td class="col-2">
                                     <label class="switch align-self-center">
                                         <input id="${json.data[i]['course_id']}" type="checkbox">
@@ -659,7 +659,7 @@
                                 <td class="col-1">${course_data[i]['course_id']}</td>
                                 <td class="col-2">${course_data[i]['course_name']}</td>
                                 <td class="col-4">${course_data[i]['course_descript']}</td>
-                                <td class="col-2">${price} บาท</td>
+                                <td class="col-2">${price}</td>
                                 <td class="col-2">
                                     <label class="switch align-self-center">
                                         <input id="${course_data[i]['course_id']}" type="checkbox">
@@ -714,7 +714,7 @@
                                 <td class="col-1">${course_search[i]['course_id']}</td>
                                 <td class="col-2">${course_search[i]['course_name']}</td>
                                 <td class="col-4">${course_search[i]['course_descript']}</td>
-                                <td class="col-2">${price} บาท</td>
+                                <td class="col-2">${price}</td>
                                 <td class="col-2">
                                     <label class="switch align-self-center">
                                         <input id="${course_search[i]['course_id']}" type="checkbox">
