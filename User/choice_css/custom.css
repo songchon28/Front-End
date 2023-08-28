@@ -133,7 +133,7 @@ input[type=radio] {
     z-index: 1001;
 }
 #results p {
-    font-size: 30px;
+    font-size: 20px;
 }
 .answers {
     margin-bottom: 20px;
