@@ -242,7 +242,7 @@ function showAnswer() {
 
     resultsContainer.innerHTML = `<div class="bg-white row d-flex align-items-center justify-content-center">
                                     <div class="col">
-                                      <div class="wow slideInDown mb-3"><h1 style="color:#5643FF;">${result}</h1></div>
+                                      <div class="wow slideInDown mb-3"><h1 style="color:#5643FF; font-weight: 700;">${result}</h1></div>
                                       <div class="wow fadeIn" data-wow-delay="1s" data-wow-duration="1s">
                                       <p>คะแนนประเมิน</p> 
                                         <div class="text-left mb-5" style="margin-left: 150px;"> 
@@ -255,9 +255,9 @@ function showAnswer() {
                                           </p>
                                         </div>
                                       <p> 
-                                      <p style="color:#5643FF;">คุณตอบคำถามถูกต้อง ${numCorrect} ข้อ จากทั้งหมด ${myQuestions.length} ข้อ</p>
+                                      <p style="color:#5643FF; font-weight: 700;">คุณตอบคำถามถูกต้อง ${numCorrect} ข้อ จากทั้งหมด ${myQuestions.length} ข้อ</p>
                                       <br>
-                                      <p style="color:#5643FF;">คิดเป็น ${percent.toFixed(2)}%</p>
+                                      <p style="color:#5643FF; font-weight: 700;">คิดเป็น ${percent.toFixed(2)}%</p>
                                       
                                       <a href=${"choice1.html?course_id=" + course_id}><button id="playAgain" class="mr-2 btn">สอบใหม่</button></a>
                                       <a class="ml-2 btn" href=${"video-detail.html?id=" + course_id} left=5px>กลับหน้าคอร์ส</a>
