@@ -132,7 +132,6 @@
 									<thead class="table table-dark table-striped sticky-top d-table w-100 mb-0" style="z-index: 1;">
                                       <tr>
                                         <th class="col-2" scope="col">ชื่อคอร์ส</th>
-										
 										<th class="col-2" style="text-align:right; padding-right:80px;" scope="col">คอร์ส ID</th>
                                         <th class="col-4" scope="col">รายละเอียดคอร์ส</th>
 										<th scope="col-2" scope="col">วันที่ชำระ</th>
@@ -244,8 +243,8 @@
 			})
 			const box = document.createElement('tr');
 			box.innerHTML = `
-								<td class="col-2" style="text-align:right; padding-right:80px;">${json.data[i]['course_name']}</td>
-								<td class="col-2">${json.data[i]['course_id']}</td>
+								<td class="col-2">${json.data[i]['course_name']}</td>
+								<td class="col-2" style="text-align:right; padding-right:80px;">${json.data[i]['course_id']}</td>
 								<td class="col-4">${json.data[i]['course_descript']}</td>
 								<td class="col-2">${dateFormat}</td>
 								<td class="col-2"><a class="course-link btn btn-primary align-self-center" href=${"video-detail.html?id="+json.data[i]['course_id']}>กดเข้าคอร์ส</a></td>
@@ -273,8 +272,8 @@
 				})
 				const box = document.createElement('tr');
 				box.innerHTML = `  
-									<td class="col-2" style="text-align:right; padding-right:80px;">${course_data[i]['course_name']}</td>
-									<td class="col-2">${course_data[i]['course_id']}</td>
+									<td class="col-2">${course_data[i]['course_name']}</td>
+									<td class="col-2" style="text-align:right; padding-right:80px;">${course_data[i]['course_id']}</td>
 									<td class="col-4">${course_data[i]['course_descript']}</td>
 									<td class="col-2">${dateFormat}</td>
 									<td class="col-2"><a class="course-link btn btn-primary align-self-center" href=${"video-detail.html?id="+course_data[i]['course_id']}>
@@ -306,8 +305,8 @@
 				})
                 const box = document.createElement('tr');
                 box.innerHTML = `  
-									<td class="col-2" style="text-align:right; padding-right:80px;">${course_search[i]['course_name']}</td>
-									<td class="col-2">${course_search[i]['course_id']}</td>
+									<td class="col-2">${course_search[i]['course_name']}</td>
+									<td class="col-2" style="text-align:right; padding-right:80px;">${course_search[i]['course_id']}</td>
 									<td class="col-4">${course_search[i]['course_descript']}</td>
 									<td class="col-2">${dateFormat}</td>
 									<td class="col-2"><a class="col-sm-3 course-link btn btn-primary align-self-center" href=${"video-detail.html?id="+course_search[i]['course_id']}>
