@@ -136,11 +136,11 @@
 								<table class="table table-fixed h-100 w-100 d-block overflow-auto ">
 									<thead class="table table-dark table-striped sticky-top d-table w-100 mb-0" style="z-index: 10;">
                                       <tr>
-                                        <th class="col-1" scope="col">คอร์ส ID</th>
+                                        <th class="col-1" style="text-align:right; padding-right:80px;" scope="col">คอร์ส ID</th>
 										<th class="col-2" scope="col">ชื่อคอร์ส</th>
-                                        <th class="col-1" scope="col">Bill ID</th>
+                                        <th class="col-1" style="text-align:right; padding-right:80px;" scope="col">Bill ID</th>
 										
-                                        <th class="col-1" scope="col">รวมราคา</th>
+                                        <th class="col-1" style="text-align:right; padding-right:80px;" scope="col">รวมราคา (บาท)</th>
 										<th class="col-3" scope="col">วันที่ชำระเงิน</th>
                                       </tr>
                                     </thead>
@@ -252,10 +252,10 @@
 			const price = new Intl.NumberFormat().format(json.data[i]['bill_total'])
 			const box = document.createElement('tr');
 			box.innerHTML = `    
-								<td class="col-1">${json.data[i]['course_id']}</td>
+								<td class="col-1" style="text-align:right; padding-right:80px;">${json.data[i]['course_id']}</td>
 								<td class="col-2">${json.data[i]['course_name']}</td>
-								<td class="col-1">${json.data[i]['bill_id']}</td>
-								<td class="col-1">${price} บาท</td>
+								<td class="col-1" style="text-align:right; padding-right:80px;">${json.data[i]['bill_id']}</td>
+								<td class="col-1" style="text-align:right; padding-right:80px;">${price}</td>
 								<td class="col-3">${dateFormat}</td>
 							`
 			box.classList.add('box')
