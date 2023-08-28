@@ -78,7 +78,7 @@ input[type=radio] {
   display: flex;
   height: 250px;
   width: 500px;
-  top: 100px;
+  top: 0px;
   margin-left: 200px;
   text-align: center;
   
