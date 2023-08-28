@@ -365,6 +365,16 @@ a.tm-text-primary:hover { color:#001c99; }
     white-space: normal;
  }
 
+.course_text {
+    overflow: hidden;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 1; /* number of lines to show */
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    white-space: normal;
+
+}
+
 .descript div {
     
     color: #535353;
