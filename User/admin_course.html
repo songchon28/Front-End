@@ -157,7 +157,7 @@
                                       <tr>
                                         <th class="col-1" style="text-align:right;" scope="col">คอร์ส ID</th>
                                         <th class="col-2" style="padding-left:25px;" scope="col">ชื่อคอร์ส</th>
-                                        <th class="col-4" scope="col">คำอธิบาย</th>
+                                        <th style="column-width: 100px;">คำอธิบาย</th>
                                         <th class="col-2" style="padding-right:40px; text-align:right;" scope="col">ราคา (บาท)</th>
                                         <th class="col-2" scope="col">สถานะคอร์ส</th>
                                         <th class="col-1" style="text-align:center;" scope="col"></th>
@@ -583,7 +583,7 @@
             box.innerHTML = `
                                 <td class="col-1" style="text-align:right;">${json.data[i]['course_id']}</td>
                                 <td class="col-2" style="padding-left:25px;">${json.data[i]['course_name']}</td>
-                                <td class="col-4" scope="col">${json.data[i]['course_descript']}</td>
+                                <td style="column-width: 100px;">${json.data[i]['course_descript']}</td>
                                 <td class="col-2" style="padding-right:40px; text-align:right;">${price}</td>
                                 <td class="col-2">
                                     <label class="switch align-self-center">
