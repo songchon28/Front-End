@@ -240,6 +240,7 @@ https://templatemo.com/tm-556-catalog-z
         
         var datalenght = Object.keys(course_data).length;
         for (var i = 0; i < datalenght; i++) {
+            const price = new Intl.NumberFormat().format(json.data[i]['course_price'])
             const box = document.createElement('div');
             box.innerHTML = `<div class="mb-5 shadow container-video word-wrap">
                                 <figure class="effect-ming tm-video-item mb-0 h-50">
@@ -262,7 +263,7 @@ https://templatemo.com/tm-556-catalog-z
                                         </div>
                                         
                                         <div class="d-flex align-items-end text-left mt-2 price h-25">
-                                            <h5 style="color:#5643FF;">${json.data[i]['course_price']} บาท</h5>
+                                            <h5 style="color:#5643FF;">${price} บาท</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -287,6 +288,7 @@ https://templatemo.com/tm-556-catalog-z
             if(search_bar.value == '') {
                 var datalenght = Object.keys(course_data).length;
             for (var i = 0; i < datalenght; i++) {
+                const price = new Intl.NumberFormat().format(course_data[i]['course_price'])
                 const box = document.createElement('div');
                 box.innerHTML = `<div class="mb-5 shadow container-video word-wrap">
                                     <figure class="effect-ming tm-video-item mb-0 h-50">
@@ -309,7 +311,7 @@ https://templatemo.com/tm-556-catalog-z
                                             </div>
                                             
                                             <div class="d-flex align-items-end text-left mt-2 price h-25">
-                                                <h5 style="color:#5643FF;">${course_data[i]['course_price']} บาท</h5>
+                                                <h5 style="color:#5643FF;">${price} บาท</h5>
                                             </div>
                                         </div>
                                     </div>
@@ -333,6 +335,7 @@ https://templatemo.com/tm-556-catalog-z
             }
                 var datalenght = Object.keys(course_search).length;
             for (var i = 0; i < datalenght; i++) {
+                const price = new Intl.NumberFormat().format(course_search[i]['course_price'])
                 const box = document.createElement('div');
                 box.innerHTML = `<div class="mb-5 shadow container-video word-wrap">
                                     <figure class="effect-ming tm-video-item mb-0 h-50">
@@ -353,7 +356,7 @@ https://templatemo.com/tm-556-catalog-z
                                             </div>
                                             
                                             <div class="d-flex align-items-end text-left mt-2 price h-25">
-                                                <h5 style="color:#5643FF;">${course_search[i]['course_price']} บาท</h5>
+                                                <h5 style="color:#5643FF;">${price} บาท</h5>
                                             </div>
                                         </div>
                                     </div>
